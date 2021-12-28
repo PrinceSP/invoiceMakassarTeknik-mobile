@@ -4,7 +4,7 @@ import {Input,Gap,Button,Header,ImagePicker} from './components'
 import {launchImageLibrary} from 'react-native-image-picker'
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-const App = ({navigation}) => {
+const Register = ({navigation}) => {
   const [photo,setPhoto] = useState('')
   const [hasPhoto, setHasPhoto] = useState(false)
   const [photoBase64,setPhotoBase64] = useState('')
@@ -145,4 +145,4 @@ const style = StyleSheet.create({
   }
 })
 
-export default App
+export default Register
