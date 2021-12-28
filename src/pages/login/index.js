@@ -3,7 +3,7 @@ import {View,Text,StyleSheet} from 'react-native'
 import {Header,Gap,Button,Input} from './components'
 import {SingleLogo} from './assets'
 
-const App = () => {
+const Login = () => {
   return (
     <View style={{flex:1,backgroundColor:"#fff"}}>
       <Gap height={15}/>
@@ -52,4 +52,4 @@ const style = StyleSheet.create({
   }
 })
 
-export default App
+export default Login
