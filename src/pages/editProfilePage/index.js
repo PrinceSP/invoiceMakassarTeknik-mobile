@@ -1,11 +1,12 @@
 import React,{useState} from 'react'
 import {Text,View,StyleSheet,TouchableOpacity,ScrollView,Image,Platform} from 'react-native'
-import {Input,Gap,Button,Header,ImagePicker} from './components'
+import {Input,Gap,Button,Header,ImagePicker} from '../../components'
+import {PD} from '../../assets'
 import {launchImageLibrary} from 'react-native-image-picker'
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 
-const App =({navigation})=>{
+const EditProfilePage =({navigation})=>{
   const [photo,setPhoto] = useState('')
   const [hasPhoto, setHasPhoto] = useState(false)
   const [photoBase64,setPhotoBase64] = useState('')
@@ -105,4 +106,4 @@ const style = StyleSheet.create({
   }
 })
 
-export default App
+export default EditProfilePage
