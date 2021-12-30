@@ -1,9 +1,9 @@
 import React from 'react'
 import {View,Text,StyleSheet} from 'react-native'
-import {Header,Gap,Button,Input} from './components'
-import {SingleLogo} from './assets'
+import {Header,Gap,Button,Input} from '../../components'
+import {SingleLogo} from '../../assets'
 
-const Login = () => {
+const Login = ({navigation}) => {
   return (
     <View style={{flex:1,backgroundColor:"#fff"}}>
       <Gap height={15}/>
@@ -19,9 +19,9 @@ const Login = () => {
         <Gap height={30}/>
         <Input placeholder="Password" />
         <Gap height={26}/>
-        <Text style={style.poppinsMed}>forgot password?</Text>
+        <Button name='Lupa Sandi?' color='#777' fam='Poppins-Medium' style={{marginLeft:4}}/>
         <Gap height={29}/>
-        <Button style={style.button} name="Masuk" color="#FFF" fam="Poppins-Medium" size={24}/>
+        <Button style={style.button} name="Masuk" color="#FFF" fam="Poppins-Medium" size={24} onPress={()=>navigation.navigate('Root',{screen:'BottomTabs'})}/>
         <Gap height={25}/>
         <View style={{flexDirection:'row'}}>
           <Text style={style.poppinsMed}>Belum punya akun?</Text>
@@ -45,10 +45,6 @@ const style = StyleSheet.create({
     borderRadius:50,
     alignItems:'center',
     justifyContent:'center'
-  },
-  poppinsMed:{
-    fontFamily:'Poppins-Medium',
-    color:'#777'
   }
 })
 

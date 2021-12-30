@@ -1,3 +1,4 @@
+import apiCall from './getApi'
 import getCurrentDate from './getCurrentDate'
 
-export {getCurrentDate}
+export {apiCall,getCurrentDate}

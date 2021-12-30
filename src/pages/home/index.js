@@ -1,7 +1,7 @@
 import React,{useEffect,useState} from 'react'
 import {Text,View,StyleSheet,ScrollView,Image} from 'react-native'
 import {Header,Gap} from '../../components'
-// import {Atomic} from '../../assets'
+import {Atomic} from '../../assets'
 import {getCurrentDate} from '../../config'
 
 const Home = ({navigation})=>{
@@ -14,7 +14,7 @@ const Home = ({navigation})=>{
       <ScrollView contentContainerStyle={scrollViewCont}>
         <View style={{flexDirection:'row'}}>
           <Text style={headingTitle2}>Hello,</Text>
-          <Text style={headingTitle1}> Prince!</Text>
+          <Text style={headingTitle1}> Charlie!</Text>
           <Image style={{right:6,bottom:2}} source={Atomic}/>
         </View>
         <Text style={{fontSize:20,fontFamily:'Poppins-Light',color:'#999'}}>{getCurrentDate()}</Text>

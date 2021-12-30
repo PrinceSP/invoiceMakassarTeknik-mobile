@@ -1,7 +1,6 @@
 import React,{useState} from 'react'
 import {Text,View,StyleSheet,TouchableOpacity,ScrollView,Image,Platform} from 'react-native'
 import {Input,Gap,Button,Header,ImagePicker} from '../../components'
-import {PD} from '../../assets'
 import {launchImageLibrary} from 'react-native-image-picker'
 import DateTimePicker from '@react-native-community/datetimepicker';
 
