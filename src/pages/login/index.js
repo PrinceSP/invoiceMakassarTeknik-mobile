@@ -7,7 +7,7 @@ const Login = ({navigation}) => {
   return (
     <View style={{flex:1,backgroundColor:"#fff"}}>
       <Gap height={15}/>
-      <Header action="Batal" name="Masuk"/>
+      <Header action="" name="Masuk"/>
       <Gap height={20}/>
       <View style={style.container}>
         <SingleLogo height={120}/>
@@ -36,6 +36,8 @@ const Login = ({navigation}) => {
 const style = StyleSheet.create({
   container:{
     alignItems:'center',
+    backgroundColor:'#fff',
+    flex:1
   },
   button:{
     marginBottom:15,
