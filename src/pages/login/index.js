@@ -17,9 +17,9 @@ const Login = ({navigation}) => {
         <Text style={{fontFamily:'PlayfairDisplay-Bold',fontSize:38,color:'#000'}}>Selamat Datang</Text>
         <Text style={{fontFamily:'PlayfairDisplay-Regular',fontSize:17,color:'#8D8D8D'}}>Masuk dengan akun anda dibawah ini</Text>
         <Gap height={46}/>
-        <Input placeholder="username" ref={username}/>
+        <Input placeholder="username" innerRef={username}/>
         <Gap height={30}/>
-        <Input placeholder="Password" ref={password}/>
+        <Input placeholder="Password" innerRef={password}/>
         <Gap height={26}/>
         <Button name='Lupa Sandi?' color='#777' fam='Poppins-Medium' style={{marginLeft:4}}/>
         <Gap height={29}/>
