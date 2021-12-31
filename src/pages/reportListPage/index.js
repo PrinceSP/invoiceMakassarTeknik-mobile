@@ -1,8 +1,14 @@
-import React from 'react'
+import React,{useEffect,useState} from 'react'
 import {Text,ScrollView,View,StyleSheet} from 'react-native'
 import {Header,Gap,ReportListComponent} from '../../components'
+import axios from 'axios'
 
 const ReportListPage=({navigation})=>{
+  const [invoices,setInvoices] = useState([])
+
+  // useEffect(()=>{
+  //   axios.get(``)
+  // },[])
   return(
     <View style={container}>
       <Gap height={15}/>

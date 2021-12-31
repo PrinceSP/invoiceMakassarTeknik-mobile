@@ -67,7 +67,7 @@ const ReportPage = ({navigation})=>{
 const style=StyleSheet.create({
   container:{ flex: 1,backgroundColor:'#fff'},
   text1:{fontSize:20,fontFamily:'Lato-Bold',color:'#565665'},
-  formContainer:{paddingHorizontal:20,paddingBottom:150},
+  formContainer:{paddingHorizontal:20,paddingBottom:150,alignItems:'center'},
   button:{
     marginTop:12,
     backgroundColor:'#000',
