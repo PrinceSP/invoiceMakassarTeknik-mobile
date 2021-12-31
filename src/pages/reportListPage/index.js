@@ -1,13 +1,17 @@
 import React,{useEffect,useState} from 'react'
 import {Text,ScrollView,View,StyleSheet} from 'react-native'
 import {Header,Gap,ReportListComponent} from '../../components'
-import axios from 'axios'
+import Axios from 'axios'
 
 const ReportListPage=({navigation})=>{
-  const [invoices,setInvoices] = useState([])
+  const [user,setUser] = useState({})
 
   // useEffect(()=>{
-  //   axios.get(``)
+  //   const fetchUser = async ()=>{
+  //     const res = await Axios.get(`https://charlie-invoice.herokuapp.com/api/user/61ce96700a1473f9ba0f6432`)
+  //     setUser(res.data);
+  //   }
+  //   fetchUser()
   // },[])
   return(
     <View style={container}>

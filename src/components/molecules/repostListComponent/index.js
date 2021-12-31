@@ -4,7 +4,15 @@ import ModalInvoice from '../modalInvoice'
 
 const ReportListComponent=()=>{
   const [visible,setVisible] = useState(false)
-
+  // const [invoices,setInvoices] = useState([])
+  //
+  // useEffect(()=>{
+  //   const fetchDatas = async ()=>{
+  //     const res = await Axios.get(`https://charlie-invoice.herokuapp.com/api/invoice/postsList/61ce96700a1473f9ba0f6432`)
+  //     setInvoices(res.data);
+  //   }
+  //   fetchDatas()
+  // },[])
   return(
     <View style={listCont}>
       <ModalInvoice visible={visible}>
