@@ -7,11 +7,11 @@ import {AuthContextProvider} from './context/authContext'
 const App = () => {
 
   return (
-    <AuthContextProvider>
-      <NavigationContainer>
+    <NavigationContainer>
+      <AuthContextProvider>
         <Routes/>
-      </NavigationContainer>
-    </AuthContextProvider>
+      </AuthContextProvider>
+    </NavigationContainer>
   );
 
 }

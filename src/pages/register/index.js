@@ -3,6 +3,7 @@ import {Text,View,StyleSheet,TouchableOpacity,ScrollView,Image,Platform} from 'r
 import {Input,Gap,Button,Header,ImagePicker} from '../../components'
 import {launchImageLibrary} from 'react-native-image-picker'
 import DateTimePicker from '@react-native-community/datetimepicker';
+import axios from 'axios'
 
 const Register = ({navigation}) => {
   const [photo,setPhoto] = useState('')

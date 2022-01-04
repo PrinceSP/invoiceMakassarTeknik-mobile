@@ -17,7 +17,8 @@ const Header = ({name,button,navigation,action,edit,nav,page})=>{
     backgroundColor:'#fff'}}>
       {
         button===true?<Burger onPress={()=>navigation.openDrawer()}/>
-        :<BackCancel onPress={()=>nav.goBack()}/>
+      :page===true?<BackCancel onPress={()=>navigation.navigate("BottomTabs",{screen:'Home'})}/>
+        : <BackCancel onPress={()=>nav.goBack()}/>
 
       }
       <Text style={{fontFamily:'Poppins-Medium',color:'#000',fontSize:22}}>{name}</Text>

@@ -16,7 +16,7 @@ const ReportListPage=({navigation})=>{
   return(
     <View style={container}>
       <Gap height={15}/>
-      <Header name="Daftar Nota" action="< kembali" navigation={navigation}/>
+      <Header name="Daftar Nota" action="< kembali" navigation={navigation} page={true}/>
       <Gap height={45}/>
       <ScrollView contentContainerStyle={{paddingHorizontal:14,paddingVertical:20}}>
         <ReportListComponent/>

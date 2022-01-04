@@ -1,11 +1,28 @@
-import React,{useRef} from 'react'
+import React,{useRef,useState,useContext} from "react"
 import {View,Text,StyleSheet} from 'react-native'
 import {Header,Gap,Button,Input} from '../../components'
 import {SingleLogo} from '../../assets'
+// import {loginCall} from '../../config'
+import {AuthContext} from '../../context/authContext'
+import axios from 'axios'
 
 const Login = ({navigation}) => {
-  const username = useRef()
-  const password = useRef()
+  // const username = useRef()
+  const [username,setUsername] = useState('')
+  // const password = useRef()
+  const [password,setPassword] = useState('')
+  const {user,isFetching,error,dispatch} = useContext(AuthContext)
+  // const url = 'https://charlie-invoice.herokuapp.com/api'
+  //
+  // const handleLogin =async()=>{
+  //   // loginCall(
+  //   //   {username,password},
+  //   //   dispatch
+  //   // );
+  //   const res = await axios.post(`${url}/auth/login/`,{username,password})
+  //   console.log(res.data);
+  // }
+
   return (
     <View style={{flex:1,backgroundColor:"#fff"}}>
       <Gap height={15}/>
@@ -17,13 +34,13 @@ const Login = ({navigation}) => {
         <Text style={{fontFamily:'PlayfairDisplay-Bold',fontSize:38,color:'#000'}}>Selamat Datang</Text>
         <Text style={{fontFamily:'PlayfairDisplay-Regular',fontSize:17,color:'#8D8D8D'}}>Masuk dengan akun anda dibawah ini</Text>
         <Gap height={46}/>
-        <Input placeholder="username" innerRef={username}/>
+        <Input placeholder="username" value={username} onChangeText={e=>setUsername(e)}/>
         <Gap height={30}/>
-        <Input placeholder="Password" innerRef={password}/>
+        <Input placeholder="Password" value={password} onChangeText={e=>setPassword(e)}/>
         <Gap height={26}/>
         <Button name='Lupa Sandi?' color='#777' fam='Poppins-Medium' style={{marginLeft:4}}/>
         <Gap height={29}/>
-        <Button style={style.button} name="Masuk" color="#FFF" fam="Poppins-Medium" size={24} onPress={()=>navigation.navigate('Root',{screen:'BottomTabs'})}/>
+        <Button style={style.button} name="Masuk" color="#FFF" fam="Poppins-Medium" size={24} onPress={()=>navigation.navigate('Root',{screen:'Home'})}/>
         <Gap height={25}/>
         <View style={{flexDirection:'row'}}>
           <Text style={style.poppinsMed}>Belum punya akun?</Text>
