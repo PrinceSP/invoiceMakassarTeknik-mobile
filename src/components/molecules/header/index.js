@@ -13,11 +13,10 @@ const Header = ({name,button,navigation,action,edit,nav,page})=>{
   }
 
   return(
-    <View style={{minHeight:43,alignItems:'center',justifyContent:'space-between',flexDirection:'row',paddingHorizontal:17,
-    backgroundColor:'#fff'}}>
+    <View style={{minHeight:43,alignItems:'center',justifyContent:'space-between',flexDirection:'row',paddingHorizontal:17,backgroundColor:'#fff'}}>
       {
         button===true?<Burger onPress={()=>navigation.openDrawer()}/>
-      :page===true?<BackCancel onPress={()=>navigation.navigate("BottomTabs",{screen:'Home'})}/>
+        :page===true?<BackCancel onPress={()=>navigation.navigate("BottomTabs",{screen:'Home'})}/>
         : <BackCancel onPress={()=>nav.goBack()}/>
 
       }

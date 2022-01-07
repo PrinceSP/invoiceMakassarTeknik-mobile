@@ -25,6 +25,12 @@ const ReportListPage=({navigation})=>{
         <ReportListComponent/>
         <ReportListComponent/>
         <ReportListComponent/>
+        <ReportListComponent/>
+        <ReportListComponent/>
+        <ReportListComponent/>
+        <ReportListComponent/>
+        <ReportListComponent/>
+        <ReportListComponent/>
       </ScrollView>
     </View>
 

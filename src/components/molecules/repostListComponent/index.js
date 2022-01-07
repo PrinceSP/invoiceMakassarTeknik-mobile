@@ -1,9 +1,10 @@
 import React,{useState} from 'react'
-import {Text,ScrollView,View,StyleSheet,TouchableOpacity} from 'react-native'
+import {Text,ScrollView,View,StyleSheet,TouchableOpacity,Dimensions} from 'react-native'
 import ModalInvoice from '../modalInvoice'
 
 const ReportListComponent=()=>{
   const [visible,setVisible] = useState(false)
+  const width = Dimensions.get('window').width
   // const [invoices,setInvoices] = useState([])
   //
   // useEffect(()=>{
@@ -16,10 +17,13 @@ const ReportListComponent=()=>{
   return(
     <View style={listCont}>
       <ModalInvoice visible={visible}>
-        <View style={{flex:1,alignItems:'center'}}>
-          <Text onPress={()=>setVisible(false)} style={{fontSize:24,fontFamily:'Poppins-Regular',position:'absolute',right:85,top:15,color:'#fff'}}> {`< Close`} </Text>
-          <View style={{backgroundColor:'#fff',height:664,width:390,position:'absolute',bottom:0,borderTopLeftRadius:30,borderTopRightRadius:30,paddingVertical:35,paddingHorizontal:20}}>
-            <View style={{justifyContent:'space-between'}}>
+        <ScrollView contentContainerStyle={{width,alignItems:'center',flexDirection:'column'}}>
+          <View style={{width,flexDirection:'row',justifyContent:'center',alignItems:'center',position:'absolute',top:35}}>
+            <Text onPress={()=>setVisible(false)} style={{fontSize:16,fontFamily:'Poppins-Regular',position:'absolute',left:15,color:'#fff'}}> {`< Keluar`} </Text>
+            <Text style={{fontSize:24,fontFamily:'Poppins-Regular',position:'absolute',color:'#fff'}}> Faktur </Text>
+          </View>
+          <ScrollView contentContainerStyle={{backgroundColor:'#fff',width:390,marginTop:100,borderTopLeftRadius:30,borderTopRightRadius:30,paddingVertical:35,paddingHorizontal:20}}>
+            <View style={{justifyContent:'space-between',paddingBottom:65,marginBottom:27,borderBottomWidth:1,borderColor:'#ECECEC'}}>
               <View style={{flexDirection:'row',justifyContent:'space-between'}}>
                 <Text style={{fontFamily:'Poppins-Regular',color:'#7B7B7B'}}>Faktur untuk</Text>
                 <Text style={{fontFamily:'Poppins-Regular',color:'#7B7B7B'}}>No.HP</Text>
@@ -107,8 +111,8 @@ const ReportListComponent=()=>{
                 <Text style={{fontSize:20,fontFamily:'Poppins-Bold',color:'#6989F8'}}>Rp.2.210.000</Text>
               </View>
             </View>
-          </View>
-        </View>
+          </ScrollView>
+        </ScrollView>
       </ModalInvoice>
       <View style={firstSection}>
         <Text style={diagnosis}>AC Mobil Bermasalah</Text>

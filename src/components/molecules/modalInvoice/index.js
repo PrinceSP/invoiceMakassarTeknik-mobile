@@ -1,5 +1,5 @@
 import React,{useEffect,useState} from 'react'
-import {View,Text,StyleSheet,Modal} from 'react-native'
+import {View,Text,StyleSheet,Modal,ScrollView} from 'react-native'
 
 const ModalInvoice = ({visible,children}) => {
   const [show,setShow] = useState(visible)

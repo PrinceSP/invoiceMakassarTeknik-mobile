@@ -34,9 +34,7 @@ const TabsContent = ({state,navigation})=>{
 const style = StyleSheet.create({
   container:{
     height:60,
-    position:'absolute',
     width,
-    bottom:0,
     alignItems:'center',
     justifyContent:'space-around',
     flexDirection:'row',

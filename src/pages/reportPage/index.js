@@ -1,18 +1,22 @@
 import React, {useState,useEffect} from 'react'
-import {Text,View,StyleSheet,ScrollView,Alert} from 'react-native'
+import {Text,View,StyleSheet,ScrollView} from 'react-native'
 import {Header,Gap,Button,Input} from '../../components'
 
 const ReportPage = ({navigation})=>{
   const [data,setData] = useState({
-    fname:'',
-    address:'',
-    phone:'',
-    idCard:'',
+    noNote:'',
+    consumentName:'',
+    vehicle:'',
+    vehicleType:'',
+    plat:'',
+    diagnosis:'',
+    action:'',
+    spareParts:'',
+    servicePrice:'',
+    totalPrice:''
   })
   const [reportInfo,setReportInfo] = useState({})
-  const [checked, setChecked] = useState(false);
-
-  const {fname,address,idCard,phone} = data
+  const {noNote,consumentName,vehicle,vehicleType,policeNumber,diagnosis,action,servicePrice,totalPrice,} = data
 
   const submit = ()=>{
     //merge all the datas from these states
