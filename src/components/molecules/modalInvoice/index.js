@@ -8,7 +8,7 @@ const ModalInvoice = ({visible,children}) => {
   },[visible])
 
   const toggleModal = ()=>{
-    if (visible) {
+    if (visible===true) {
       setShow(true)
     }else{
       setShow(false)

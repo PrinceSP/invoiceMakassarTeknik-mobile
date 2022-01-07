@@ -20,7 +20,8 @@ import Edit from './edit.svg'
 import ModalSuccessIcon from './modalSuccess.svg'
 import SuccessIcon from './success_icon.svg'
 import FailedIcon from './failed_icon.svg'
+import Star from './star.svg'
 
-export {MainLogo,PD,AvatarProfile,Report,SingleSmall,ShareIcon,SignOut,SingleLogo,Edit,ModalSuccessIcon,
+export {MainLogo,PD,AvatarProfile,Star,Report,SingleSmall,ShareIcon,SignOut,SingleLogo,Edit,ModalSuccessIcon,
   Burger,Atomic,HomeIcon,ReportIcon,NotifIcon,DateIcon,Email,Address,Phone,ID,SuccessIcon,
   FailedIcon}

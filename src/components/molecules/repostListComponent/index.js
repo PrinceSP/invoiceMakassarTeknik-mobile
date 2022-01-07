@@ -1,28 +1,25 @@
 import React,{useState} from 'react'
 import {Text,ScrollView,View,StyleSheet,TouchableOpacity,Dimensions} from 'react-native'
 import ModalInvoice from '../modalInvoice'
+import {Star} from '../../../assets'
 
 const ReportListComponent=()=>{
   const [visible,setVisible] = useState(false)
   const width = Dimensions.get('window').width
-  // const [invoices,setInvoices] = useState([])
-  //
-  // useEffect(()=>{
-  //   const fetchDatas = async ()=>{
-  //     const res = await Axios.get(`https://charlie-invoice.herokuapp.com/api/invoice/postsList/61ce96700a1473f9ba0f6432`)
-  //     setInvoices(res.data);
-  //   }
-  //   fetchDatas()
-  // },[])
   return(
     <View style={listCont}>
       <ModalInvoice visible={visible}>
         <ScrollView contentContainerStyle={{width,alignItems:'center',flexDirection:'column'}}>
-          <View style={{width,flexDirection:'row',justifyContent:'center',alignItems:'center',position:'absolute',top:35}}>
+          <View style={{width,flexDirection:'row',justifyContent:'center',alignItems:'center',position:'absolute',top:35,zIndex:1}}>
             <Text onPress={()=>setVisible(false)} style={{fontSize:16,fontFamily:'Poppins-Regular',position:'absolute',left:15,color:'#fff'}}> {`< Keluar`} </Text>
             <Text style={{fontSize:24,fontFamily:'Poppins-Regular',position:'absolute',color:'#fff'}}> Faktur </Text>
           </View>
-          <ScrollView contentContainerStyle={{backgroundColor:'#fff',width:390,marginTop:100,borderTopLeftRadius:30,borderTopRightRadius:30,paddingVertical:35,paddingHorizontal:20}}>
+          <Star style={{position:'absolute',top:117,left:25}}/>
+          <Star height={32} style={{position:'absolute',top:100,left:53}}/>
+          <Star height={14} style={{position:'absolute',top:110,right:82,opacity:0.75}}/>
+          <Star style={{position:'absolute',top:70,right:42,opacity:0.75}}/>
+          <Star height={32} style={{position:'absolute',top:110,right:19,opacity:0.75}}/>
+          <ScrollView contentContainerStyle={{backgroundColor:'#fff',width:390,marginTop:150,marginBottom:40,borderTopLeftRadius:30,borderTopRightRadius:30,borderBottomLeftRadius:20,borderBottomRightRadius:20,paddingVertical:35,paddingHorizontal:20}}>
             <View style={{justifyContent:'space-between',paddingBottom:65,marginBottom:27,borderBottomWidth:1,borderColor:'#ECECEC'}}>
               <View style={{flexDirection:'row',justifyContent:'space-between'}}>
                 <Text style={{fontFamily:'Poppins-Regular',color:'#7B7B7B'}}>Faktur untuk</Text>
@@ -31,6 +28,17 @@ const ReportListComponent=()=>{
               <View style={{flexDirection:'row',justifyContent:'space-between'}}>
                 <Text style={{fontSize:20,fontFamily:'Poppins-Medium',color:'#1638B2'}}>Simon Forde</Text>
                 <Text style={{fontSize:20,fontFamily:'Poppins-Medium',color:'#000'}}>081213507373</Text>
+              </View>
+              <View style={{width,position:'absolute',bottom:0,left:0,flexDirection:'row',justifyContent:'space-between'}}>
+                <View style={{height:15,width:25,borderTopLeftRadius:25,borderTopRightRadius:25,backgroundColor:'#E5F5FA'}}/>
+                <View style={{height:15,width:25,borderTopLeftRadius:25,borderTopRightRadius:25,backgroundColor:'#E5F5FA'}}/>
+                <View style={{height:15,width:25,borderTopLeftRadius:25,borderTopRightRadius:25,backgroundColor:'#E5F5FA'}}/>
+                <View style={{height:15,width:25,borderTopLeftRadius:25,borderTopRightRadius:25,backgroundColor:'#E5F5FA'}}/>
+                <View style={{height:15,width:25,borderTopLeftRadius:25,borderTopRightRadius:25,backgroundColor:'#E5F5FA'}}/>
+                <View style={{height:15,width:25,borderTopLeftRadius:25,borderTopRightRadius:25,backgroundColor:'#E5F5FA'}}/>
+                <View style={{height:15,width:25,borderTopLeftRadius:25,borderTopRightRadius:25,backgroundColor:'#E5F5FA'}}/>
+                <View style={{height:15,width:25,borderTopLeftRadius:25,borderTopRightRadius:25,backgroundColor:'#E5F5FA'}}/>
+                <View style={{height:15,width:25,borderTopLeftRadius:25,borderTopRightRadius:25,backgroundColor:'#E5F5FA'}}/>
               </View>
             </View>
             <View>
@@ -41,8 +49,8 @@ const ReportListComponent=()=>{
                 <Text style={{fontSize:16,fontFamily:"Poppins-Medium",color:"#676E86"}}>Rincian Nota</Text>
               </View>
             </View>
-            <View style={{flexDirection:'row',justifyContent:'space-between',paddingVertical:10}}>
-              <View>
+            <View style={{flexDirection:'row',justifyContent:'space-between',paddingVertical:28,borderColor:"#AAA4A4",borderStyle:'dashed',borderBottomWidth:1}}>
+              <View style={{borderColor:"#AAA4A4",borderStyle:'dashed',borderRightWidth:1,paddingRight:95}}>
                 <Text style={{fontSize:14,color:"#939394",fontFamily:"Poppins-Medium"}}>Kendaraan</Text>
                 <Text style={{fontFamily:'Poppins-Medium',color:'#142D84'}}>Mobil</Text>
               </View>
@@ -51,8 +59,8 @@ const ReportListComponent=()=>{
                 <Text style={{fontFamily:'Poppins-Medium',color:'#142D84'}}>2 Januari 2022</Text>
               </View>
             </View>
-            <View style={{flexDirection:'row',justifyContent:'space-between',paddingVertical:10}}>
-              <View>
+            <View style={{flexDirection:'row',justifyContent:'space-between',paddingVertical:30,marginTop:12,borderColor:"#AAA4A4",borderStyle:'dashed',borderBottomWidth:1}}>
+              <View style={{borderColor:"#AAA4A4",borderStyle:'dashed',borderRightWidth:1,paddingRight:63}}>
                 <Text style={{fontSize:14,color:"#939394",fontFamily:"Poppins-Medium"}}>Tipe Kendaraan</Text>
                 <Text style={{fontFamily:'Poppins-Medium',color:'#142D84'}}>Honda</Text>
               </View>
@@ -61,8 +69,8 @@ const ReportListComponent=()=>{
                 <Text style={{fontFamily:'Poppins-Medium',color:'#142D84'}}>DN 2135 BC</Text>
               </View>
             </View>
-            <View style={{paddingVertical:10}}>
-              <View>
+            <View style={{marginVertical:15, borderColor:"#AAA4A4",borderStyle:'dashed',borderBottomWidth:1,paddingBottom:24.5}}>
+              <View style={{marginVertical:24}}>
                 <Text style={{fontSize:14,color:"#939394",fontFamily:"Poppins-Medium"}}>Dianosa</Text>
                 <Text style={{fontFamily:'Poppins-Medium',color:'#142D84'}}>AC Mobil bermasalah</Text>
               </View>
@@ -71,7 +79,7 @@ const ReportListComponent=()=>{
                 <Text style={{fontFamily:'Poppins-Medium',color:'#142D84'}}>Pengisian ulang Freon</Text>
               </View>
             </View>
-            <View style={{paddingVertical:10}}>
+            <View style={{marginVertical:10,paddingBottom:20,borderColor:"#AAA4A4",borderStyle:'dashed',borderBottomWidth:1}}>
               <View style={{flexDirection:'row',justifyContent:'space-between',alignSelf: "stretch"}}>
                 <Text style={{fontSize:14,color:"#939394",fontFamily:"Poppins-Medium"}}>Items</Text>
                 <Text style={{fontSize:14,color:"#939394",fontFamily:"Poppins-Medium"}}>Harga</Text>
@@ -84,7 +92,7 @@ const ReportListComponent=()=>{
                 </View>
               </View>
             </View>
-            <View style={{paddingVertical:10}}>
+            <View style={{marginVertical:10,borderColor:"#AAA4A4",borderStyle:'dashed',borderBottomWidth:1,paddingBottom:25.5}}>
               <Text style={{fontSize:14,color:"#939394",fontFamily:"Poppins-Medium"}}>Jenis Freon yang digunakan:</Text>
               <View>
                 <View style={{flexDirection:'row',justifyContent:'space-between'}}>
@@ -101,7 +109,7 @@ const ReportListComponent=()=>{
                 </View>
               </View>
             </View>
-            <View>
+            <View style={{marginTop:25.5,paddingBottom:56}}>
               <View style={{flexDirection:'row',justifyContent:'space-between'}}>
                 <Text style={{color:'#939394',fontFamily:'Poppins-Regular',color:'#161E3C'}}>Jaya Layanan</Text>
                 <Text>Rp.780.000</Text>
@@ -110,6 +118,15 @@ const ReportListComponent=()=>{
                 <Text style={{fontSize:20,fontFamily:'Poppins-Regular'}}>Total</Text>
                 <Text style={{fontSize:20,fontFamily:'Poppins-Bold',color:'#6989F8'}}>Rp.2.210.000</Text>
               </View>
+            </View>
+            <View style={{width:390,position:'absolute',bottom:0,left:0,flexDirection:'row',justifyContent:'space-around'}}>
+              <View style={{height:15,width:25,borderTopLeftRadius:25,borderTopRightRadius:25,backgroundColor:'#E5F5FA'}}/>
+              <View style={{height:15,width:25,borderTopLeftRadius:25,borderTopRightRadius:25,backgroundColor:'#E5F5FA'}}/>
+              <View style={{height:15,width:25,borderTopLeftRadius:25,borderTopRightRadius:25,backgroundColor:'#E5F5FA'}}/>
+              <View style={{height:15,width:25,borderTopLeftRadius:25,borderTopRightRadius:25,backgroundColor:'#E5F5FA'}}/>
+              <View style={{height:15,width:25,borderTopLeftRadius:25,borderTopRightRadius:25,backgroundColor:'#E5F5FA'}}/>
+              <View style={{height:15,width:25,borderTopLeftRadius:25,borderTopRightRadius:25,backgroundColor:'#E5F5FA'}}/>
+              <View style={{height:15,width:25,borderTopLeftRadius:25,borderTopRightRadius:25,backgroundColor:'#E5F5FA'}}/>
             </View>
           </ScrollView>
         </ScrollView>
