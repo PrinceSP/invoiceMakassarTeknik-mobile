@@ -92,7 +92,7 @@ const ReportListComponent=()=>{
                 </View>
               </View>
             </View>
-            <View style={{marginVertical:10,borderColor:"#AAA4A4",borderStyle:'dashed',borderBottomWidth:1,paddingBottom:25.5}}>
+            <View style={{marginVertical:20,borderColor:"#AAA4A4",borderStyle:'dashed',borderBottomWidth:1,paddingBottom:25.5}}>
               <Text style={{fontSize:14,color:"#939394",fontFamily:"Poppins-Medium"}}>Jenis Freon yang digunakan:</Text>
               <View>
                 <View style={{flexDirection:'row',justifyContent:'space-between'}}>
@@ -109,24 +109,28 @@ const ReportListComponent=()=>{
                 </View>
               </View>
             </View>
+            <View style={{width:390,position:'absolute',bottom:210,left:0,flexDirection:'row',justifyContent:'space-between',zIndex:1}}>
+              <View style={{height:40,width:20,borderTopRightRadius:35,borderBottomRightRadius:35,backgroundColor:'#E5F5FA'}}/>
+              <View style={{height:40,width:20,borderTopLeftRadius:35,borderBottomLeftRadius:35,backgroundColor:'#E5F5FA'}}/>
+            </View>
             <View style={{marginTop:25.5,paddingBottom:56}}>
               <View style={{flexDirection:'row',justifyContent:'space-between'}}>
                 <Text style={{color:'#939394',fontFamily:'Poppins-Regular',color:'#161E3C'}}>Jaya Layanan</Text>
                 <Text>Rp.780.000</Text>
               </View>
-              <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:4}}>
-                <Text style={{fontSize:20,fontFamily:'Poppins-Regular'}}>Total</Text>
-                <Text style={{fontSize:20,fontFamily:'Poppins-Bold',color:'#6989F8'}}>Rp.2.210.000</Text>
+              <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:20}}>
+                <Text style={{fontSize:28,fontFamily:'Poppins-Regular'}}>Total</Text>
+                <Text style={{fontSize:23,fontFamily:'Poppins-Bold',color:'#6989F8'}}>Rp.2.210.000</Text>
               </View>
             </View>
-            <View style={{width:390,position:'absolute',bottom:0,left:0,flexDirection:'row',justifyContent:'space-around'}}>
-              <View style={{height:15,width:25,borderTopLeftRadius:25,borderTopRightRadius:25,backgroundColor:'#E5F5FA'}}/>
-              <View style={{height:15,width:25,borderTopLeftRadius:25,borderTopRightRadius:25,backgroundColor:'#E5F5FA'}}/>
-              <View style={{height:15,width:25,borderTopLeftRadius:25,borderTopRightRadius:25,backgroundColor:'#E5F5FA'}}/>
-              <View style={{height:15,width:25,borderTopLeftRadius:25,borderTopRightRadius:25,backgroundColor:'#E5F5FA'}}/>
-              <View style={{height:15,width:25,borderTopLeftRadius:25,borderTopRightRadius:25,backgroundColor:'#E5F5FA'}}/>
-              <View style={{height:15,width:25,borderTopLeftRadius:25,borderTopRightRadius:25,backgroundColor:'#E5F5FA'}}/>
-              <View style={{height:15,width:25,borderTopLeftRadius:25,borderTopRightRadius:25,backgroundColor:'#E5F5FA'}}/>
+            <View style={{width:390,position:'absolute',bottom:0,left:0,flexDirection:'row',justifyContent:'space-around',zIndex:1}}>
+              <View style={{height:15,width:25,borderTopLeftRadius:25,borderTopRightRadius:25,backgroundColor:'rgba(114, 213, 255, 1)'}}/>
+              <View style={{height:15,width:25,borderTopLeftRadius:25,borderTopRightRadius:25,backgroundColor:'rgba(114, 213, 255, 1)'}}/>
+              <View style={{height:15,width:25,borderTopLeftRadius:25,borderTopRightRadius:25,backgroundColor:'rgba(114, 213, 255, 1)'}}/>
+              <View style={{height:15,width:25,borderTopLeftRadius:25,borderTopRightRadius:25,backgroundColor:'rgba(114, 213, 255, 1)'}}/>
+              <View style={{height:15,width:25,borderTopLeftRadius:25,borderTopRightRadius:25,backgroundColor:'rgba(114, 213, 255, 1)'}}/>
+              <View style={{height:15,width:25,borderTopLeftRadius:25,borderTopRightRadius:25,backgroundColor:'rgba(114, 213, 255, 1)'}}/>
+              <View style={{height:15,width:25,borderTopLeftRadius:25,borderTopRightRadius:25,backgroundColor:'rgba(114, 213, 255, 1)'}}/>
             </View>
           </ScrollView>
         </ScrollView>
