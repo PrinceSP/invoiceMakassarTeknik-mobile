@@ -1,6 +1,6 @@
 import React, {useState,useEffect} from 'react'
 import {Text,View,StyleSheet,ScrollView} from 'react-native'
-import {Header,Gap,Button,Input} from '../../components'
+import {Header,Gap,Button,Input,CheckBoxComponent} from '../../components'
 
 const ReportPage = ({navigation})=>{
   const [data,setData] = useState({
@@ -55,6 +55,20 @@ const ReportPage = ({navigation})=>{
         <Input setLabel={true} label="Penanganan" placeholder="Pengisian ulang freon" />
         <Gap height={30}/>
         <Input setLabel={true} label="Suku Cadang" placeholder="Kompresor" />
+        <View style={{flexDirection:'row'}}>
+          <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}>
+            <Text>Klea</Text>
+            <CheckBoxComponent/>
+          </View>
+          <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}>
+            <Text>Bailian</Text>
+            <CheckBoxComponent/>
+          </View>
+          <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}>
+            <Text>Dupoet</Text>
+            <CheckBoxComponent/>
+          </View>
+        </View>
         <Gap height={30}/>
         <Input setLabel={true} label="Harga Jasa Layanan" placeholder="200.000" />
         <Gap height={30}/>

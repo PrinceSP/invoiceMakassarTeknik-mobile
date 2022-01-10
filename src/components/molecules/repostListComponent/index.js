@@ -2,12 +2,10 @@ import React,{useState} from 'react'
 import {Text,ScrollView,View,StyleSheet,TouchableOpacity,Dimensions} from 'react-native'
 import ModalInvoice from '../modalInvoice'
 import {Star} from '../../../assets'
-import {CheckBoxComponent} from '../../atoms'
 
 const ReportListComponent=()=>{
   const [visible,setVisible] = useState(false)
   const width = Dimensions.get('window').width
-  const [agree, setAgree] = useState(false);
 
   return(
     <View style={listCont}>
@@ -99,7 +97,7 @@ const ReportListComponent=()=>{
               <Text style={{fontSize:14,color:"#939394",fontFamily:"Poppins-Medium"}}>Jenis Freon yang digunakan:</Text>
               <View>
                 <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                  <Text style={{fontFamily:'Poppins-Medium',color:'#142D84'}}>Klea</Text>
+                  <Text style={{fontFamily:'Poppins-Medium',color:'#142D84'}}>Klea    </Text>
                   <Text style={{fontFamily:'Poppins-Regular',color:'#161E3C'}}>Rp.350.000</Text>
                 </View>
                 <View style={{flexDirection:'row',justifyContent:'space-between'}}>
