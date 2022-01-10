@@ -1,5 +1,5 @@
 import React,{useEffect,useState} from 'react'
-import {Text,View,StyleSheet,ScrollView,Image} from 'react-native'
+import {Text,View,StyleSheet,ScrollView,Image,Platform} from 'react-native'
 import {Header,Gap} from '../../components'
 import {Atomic} from '../../assets'
 import {getCurrentDate} from '../../config'
@@ -21,6 +21,7 @@ const Home = ({navigation})=>{
       </ScrollView>
     </View>
   )
+
 }
 
 const style=StyleSheet.create({

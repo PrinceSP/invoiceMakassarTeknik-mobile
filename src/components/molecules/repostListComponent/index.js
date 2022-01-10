@@ -2,10 +2,13 @@ import React,{useState} from 'react'
 import {Text,ScrollView,View,StyleSheet,TouchableOpacity,Dimensions} from 'react-native'
 import ModalInvoice from '../modalInvoice'
 import {Star} from '../../../assets'
+import {CheckBoxComponent} from '../../atoms'
 
 const ReportListComponent=()=>{
   const [visible,setVisible] = useState(false)
   const width = Dimensions.get('window').width
+  const [agree, setAgree] = useState(false);
+
   return(
     <View style={listCont}>
       <ModalInvoice visible={visible}>
