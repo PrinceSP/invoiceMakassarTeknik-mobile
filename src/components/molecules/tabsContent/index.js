@@ -33,13 +33,13 @@ const TabsContent = ({state,navigation})=>{
 
 const style = StyleSheet.create({
   container:{
-    height:60,
+    height:70,
     width,
     alignItems:'center',
     justifyContent:'space-around',
     flexDirection:'row',
-    borderTopWidth:1,
-    borderTopColor:'#ECECEC',
+    // borderTopWidth:1,
+    // borderTopColor:'#ECECEC',
     backgroundColor:'#fff',
     shadowOffset: { width: 10, height: 10 },
     shadowColor: "#8EBFF9",

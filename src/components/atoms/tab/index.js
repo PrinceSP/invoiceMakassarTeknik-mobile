@@ -42,8 +42,8 @@ const Tab = ({tab,color,onPress})=>{
     <TouchableOpacity onPress={onPress} style={{alignItems:'center'}}>
       {
         tab.name === 'Home'?<View style={{alignItems:'center'}}><HomeIcon height={28} fill={color} style={other}/><Animated.View style={container}/></View>
-      :tab.name=== 'Report'?<View style={{backgroundColor:"#2EAFF8",height:56,width:61,borderWidth:2,borderColor:'#d7d7d7',borderRadius:10,justifyContent:'center',position:'absolute',bottom:3}}><Text style={{fontSize:55,color:"#fff",position:'absolute',left:13}}>+</Text></View>
-    :<View style={{alignItems:'center'}}><AvatarProfile height={28} fill={color} style={other}/><Animated.View style={container}/></View>
+      :tab.name=== 'Report'?<View style={{backgroundColor:"#872EF8",height:50,width:50,borderWidth:2,borderColor:'#d7d7d7',borderRadius:50,justifyContent:'center',alignItems:'center'}}><Text style={{fontSize:40,color:"#fff",position:'absolute',bottom:0,}}>+</Text></View>
+    :<View style={{alignItems:'center'}}><AvatarProfile height={30} fill={color} style={other}/><Animated.View style={container}/></View>
       }
     </TouchableOpacity>
   )

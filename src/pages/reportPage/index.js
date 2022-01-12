@@ -36,7 +36,7 @@ const ReportPage = ({navigation})=>{
   return(
     <View style={container}>
       <Gap height={15}/>
-      <Header name="Buat Nota" button={true} navigation={navigation}/>
+      <Header name="Nota Baru" button={true} navigation={navigation}/>
       <Gap height={45}/>
       <ScrollView keyboardShouldPersistTaps='always' contentContainerStyle={style.formContainer}>
         <Gap height={47}/>
@@ -55,18 +55,22 @@ const ReportPage = ({navigation})=>{
         <Input setLabel={true} label="Penanganan" placeholder="Pengisian ulang freon" />
         <Gap height={30}/>
         <Input setLabel={true} label="Suku Cadang" placeholder="Kompresor" />
-        <View style={{flexDirection:'row'}}>
-          <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}>
-            <Text>Klea</Text>
-            <CheckBoxComponent/>
-          </View>
-          <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}>
-            <Text>Bailian</Text>
-            <CheckBoxComponent/>
-          </View>
-          <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}>
-            <Text>Dupoet</Text>
-            <CheckBoxComponent/>
+        <Gap height={30}/>
+        <View style={{flexDirection:'column',width:329}}>
+          <Text style={{fontSize:20,color:'#000',marginBottom:7}}>Jenis Freon:</Text>
+          <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+            <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}>
+              <Text style={{fontSize:19,fontFamily:'Poppins-Regular',color:"#000"}}>Klea</Text>
+              <CheckBoxComponent/>
+            </View>
+            <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}>
+              <Text style={{fontSize:19,fontFamily:'Poppins-Regular',color:"#000"}}>Bailian</Text>
+              <CheckBoxComponent/>
+            </View>
+            <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}>
+              <Text style={{fontSize:19,fontFamily:'Poppins-Regular',color:"#000"}}>Dupoet</Text>
+              <CheckBoxComponent/>
+            </View>
           </View>
         </View>
         <Gap height={30}/>

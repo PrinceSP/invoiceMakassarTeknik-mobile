@@ -25,9 +25,7 @@ const Login = ({navigation}) => {
 
   return (
     <View style={{flex:1,backgroundColor:"#fff"}}>
-      <Gap height={15}/>
-      <Header action="" name="Masuk"/>
-      <Gap height={20}/>
+      <Gap height={25}/>
       <View style={style.container}>
         <SingleLogo height={120}/>
         <Gap height={20}/>

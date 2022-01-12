@@ -13,9 +13,8 @@ const Home = ({navigation})=>{
       <Gap height={15}/>
       <ScrollView contentContainerStyle={scrollViewCont}>
         <View style={{flexDirection:'row'}}>
-          <Text style={headingTitle2}>Hello,</Text>
-          <Text style={headingTitle1}> Charlie!</Text>
-          <Image style={{right:6,bottom:2}} source={Atomic}/>
+          <Text style={headingTitle}>Hi,</Text>
+          <Text style={headingTitle}> Charlie!</Text>
         </View>
         <Text style={{fontSize:20,fontFamily:'Poppins-Light',color:'#999'}}>{getCurrentDate()}</Text>
       </ScrollView>
@@ -27,10 +26,9 @@ const Home = ({navigation})=>{
 const style=StyleSheet.create({
   container:{ flex: 1,backgroundColor:'#fff'},
   scrollViewCont:{paddingHorizontal:20,paddingBottom:125},
-  headingTitle1:{fontSize:35,fontFamily:'PlayfairDisplay-Bold',color:'#000'},
-  headingTitle2:{fontSize:35,fontFamily:'PlayfairDisplay-Regular',color:'#000'},
+  headingTitle:{fontSize:35,fontFamily:'PlayfairDisplay-Regular',color:'#000'},
 })
 
-const {container,scrollViewCont,headingTitle1,headingTitle2} = style
+const {container,scrollViewCont,headingTitle} = style
 
 export default Home
