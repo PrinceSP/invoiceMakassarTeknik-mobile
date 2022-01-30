@@ -1,7 +1,7 @@
 import React from 'react'
 import {TextInput,Text,StyleSheet,View} from 'react-native'
 
-const Input = ({setLabel=false,label,refs,...rest})=>{
+const Input = ({setLabel=false,label,inputRefs,...rest})=>{
   const style=StyleSheet.create({
     container:{
       height:50,
@@ -15,7 +15,7 @@ const Input = ({setLabel=false,label,refs,...rest})=>{
   return(
     <View>
       {setLabel && <Text style={{fontSize:20,color:'#000',marginBottom:4}}>{label}</Text>}
-      <TextInput placeholderTextColor="#999" style={style.container} ref={refs} {...rest}/>
+      <TextInput placeholderTextColor="#999" style={style.container} ref={inputRefs} {...rest}/>
     </View>
   )
 }

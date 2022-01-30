@@ -9,7 +9,7 @@ const Profile = ({navigation})=>{
 
   useEffect(()=>{
     const fetchDatas = async ()=>{
-      const res = await Axios.get(`https://charlie-invoice.herokuapp.com/api/user?username=princesp`)
+      const res = await Axios.get(`https://charlie-invoice.herokuapp.com/api/user?username=${princesp}`)
       setUser(res.data);
     }
     fetchDatas()
