@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from 'react'
+import React, {useState,useEffect,useRef} from 'react'
 import {Text,View,StyleSheet,ScrollView} from 'react-native'
 import {Header,Gap,Button,Input,CheckBoxComponent} from '../../components'
 
@@ -15,20 +15,18 @@ const ReportPage = ({navigation})=>{
     servicePrice:'',
     totalPrice:''
   })
-  const [reportInfo,setReportInfo] = useState({})
-  const {noNote,consumentName,vehicle,vehicleType,policeNumber,diagnosis,action,servicePrice,totalPrice,} = data
+  const {noNote,consumentName,vehicle,vehicleType,plat,diagnosis,action,spareParts,servicePrice,totalPrice} = data
 
   const submit = ()=>{
     //merge all the datas from these states
     //submit all the datas from form
     const allDatas = {...data};
     for (let data in allDatas) {
-      if (data.values(data) != '') {
-        console.log(data.values(data));
-      }
+      // if (data.value != '') {
+      console.log(`${data} : ${allDatas[data]}`);
+      // }
     }
-    console.log(allDatas);
-    setData({...data,fname:'',address:'',phone:'',idCard:''})
+    setData({...data,noNote:'',consumentName:'',vehicle:'',vehicleType:'',plat:'',diagnosis:'',action:'',spareParts:'',servicePrice:'',totalPrice:''})
 
     return allDatas
   }
@@ -40,21 +38,21 @@ const ReportPage = ({navigation})=>{
       <Gap height={45}/>
       <ScrollView keyboardShouldPersistTaps='always' contentContainerStyle={style.formContainer}>
         <Gap height={47}/>
-        <Input setLabel={true} label="No.Nota" placeholder="No.1" />
+        <Input setLabel={true} label="No.Nota" placeholder="No.1" value={noNote} onChangeText={(event)=>setData({...data,noNote:event})}/>
         <Gap height={30}/>
-        <Input setLabel={true} label="Nama Konsumen" placeholder="John Doe" />
+        <Input setLabel={true} label="Nama Konsumen" placeholder="John Doe" value={consumentName} onChangeText={(event)=>setData({...data,consumentName:event})}/>
         <Gap height={30}/>
-        <Input setLabel={true} label="Jenis Kendaraan" placeholder="Mobil" />
+        <Input setLabel={true} label="Jenis Kendaraan" placeholder="Mobil" value={vehicle} onChangeText={(event)=>setData({...data,vehicle:event})}/>
         <Gap height={30}/>
-        <Input setLabel={true} label="Tipe Kendaraan" placeholder="Honda" />
+        <Input setLabel={true} label="Tipe Kendaraan" placeholder="Honda" value={vehicleType} onChangeText={(event)=>setData({...data,vehicleType:event})}/>
         <Gap height={30}/>
-        <Input setLabel={true} label="No.Polisi" placeholder="DN 2135 AE" />
+        <Input setLabel={true} label="No.Polisi" placeholder="DN 2135 AE" value={plat} onChangeText={(event)=>setData({...data,plat:event})}/>
         <Gap height={30}/>
-        <Input setLabel={true} label="Diagnosa" placeholder="AC Mobil Bermasalah" />
+        <Input setLabel={true} label="Diagnosa" placeholder="AC Mobil Bermasalah" value={diagnosis} onChangeText={(event)=>setData({...data,diagnosis:event})}/>
         <Gap height={30}/>
-        <Input setLabel={true} label="Penanganan" placeholder="Pengisian ulang freon" />
+        <Input setLabel={true} label="Penanganan" placeholder="Pengisian ulang freon" value={action} onChangeText={(event)=>setData({...data,action:event})}/>
         <Gap height={30}/>
-        <Input setLabel={true} label="Suku Cadang" placeholder="Kompresor" />
+        <Input setLabel={true} label="Suku Cadang" placeholder="Kompresor" value={spareParts} onChangeText={(event)=>setData({...data,spareParts:event})}/>
         <Gap height={30}/>
         <View style={{flexDirection:'column',width:329}}>
           <Text style={{fontSize:20,color:'#000',marginBottom:7}}>Jenis Freon:</Text>
@@ -74,9 +72,9 @@ const ReportPage = ({navigation})=>{
           </View>
         </View>
         <Gap height={30}/>
-        <Input setLabel={true} label="Harga Jasa Layanan" placeholder="200.000" />
+        <Input setLabel={true} label="Harga Jasa Layanan" placeholder="200.000" value={servicePrice} onChangeText={(event)=>setData({...data,servicePrice:event})}/>
         <Gap height={30}/>
-        <Input setLabel={true} label="Total Pembayaran" placeholder="350.000" />
+        <Input setLabel={true} label="Total Pembayaran" placeholder="350.000" value={totalPrice} onChangeText={(event)=>setData({...data,totalPrice:event})}/>
         <Gap height={30}/>
         <View style={{alignItems:'center'}}>
           <Button name="Simpan Nota" color='#fff' fam='Poppins-Bold' size={24} style={buttonSubmit} onPress={()=>submit()}/>
