@@ -26,8 +26,9 @@ const Login = ({navigation}) => {
         },
         body: JSON.stringify({username:name,password:pass})
       }
-      const res = await fetch(url, options).then(res=>res.json()).then(res=>console.log(res.datas))
-      dispatch({ type: "LOGIN_SUCCESS", payload: res });
+      const res = await fetch(url, options).then(res=>res.json())
+      console.log(res.datas);
+      dispatch({ type: "LOGIN_SUCCESS", payload: res.datas });
     } catch (err) {
       dispatch({ type: "LOGIN_FAILURE", payload: err });
     }

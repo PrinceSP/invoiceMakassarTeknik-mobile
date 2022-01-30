@@ -6,11 +6,12 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {WelcomeScreen,OnBoardingPage,SplashScreen,Login,Feedback,ReportListPage,
   Register,Home,Profile,ReportPage,NotificationsPage,EditProfilePage} from '../pages'
 import {DrawerContent,TabsContent} from '../components'
+
 const {Navigator, Screen} = createNativeStackNavigator()
 const Drawer = createDrawerNavigator()
 const Tab = createBottomTabNavigator()
 
- const BottomTabs = ()=>{
+const BottomTabs = ()=>{
   return(
     <Tab.Navigator screenOptions={() => ({
         headerShown: false,
