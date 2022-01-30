@@ -3,7 +3,7 @@ import {Text,ScrollView,View,StyleSheet,TouchableOpacity,Dimensions} from 'react
 import ModalInvoice from '../modalInvoice'
 import {Star} from '../../../assets'
 
-const ReportListComponent=()=>{
+const ReportListComponent=({username})=>{
   const [visible,setVisible] = useState(false)
   const width = Dimensions.get('window').width
 
@@ -153,7 +153,7 @@ const ReportListComponent=()=>{
         </View>
       </View>
       <View style={[firstSection,thirdSection]}>
-        <Text style={diagnosis}>Simon Forde</Text>
+        <Text style={diagnosis}>{username}</Text>
         <View>
           <Text style={date}>2 Januari 2022</Text>
         </View>
