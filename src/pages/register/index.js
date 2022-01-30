@@ -61,17 +61,32 @@ const Register = ({navigation}) => {
   }
 
   //handle submit form button
-  const submit = ()=>{
-    // navigate into home page
-    navigation.navigate('Root',{screen:'BottomTabs'})
+  const submit = async()=>{
     // show in console the key names and key values of each data stored in userInfo
     // using looping for...in to loop through object
     for(const datas in userInfo) console.log(`${datas} : ${userInfo[datas]}`);
     // reset the values of each keys after submit button has been pressed
     setUserInfo({fname:'',email:'',username:'',theDate:'',phone:'',password:''})
+    //navigate to login screen after registering account
+    const {fname,email,username,theDate,phone,password} = userInfo
+    try {
+      const options = {
+        method: 'post',
+        headers: {
+          'Accept': 'application/json, text/plain, */*',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({fullname:fname,username,email,password})
+      }
+      await fetch('https://charlie-invoice.herokuapp.com/api/auth/register',options)
+      navigation.navigate('Login')
+    } catch (e) {
+      console.log(e);
+    }
   }
   // destructuring objects in userInfo state
   const {fname,email,username,theDate,phone,password} = userInfo
+  // console.log(userInfo);
 
   return(
     <View style={{backgroundColor:'#fff',flex:1}}>

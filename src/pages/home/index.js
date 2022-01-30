@@ -18,7 +18,7 @@ const Home = ({navigation})=>{
   },[])
 
   const name = JSON.stringify(users.fullname)
-  const username = name.split(' ')
+  const username = typeof name==="string" ? name.split(' ')[0] : name
   return(
     <View style={container}>
       <Gap height={15}/>
@@ -27,7 +27,7 @@ const Home = ({navigation})=>{
       <ScrollView contentContainerStyle={scrollViewCont}>
         <View style={{flexDirection:'row'}}>
           <Text style={headingTitle}>Hi,</Text>
-          <Text style={headingTitle}> {username[0].charAt(1).toUpperCase()+username[0].replace(/['"]+/g, '').slice(1)}!</Text>
+          <Text style={headingTitle}> {typeof username==="string"?username.charAt(1).toUpperCase()+username.replace(/['"]+/g, '').slice(1):name}!</Text>
         </View>
         <Text style={{fontSize:20,fontFamily:'Poppins-Light',color:'#999'}}>{getCurrentDate()}</Text>
       </ScrollView>
