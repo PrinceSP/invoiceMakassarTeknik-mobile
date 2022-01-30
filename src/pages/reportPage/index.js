@@ -1,6 +1,7 @@
-import React, {useState,useEffect,useRef} from 'react'
+import React, {useState,useEffect,useContext} from 'react'
 import {Text,View,StyleSheet,ScrollView} from 'react-native'
 import {Header,Gap,Button,Input,CheckBoxComponent} from '../../components'
+import { AuthContext } from "../../context/authContext";
 
 const ReportPage = ({navigation})=>{
   const [data,setData] = useState({
@@ -16,8 +17,9 @@ const ReportPage = ({navigation})=>{
     totalPrice:''
   })
   const {noNote,consumentName,vehicle,vehicleType,plat,diagnosis,action,spareParts,servicePrice,totalPrice} = data
+  const {user:currentUser} = useContext(AuthContext)
 
-  const submit = ()=>{
+  const submit = async()=>{
     //merge all the datas from these states
     //submit all the datas from form
     const allDatas = {...data};
@@ -25,6 +27,20 @@ const ReportPage = ({navigation})=>{
       // if (data.value != '') {
       console.log(`${data} : ${allDatas[data]}`);
       // }
+    }
+    try {
+      const options = {
+        method: 'post',
+        headers: {
+          'Accept': 'application/json, text/plain, */*',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({userId:currentUser._id,date:'23 23 23',vehicle,vehicleType,plat,client:consumentName,phoneNumber:'123123123',diagnosis,action,spareParts,repairService:servicePrice,total:totalPrice})
+      }
+      await fetch(`https://charlie-invoice.herokuapp.com/api/invoice`,options)
+      // navigation.navigate('Login')
+    } catch (e) {
+      console.log(e);
     }
     setData({...data,noNote:'',consumentName:'',vehicle:'',vehicleType:'',plat:'',diagnosis:'',action:'',spareParts:'',servicePrice:'',totalPrice:''})
 
@@ -56,17 +72,17 @@ const ReportPage = ({navigation})=>{
         <Gap height={30}/>
         <View style={{flexDirection:'column',width:329}}>
           <Text style={{fontSize:20,color:'#000',marginBottom:7}}>Jenis Freon:</Text>
-          <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-            <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}>
-              <Text style={{fontSize:19,fontFamily:'Poppins-Regular',color:"#000"}}>Klea</Text>
+          <View style={centeredRow}>
+            <View style={centeredRow}>
+              <Text style={regularText}>Klea</Text>
               <CheckBoxComponent/>
             </View>
-            <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}>
-              <Text style={{fontSize:19,fontFamily:'Poppins-Regular',color:"#000"}}>Bailian</Text>
+            <View style={centeredRow}>
+              <Text style={regularText}>Bailian</Text>
               <CheckBoxComponent/>
             </View>
-            <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}>
-              <Text style={{fontSize:19,fontFamily:'Poppins-Regular',color:"#000"}}>Dupoet</Text>
+            <View style={centeredRow}>
+              <Text style={regularText}>Dupoet</Text>
               <CheckBoxComponent/>
             </View>
           </View>
@@ -106,9 +122,11 @@ const style=StyleSheet.create({
     alignItems:'center',
     justifyContent:'center'
   },
+  centeredRow:{flexDirection:'row',alignItems:'center',justifyContent:'space-between'},
+  regularText:{fontSize:19,fontFamily:'Poppins-Regular',color:"#000"}
 })
 
-const {container,text1,mapContainer,formContainer,button,buttonSubmit} = style
+const {container,text1,mapContainer,formContainer,button,buttonSubmit,centeredRow,regularText} = style
 
 
 export default ReportPage
