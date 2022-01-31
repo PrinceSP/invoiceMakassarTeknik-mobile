@@ -3,7 +3,7 @@ import {Text,ScrollView,View,StyleSheet,TouchableOpacity,Dimensions} from 'react
 import ModalInvoice from '../modalInvoice'
 import {Star} from '../../../assets'
 
-const ReportListComponent=({username})=>{
+const ReportListComponent=({fullname,invoiceDate,vehicle,vehicleType,diagnosis,totalPrice,action,spareParts,plat,repairService})=>{
   const [visible,setVisible] = useState(false)
   const width = Dimensions.get('window').width
 
@@ -27,7 +27,7 @@ const ReportListComponent=({username})=>{
                 <Text style={{fontFamily:'Poppins-Regular',color:'#7B7B7B'}}>No.HP</Text>
               </View>
               <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                <Text style={{fontSize:20,fontFamily:'Poppins-Medium',color:'#1638B2'}}>Simon Forde</Text>
+                <Text style={{fontSize:20,fontFamily:'Poppins-Medium',color:'#1638B2'}}>{fullname}</Text>
                 <Text style={{fontSize:20,fontFamily:'Poppins-Medium',color:'#000'}}>081213507373</Text>
               </View>
               <View style={{width,position:'absolute',bottom:0,left:0,flexDirection:'row',justifyContent:'space-between'}}>
@@ -52,61 +52,61 @@ const ReportListComponent=({username})=>{
             </View>
             <View style={{flexDirection:'row',justifyContent:'space-between',paddingVertical:28,borderColor:"#AAA4A4",borderStyle:'dashed',borderBottomWidth:1}}>
               <View style={{borderColor:"#AAA4A4",borderStyle:'dashed',borderRightWidth:1,paddingRight:95}}>
-                <Text style={{fontSize:14,color:"#939394",fontFamily:"Poppins-Medium"}}>Kendaraan</Text>
-                <Text style={{fontFamily:'Poppins-Medium',color:'#142D84'}}>Mobil</Text>
+                <Text style={itemsMedium}>Kendaraan</Text>
+                <Text style={textMedium}>{vehicle}</Text>
               </View>
               <View>
-                <Text style={{fontSize:14,color:"#939394",fontFamily:"Poppins-Medium"}}>Tanggal Nota</Text>
-                <Text style={{fontFamily:'Poppins-Medium',color:'#142D84'}}>2 Januari 2022</Text>
+                <Text style={itemsMedium}>Tanggal Nota</Text>
+                <Text style={textMedium}>{invoiceDate}</Text>
               </View>
             </View>
             <View style={{flexDirection:'row',justifyContent:'space-between',paddingVertical:30,marginTop:12,borderColor:"#AAA4A4",borderStyle:'dashed',borderBottomWidth:1}}>
               <View style={{borderColor:"#AAA4A4",borderStyle:'dashed',borderRightWidth:1,paddingRight:63}}>
-                <Text style={{fontSize:14,color:"#939394",fontFamily:"Poppins-Medium"}}>Tipe Kendaraan</Text>
-                <Text style={{fontFamily:'Poppins-Medium',color:'#142D84'}}>Honda</Text>
+                <Text style={itemsMedium}>Tipe Kendaraan</Text>
+                <Text style={textMedium}>{vehicleType}</Text>
               </View>
               <View>
-                <Text style={{fontSize:14,color:"#939394",fontFamily:"Poppins-Medium"}}>No.Polisi</Text>
-                <Text style={{fontFamily:'Poppins-Medium',color:'#142D84'}}>DN 2135 BC</Text>
+                <Text style={itemsMedium}>No.Polisi</Text>
+                <Text style={textMedium}>{plat}</Text>
               </View>
             </View>
             <View style={{marginVertical:15, borderColor:"#AAA4A4",borderStyle:'dashed',borderBottomWidth:1,paddingBottom:24.5}}>
               <View style={{marginVertical:24}}>
-                <Text style={{fontSize:14,color:"#939394",fontFamily:"Poppins-Medium"}}>Dianosa</Text>
-                <Text style={{fontFamily:'Poppins-Medium',color:'#142D84'}}>AC Mobil bermasalah</Text>
+                <Text style={itemsMedium}>Dianosa</Text>
+                <Text style={textMedium}>{diagnosis}</Text>
               </View>
               <View>
-                <Text style={{fontSize:14,color:"#939394",fontFamily:"Poppins-Medium"}}>Penanganan</Text>
-                <Text style={{fontFamily:'Poppins-Medium',color:'#142D84'}}>Pengisian ulang Freon</Text>
+                <Text style={itemsMedium}>Penanganan</Text>
+                <Text style={textMedium}>{action}</Text>
               </View>
             </View>
             <View style={{marginVertical:10,paddingBottom:20,borderColor:"#AAA4A4",borderStyle:'dashed',borderBottomWidth:1}}>
               <View style={{flexDirection:'row',justifyContent:'space-between',alignSelf: "stretch"}}>
-                <Text style={{fontSize:14,color:"#939394",fontFamily:"Poppins-Medium"}}>Items</Text>
-                <Text style={{fontSize:14,color:"#939394",fontFamily:"Poppins-Medium"}}>Harga</Text>
+                <Text style={itemsMedium}>Items</Text>
+                <Text style={itemsMedium}>Harga</Text>
               </View>
               <View>
-                <Text style={{fontSize:14,color:"#939394",fontFamily:"Poppins-Medium"}}>Suku Cadang</Text>
+                <Text style={itemsMedium}>Suku Cadang</Text>
                 <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                  <Text style={{fontFamily:'Poppins-Medium',color:'#142D84'}}>Kompressor</Text>
-                  <Text style={{fontFamily:'Poppins-Regular',color:'#161E3C'}}>Rp.300.000</Text>
+                  <Text style={textMedium}>{spareParts}</Text>
+                  <Text style={fontRegular}>Rp.300.000</Text>
                 </View>
               </View>
             </View>
             <View style={{marginVertical:20,borderColor:"#AAA4A4",borderStyle:'dashed',borderBottomWidth:1,paddingBottom:25.5}}>
-              <Text style={{fontSize:14,color:"#939394",fontFamily:"Poppins-Medium"}}>Jenis Freon yang digunakan:</Text>
+              <Text style={itemsMedium}>Jenis Freon yang digunakan:</Text>
               <View>
                 <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                  <Text style={{fontFamily:'Poppins-Medium',color:'#142D84'}}>Klea    </Text>
-                  <Text style={{fontFamily:'Poppins-Regular',color:'#161E3C'}}>Rp.350.000</Text>
+                  <Text style={textMedium}>Klea    </Text>
+                  <Text style={fontRegular}>Rp.350.000</Text>
                 </View>
                 <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                  <Text style={{fontFamily:'Poppins-Medium',color:'#142D84'}}>Bailian</Text>
-                  <Text style={{fontFamily:'Poppins-Regular',color:'#161E3C'}}>Rp.300.000</Text>
+                  <Text style={textMedium}>Bailian</Text>
+                  <Text style={fontRegular}>Rp.300.000</Text>
                 </View>
                 <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                  <Text style={{fontFamily:'Poppins-Medium',color:'#142D84'}}>Dupoet</Text>
-                  <Text style={{fontFamily:'Poppins-Regular',color:'#161E3C'}}>Rp.480.000</Text>
+                  <Text style={textMedium}>Dupoet</Text>
+                  <Text style={fontRegular}>Rp.480.000</Text>
                 </View>
               </View>
             </View>
@@ -116,12 +116,12 @@ const ReportListComponent=({username})=>{
             </View>
             <View style={{marginTop:25.5,paddingBottom:56}}>
               <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                <Text style={{color:'#939394',fontFamily:'Poppins-Regular',color:'#161E3C'}}>Jaya Layanan</Text>
-                <Text>Rp.780.000</Text>
+                <Text style={[{color:'#939394'},fontRegular]}>Jaya Layanan</Text>
+                <Text style={itemsMedium}>Rp.{repairService}</Text>
               </View>
               <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:20}}>
                 <Text style={{fontSize:28,fontFamily:'Poppins-Regular'}}>Total</Text>
-                <Text style={{fontSize:23,fontFamily:'Poppins-Bold',color:'#6989F8'}}>Rp.2.210.000</Text>
+                <Text style={{fontSize:23,fontFamily:'Poppins-Bold',color:'#6989F8'}}>Rp.{totalPrice}</Text>
               </View>
             </View>
             <View style={{width:390,position:'absolute',bottom:0,left:0,flexDirection:'row',justifyContent:'space-around',zIndex:1}}>
@@ -153,9 +153,9 @@ const ReportListComponent=({username})=>{
         </View>
       </View>
       <View style={[firstSection,thirdSection]}>
-        <Text style={diagnosis}>{username}</Text>
+        <Text style={diagnosisText}>{fullname}</Text>
         <View>
-          <Text style={date}>2 Januari 2022</Text>
+          <Text style={date}>{invoiceDate}</Text>
         </View>
       </View>
     </View>
@@ -171,12 +171,15 @@ const style=StyleSheet.create({
   firstSection:{flexDirection:'row',alignItems:'center',justifyContent:'space-between'},
   secondSection:{paddingRight:15,marginTop:16},
   thirdSection:{paddingRight:15},
-  diagnosis:{color:'#0B2273',fontSize:14.4,fontFamily:'Poppins-Medium'},
+  diagnosisText:{color:'#0B2273',fontSize:14.4,fontFamily:'Poppins-Medium'},
   name:{color:'#939394',fontSize:14.4,fontFamily:'Poppins-Medium'},
   date:{color:'#142D84',fontSize:14.4,fontFamily:'Poppins-Medium'},
-  total:{color:'#6989F8',fontSize:14.4,fontFamily:'Poppins-Bold'}
+  total:{color:'#6989F8',fontSize:14.4,fontFamily:'Poppins-Bold'},
+  fontRegular:{fontFamily:'Poppins-Regular',color:'#161E3C'},
+  textMedium:{fontFamily:'Poppins-Medium',color:'#142D84'},
+  itemsMedium:{fontSize:14,color:"#939394",fontFamily:"Poppins-Medium"}
 })
 
-const {listCont,diagnosis,total,firstSection,name,secondSection,thirdSection,date} = style
+const {listCont,diagnosisText,total,firstSection,name,secondSection,thirdSection,date,fontRegular,textMedium,itemsMedium} = style
 
 export default ReportListComponent
