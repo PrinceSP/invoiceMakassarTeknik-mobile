@@ -17,7 +17,7 @@ const ReportListPage=({navigation})=>{
   }, []);
   useEffect(()=>{
     const fetchDatas = async ()=>{
-      const res = await fetch(`https://charlie-invoice.herokuapp.com/api/invoice/postsList/${currentUser._id}`).then(res=>res.json())
+      const res = await fetch(`https://charlie-invoice.herokuapp.com/api/invoice/invoicesList/${currentUser._id}`).then(res=>res.json())
       setInvoices(
         res.sort((p1,p2)=>{
           return new Date(p2.createdAt) - new Date(p1.createdAt)
@@ -25,7 +25,7 @@ const ReportListPage=({navigation})=>{
       )
     }
     fetchDatas()
-  },[currentUser._id])
+  },[invoices,currentUser._id])
   console.log(invoices);
   return(
     <View style={container}>
