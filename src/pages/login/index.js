@@ -1,21 +1,18 @@
-import React,{useRef,useContext,useState} from "react"
+import React,{useContext,useState} from "react"
 import {View,Text,StyleSheet,Image} from 'react-native'
 import {Header,Gap,Button,Input} from '../../components'
 import {SingleSmall,EyeTrue,EyeFalse} from '../../assets'
 import {AuthContext} from '../../context/authContext'
 
 const Login = ({navigation}) => {
-  const username = useRef(null)
-  const password = useRef(null)
-  const [hide,setHide] = useState(false)
+  const [username,setUsername] = useState('')
+  const [password,setPassword] = useState('')
+  const [hide,setHide] = useState(true)
   const {isFetching,dispatch} = useContext(AuthContext)
   const url = 'https://charlie-invoice.herokuapp.com/api/auth/login'
 
   const handleLogin = async()=>{
-
-    const name=username.current
-    const pass=password.current
-    console.log(name,pass);
+    console.log(username,password);
 
     dispatch({ type: "LOGIN_START" });
     try {
@@ -25,16 +22,21 @@ const Login = ({navigation}) => {
           'Accept': 'application/json, text/plain, */*',
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({username:name,password:pass})
+        body: JSON.stringify({username,password})
       }
       const res = await fetch(url, options).then(res=>res.json())
-      console.log(res.datas);
-      dispatch({ type: "LOGIN_SUCCESS", payload: res.datas });
+      console.log(res);
+      if (res.message === 'success login') {
+        dispatch({ type: "LOGIN_SUCCESS", payload: res.datas });
+        navigation.navigate('Root',{screen:'Home'})
+      } else {
+        return isFetching=false;
+      }
     } catch (err) {
       dispatch({ type: "LOGIN_FAILURE", payload: err });
     }
-
-    navigation.navigate('Root',{screen:'Home'})
+    setPassword('')
+    setUsername('')
   }
 
 
@@ -47,11 +49,11 @@ const Login = ({navigation}) => {
         <Text style={{fontFamily:'PlayfairDisplay-Bold',fontSize:38,color:'#000'}}>Selamat Datang</Text>
         <Text style={{fontFamily:'PlayfairDisplay-Regular',fontSize:17,color:'#8D8D8D'}}>Masuk dengan akun anda dibawah ini</Text>
         <Gap height={46}/>
-        <Input placeholder="username" value={username} onChangeText={value=>username.current=value}/>
+        <Input placeholder="username" value={username} onChangeText={value=>setUsername(value)}/>
         <Gap height={30}/>
         <View>
-          <Input paddingRight={44} placeholder="Password" value={password} secureTextEntry={hide} onChangeText={value=>password.current=value}/>
-          {!hide ? <EyeTrue height={20} onPress={()=>setHide(true)} style={{position:'absolute',right:0,top:15}}/> : <EyeFalse height={20} onPress={()=>setHide(false)} style={{position:'absolute',right:0,top:15}}/>}
+          <Input paddingRight={44} placeholder="Password" value={password} secureTextEntry={hide} onChangeText={value=>setPassword(value)}/>
+          {hide ? <EyeFalse height={20} onPress={()=>setHide(false)} style={{position:'absolute',right:0,top:15}}/> : <EyeTrue height={20} onPress={()=>setHide(true)} style={{position:'absolute',right:0,top:15}}/>}
         </View>
         <Gap height={26}/>
         <Button name='Lupa Sandi?' color='#777' fam='Poppins-Medium' style={{marginLeft:4}}/>
