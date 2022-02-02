@@ -42,7 +42,7 @@ const Tab = ({tab,color,onPress})=>{
     <TouchableOpacity onPress={onPress} style={{alignItems:'center'}}>
       {
         tab.name === 'Home'?<View style={{alignItems:'center'}}><HomeIcon height={26} fill={color} style={other}/><Animated.View style={container}/></View>
-        :tab.name=== 'Report'?<View style={{backgroundColor:"#872EF8",height:50,width:50,borderWidth:2,borderColor:'#d7d7d7',borderRadius:50,justifyContent:'center',alignItems:'center'}}><Plus/></View>
+      :tab.name=== 'Report'?<View style={{height:50,width:50,borderWidth:5,borderColor:'#B5CEFF',borderRadius:50,justifyContent:'center',alignItems:'center'}}><Plus height={18}/></View>
         :<View style={{alignItems:'center'}}><AvatarProfile height={28} width={38} fill={color} style={other}/><Animated.View style={container}/></View>
       }
     </TouchableOpacity>
