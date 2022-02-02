@@ -29,8 +29,8 @@ const Profile = ({navigation})=>{
         <BioHolder icon={<AvatarProfile fill="#a0a0a0"/>} userInfo={users.fullname} labelInfo='Fullname'/>
         <BioHolder icon={<Email height={28}/>} userInfo={users.email} labelInfo='Email address'/>
         <BioHolder icon={<Address height={28}/>} userInfo={users.username} labelInfo='Username'/>
-        <BioHolder icon={<DateIcon height={28}/>} userInfo='28-08-2001' labelInfo='Date of Birth'/>
-        <BioHolder icon={<Phone height={26}/>} userInfo='081213507373' labelInfo='Phone Number'/>
+        <BioHolder icon={<DateIcon height={28}/>} userInfo={users.birthday} labelInfo='Date of Birth'/>
+        <BioHolder icon={<Phone height={26}/>} userInfo={users.phoneNumber} labelInfo='Phone Number'/>
         <Gap height={28}/>
       </ScrollView>
     </View>

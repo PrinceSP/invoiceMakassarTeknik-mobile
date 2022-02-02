@@ -76,12 +76,16 @@ const Register = ({navigation}) => {
           'Accept': 'application/json, text/plain, */*',
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({fullname:fname,username,email,password})
+        body: JSON.stringify({fullname:fname,username,email,birthday:theDate,phoneNumber:phone,password})
       }
-      await fetch('https://charlie-invoice.herokuapp.com/api/auth/register',options)
-      navigation.navigate('Login')
+      const req = await fetch('https://charlie-invoice.herokuapp.com/api/auth/register',options)
+      const results = await req.json()
+      console.log(results);
+      if (req.status === 200) {
+        navigation.navigate('Login')
+      }
     } catch (e) {
-      console.log(e);
+      console.log(e._message);
     }
   }
   // destructuring objects in userInfo state
