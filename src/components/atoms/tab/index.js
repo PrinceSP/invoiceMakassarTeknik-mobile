@@ -1,6 +1,6 @@
 import React from 'react'
 import {TouchableOpacity,View,StyleSheet,Text,Animated} from 'react-native'
-import {HomeIcon,ReportIcon,AvatarProfile} from '../../../assets'
+import {HomeIcon,Plus,AvatarProfile} from '../../../assets'
 
 const Tab = ({tab,color,onPress})=>{
   const otherStyles= {
@@ -41,9 +41,9 @@ const Tab = ({tab,color,onPress})=>{
   return(
     <TouchableOpacity onPress={onPress} style={{alignItems:'center'}}>
       {
-        tab.name === 'Home'?<View style={{alignItems:'center'}}><HomeIcon height={28} fill={color} style={other}/><Animated.View style={container}/></View>
-      :tab.name=== 'Report'?<View style={{backgroundColor:"#872EF8",height:50,width:50,borderWidth:2,borderColor:'#d7d7d7',borderRadius:50,justifyContent:'center',alignItems:'center'}}><Text style={{fontSize:40,color:"#fff",position:'absolute',bottom:0,}}>+</Text></View>
-    :<View style={{alignItems:'center'}}><AvatarProfile height={30} fill={color} style={other}/><Animated.View style={container}/></View>
+        tab.name === 'Home'?<View style={{alignItems:'center'}}><HomeIcon height={26} fill={color} style={other}/><Animated.View style={container}/></View>
+        :tab.name=== 'Report'?<View style={{backgroundColor:"#872EF8",height:50,width:50,borderWidth:2,borderColor:'#d7d7d7',borderRadius:50,justifyContent:'center',alignItems:'center'}}><Plus/></View>
+        :<View style={{alignItems:'center'}}><AvatarProfile height={28} width={38} fill={color} style={other}/><Animated.View style={container}/></View>
       }
     </TouchableOpacity>
   )

@@ -1,12 +1,13 @@
-import React,{useRef,useContext} from "react"
-import {View,Text,StyleSheet} from 'react-native'
+import React,{useRef,useContext,useState} from "react"
+import {View,Text,StyleSheet,Image} from 'react-native'
 import {Header,Gap,Button,Input} from '../../components'
-import {SingleLogo} from '../../assets'
+import {SingleSmall,EyeTrue,EyeFalse} from '../../assets'
 import {AuthContext} from '../../context/authContext'
 
 const Login = ({navigation}) => {
   const username = useRef(null)
   const password = useRef(null)
+  const [hide,setHide] = useState(false)
   const {isFetching,dispatch} = useContext(AuthContext)
   const url = 'https://charlie-invoice.herokuapp.com/api/auth/login'
 
@@ -39,16 +40,19 @@ const Login = ({navigation}) => {
 
   return (
     <View style={{flex:1,backgroundColor:"#fff"}}>
-      <Gap height={25}/>
+      <Gap height={60}/>
       <View style={style.container}>
-        <SingleLogo height={120}/>
-        <Gap height={20}/>
+        <Image source={SingleSmall}/>
+        <Gap height={36}/>
         <Text style={{fontFamily:'PlayfairDisplay-Bold',fontSize:38,color:'#000'}}>Selamat Datang</Text>
         <Text style={{fontFamily:'PlayfairDisplay-Regular',fontSize:17,color:'#8D8D8D'}}>Masuk dengan akun anda dibawah ini</Text>
         <Gap height={46}/>
         <Input placeholder="username" value={username} onChangeText={value=>username.current=value}/>
         <Gap height={30}/>
-        <Input placeholder="Password" value={password} onChangeText={value=>password.current=value}/>
+        <View>
+          <Input paddingRight={44} placeholder="Password" value={password} secureTextEntry={hide} onChangeText={value=>password.current=value}/>
+          {!hide ? <EyeTrue height={20} onPress={()=>setHide(true)} style={{position:'absolute',right:0,top:15}}/> : <EyeFalse height={20} onPress={()=>setHide(false)} style={{position:'absolute',right:0,top:15}}/>}
+        </View>
         <Gap height={26}/>
         <Button name='Lupa Sandi?' color='#777' fam='Poppins-Medium' style={{marginLeft:4}}/>
         <Gap height={29}/>

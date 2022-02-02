@@ -1,14 +1,14 @@
 import React from 'react'
 import {TextInput,Text,StyleSheet,View} from 'react-native'
 
-const Input = ({setLabel=false,label,inputRefs,...rest})=>{
+const Input = ({setLabel=false,paddingRight=28.77,label,inputRefs,...rest})=>{
   const style=StyleSheet.create({
     container:{
       height:50,
       width:329,
       borderWidth:1.5,borderColor:'#B5DCFF',
       borderRadius:10,color:'#000',
-      paddingHorizontal:28.77,fontSize:19,backgroundColor:'#fff',
+      paddingLeft:28.77,paddingRight,fontSize:19,backgroundColor:'#fff',
     }
   })
 

@@ -52,8 +52,9 @@ const ReportPage = ({navigation})=>{
       <Gap height={15}/>
       <Header name="Nota Baru" button={true} navigation={navigation}/>
       <Gap height={45}/>
+      <Text style={{fontSize:17,color:"#777",marginLeft:34}}>Masukkan rincian nota</Text>
       <ScrollView keyboardShouldPersistTaps='always' contentContainerStyle={style.formContainer}>
-        <Gap height={47}/>
+        <Gap height={30}/>
         <Input setLabel={true} label="No.Nota" placeholder="No.1" value={noNote} onChangeText={(event)=>setData({...data,noNote:event})}/>
         <Gap height={30}/>
         <Input setLabel={true} label="Nama Konsumen" placeholder="John Doe" value={consumentName} onChangeText={(event)=>setData({...data,consumentName:event})}/>

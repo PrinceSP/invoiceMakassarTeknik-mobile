@@ -2,6 +2,7 @@ import React,{useState} from 'react'
 import {Text,ScrollView,View,StyleSheet,TouchableOpacity,Dimensions} from 'react-native'
 import ModalInvoice from '../modalInvoice'
 import {Star} from '../../../assets'
+import {StyledDot} from "../../atoms"
 
 const ReportListComponent=({fullname,invoiceDate,vehicle,vehicleType,diagnosis,totalPrice,action,spareParts,plat,repairService})=>{
   const [visible,setVisible] = useState(false)
@@ -31,15 +32,15 @@ const ReportListComponent=({fullname,invoiceDate,vehicle,vehicleType,diagnosis,t
                 <Text style={{fontSize:20,fontFamily:'Poppins-Medium',color:'#000'}}>081213507373</Text>
               </View>
               <View style={{width,position:'absolute',bottom:0,left:0,flexDirection:'row',justifyContent:'space-between'}}>
-                <View style={{height:15,width:25,borderTopLeftRadius:25,borderTopRightRadius:25,backgroundColor:'#E5F5FA'}}/>
-                <View style={{height:15,width:25,borderTopLeftRadius:25,borderTopRightRadius:25,backgroundColor:'#E5F5FA'}}/>
-                <View style={{height:15,width:25,borderTopLeftRadius:25,borderTopRightRadius:25,backgroundColor:'#E5F5FA'}}/>
-                <View style={{height:15,width:25,borderTopLeftRadius:25,borderTopRightRadius:25,backgroundColor:'#E5F5FA'}}/>
-                <View style={{height:15,width:25,borderTopLeftRadius:25,borderTopRightRadius:25,backgroundColor:'#E5F5FA'}}/>
-                <View style={{height:15,width:25,borderTopLeftRadius:25,borderTopRightRadius:25,backgroundColor:'#E5F5FA'}}/>
-                <View style={{height:15,width:25,borderTopLeftRadius:25,borderTopRightRadius:25,backgroundColor:'#E5F5FA'}}/>
-                <View style={{height:15,width:25,borderTopLeftRadius:25,borderTopRightRadius:25,backgroundColor:'#E5F5FA'}}/>
-                <View style={{height:15,width:25,borderTopLeftRadius:25,borderTopRightRadius:25,backgroundColor:'#E5F5FA'}}/>
+                <StyledDot/>
+                <StyledDot/>
+                <StyledDot/>
+                <StyledDot/>
+                <StyledDot/>
+                <StyledDot/>
+                <StyledDot/>
+                <StyledDot/>
+                <StyledDot/>
               </View>
             </View>
             <View>
@@ -120,18 +121,18 @@ const ReportListComponent=({fullname,invoiceDate,vehicle,vehicleType,diagnosis,t
                 <Text style={itemsMedium}>Rp.{repairService}</Text>
               </View>
               <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:20}}>
-                <Text style={{fontSize:28,fontFamily:'Poppins-Regular'}}>Total</Text>
+                <Text style={{fontSize:28,fontFamily:'Poppins-Regular',color:'#6989F8'}}>Total</Text>
                 <Text style={{fontSize:23,fontFamily:'Poppins-Bold',color:'#6989F8'}}>Rp.{totalPrice}</Text>
               </View>
             </View>
             <View style={{width:390,position:'absolute',bottom:0,left:0,flexDirection:'row',justifyContent:'space-around',zIndex:1}}>
-              <View style={{height:15,width:25,borderTopLeftRadius:25,borderTopRightRadius:25,backgroundColor:'rgba(114, 213, 255, 1)'}}/>
-              <View style={{height:15,width:25,borderTopLeftRadius:25,borderTopRightRadius:25,backgroundColor:'rgba(114, 213, 255, 1)'}}/>
-              <View style={{height:15,width:25,borderTopLeftRadius:25,borderTopRightRadius:25,backgroundColor:'rgba(114, 213, 255, 1)'}}/>
-              <View style={{height:15,width:25,borderTopLeftRadius:25,borderTopRightRadius:25,backgroundColor:'rgba(114, 213, 255, 1)'}}/>
-              <View style={{height:15,width:25,borderTopLeftRadius:25,borderTopRightRadius:25,backgroundColor:'rgba(114, 213, 255, 1)'}}/>
-              <View style={{height:15,width:25,borderTopLeftRadius:25,borderTopRightRadius:25,backgroundColor:'rgba(114, 213, 255, 1)'}}/>
-              <View style={{height:15,width:25,borderTopLeftRadius:25,borderTopRightRadius:25,backgroundColor:'rgba(114, 213, 255, 1)'}}/>
+              <StyledDot/>
+              <StyledDot/>
+              <StyledDot/>
+              <StyledDot/>
+              <StyledDot/>
+              <StyledDot/>
+              <StyledDot/>
             </View>
           </ScrollView>
         </ScrollView>
