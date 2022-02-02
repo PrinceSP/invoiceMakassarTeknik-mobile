@@ -78,7 +78,8 @@ const style = StyleSheet.create({
     borderRadius:50,
     alignItems:'center',
     justifyContent:'center'
-  }
+  },
+  poppinsMed:{fontFamily:'Poppins-Medium',color:'#666'}
 })
 
 export default Login

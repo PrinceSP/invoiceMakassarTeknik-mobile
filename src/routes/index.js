@@ -3,7 +3,7 @@ import { Button, View,Image } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import {WelcomeScreen,OnBoardingPage,SplashScreen,Login,Feedback,ReportListPage,
+import {WelcomeScreen,SplashScreen,Login,Feedback,ReportListPage,
   Register,Home,Profile,ReportPage,NotificationsPage,EditProfilePage} from '../pages'
 import {DrawerContent,TabsContent} from '../components'
 
