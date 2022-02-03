@@ -138,7 +138,7 @@ const ReportListComponent=({fullname,invoiceDate,vehicle,vehicleType,diagnosis,t
         </ScrollView>
       </ModalInvoice>
       <View style={firstSection}>
-        <Text style={diagnosis}>AC Mobil Bermasalah</Text>
+      <Text style={diagnosisText}>{diagnosis}</Text>
         <View style={{flexDirection:'row',alignItems:'center'}}>
           <Text style={total}>Rp.2.210.000</Text>
           <TouchableOpacity onPress={()=>setVisible(true)}>

@@ -52,7 +52,7 @@ const Root=()=>{
 const Routes = ()=>{
   const {user} = React.useContext(AuthContext)
   return(
-    <Navigator initialRouteName="Login">
+    <Navigator>
       <Screen name="SplashScreen" component={SplashScreen} options={{headerShown:false}}/>
       <Screen name="Login" component={Login} options={{headerShown:false}}/>
       <Screen name="Register" component={Register} options={{headerShown:false}}/>

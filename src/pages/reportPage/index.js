@@ -35,10 +35,10 @@ const ReportPage = ({navigation})=>{
           'Accept': 'application/json, text/plain, */*',
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({userId:currentUser._id,date:'23 23 23',vehicle,vehicleType,plat,client:consumentName,phoneNumber:'123123123',diagnosis,action,spareParts,repairService:servicePrice,total:totalPrice})
+        body: JSON.stringify({userId:currentUser._id,sender:currentUser.username,date:'23 23 23',vehicle,vehicleType,plat,client:consumentName,phoneNumber:'123123123',diagnosis,action,spareParts,repairService:servicePrice,total:totalPrice})
       }
       await fetch(`https://charlie-invoice.herokuapp.com/api/invoice`,options)
-      // navigation.navigate('Login')
+      console.log(true);
     } catch (e) {
       console.log(e);
     }

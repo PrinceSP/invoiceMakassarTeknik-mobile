@@ -1,5 +1,5 @@
 import React,{useEffect,useCallback,useState,useContext} from 'react'
-import {Text,View,StyleSheet,ScrollView,Image,RefreshControl,Platform} from 'react-native'
+import {Text,View,StyleSheet,ScrollView,TouchableOpacity,Image,RefreshControl,Platform} from 'react-native'
 import {Header,Gap} from '../../components'
 import {Atomic} from '../../assets'
 import {getCurrentDate} from '../../config'
@@ -40,21 +40,30 @@ const Home = ({navigation})=>{
           <Text style={headingTitle}>Hi, {typeof username==="string"?username.charAt(1).toUpperCase()+username.replace(/['"]+/g, '').slice(1):name}!</Text>
         </View>
         <Text style={{fontSize:20,fontFamily:'Poppins-Light',color:'#999'}}>{getCurrentDate()}</Text>
-        <Gap height={25}/>
+        <Gap height={28}/>
         {
           datas.map(item=>(
             <View key={item._id} style={listCont}>
-              <Text style={{fontSize:20,color:"#777"}}>Nota untuk:</Text>
+              <View style={firstSection}>
+                <Text style={{fontSize:20,color:"#777"}}>Nota dari:</Text>
+                <Text style={diagnosisText}>{item.sender}</Text>
+              </View>
               <View style={[firstSection,secondSection]}>
                 <Text style={name}>Nama Konsumen</Text>
-                <View>
-                  <Text style={name}>{item.createdAt.split('T').pop().split('.').shift()}</Text>
-                </View>
               </View>
               <View style={firstSection}>
                 <Text style={diagnosisText}>{item.client}</Text>
                 <View>
-                  <Text style={date}>{item.date}</Text>
+                  <Text style={date}>{item.createdAt.split('T').pop().split('.').shift()}</Text>
+                </View>
+              </View>
+              <View style={firstSection}>
+                <Text style={diagnosisText}>{item.diagnosis}</Text>
+                <View style={{flexDirection:'row',alignItems:'center'}}>
+                  <Text style={diagnosisText}>Rp.2.210.000</Text>
+                  <TouchableOpacity>
+                    <Text style={{fontSize:30,fontFamily:'Poppins-Regular',color:'#8C8888'}}> > </Text>
+                  </TouchableOpacity>
                 </View>
               </View>
             </View>
