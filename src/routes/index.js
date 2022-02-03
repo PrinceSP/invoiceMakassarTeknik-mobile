@@ -28,6 +28,8 @@ const BottomTabs = ()=>{
   )
 }
 const Root=()=>{
+  const {user} = React.useContext(AuthContext)
+
   return(
     <Drawer.Navigator initialRouteName="BottomTabs"
       drawerContent={props=><DrawerContent {...props}/>}
