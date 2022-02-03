@@ -15,13 +15,13 @@ const Tab = createBottomTabNavigator()
 const BottomTabs = ()=>{
   const {user} = React.useContext(AuthContext)
   return(
-    <Tab.Navigator screenOptions={() => ({
+    <Tab.Navigator initialRouteName="Home" screenOptions={() => ({
         headerShown: false,
         tabBarHideOnKeyboard: true,
         tabBarVisible: false,
       })}
       tabBar={(props)=><TabsContent {...props}/>}>
-      <Tab.Screen name="Home" component={user?Home:Register}/>
+      <Tab.Screen name="Home" component={Home}/>
       <Tab.Screen name="Report" component={ReportPage}/>
       <Tab.Screen name="Profile" component={Profile}/>
     </Tab.Navigator>
@@ -29,7 +29,7 @@ const BottomTabs = ()=>{
 }
 const Root=()=>{
   return(
-    <Drawer.Navigator initialRouteName="Home"
+    <Drawer.Navigator initialRouteName="BottomTabs"
       drawerContent={props=><DrawerContent {...props}/>}
       screenOptions={{
         drawerStyle: {
@@ -50,9 +50,9 @@ const Root=()=>{
 const Routes = ()=>{
   const {user} = React.useContext(AuthContext)
   return(
-    <Navigator>
+    <Navigator initialRouteName="Login">
       <Screen name="SplashScreen" component={SplashScreen} options={{headerShown:false}}/>
-      <Screen name="Login" component={user?Home:Login} options={{headerShown:false}}/>
+      <Screen name="Login" component={Login} options={{headerShown:false}}/>
       <Screen name="Register" component={Register} options={{headerShown:false}}/>
       <Screen name="EditProfile" component={EditProfilePage} options={{headerShown:false}}/>
       <Screen name="Root" component={Root} options={{headerShown:false}}/>
