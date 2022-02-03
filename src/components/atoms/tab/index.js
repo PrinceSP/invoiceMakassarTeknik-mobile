@@ -20,7 +20,7 @@ const Tab = ({tab,color,onPress})=>{
     borderRadius:20
   }
 
-  const colors = color==='#a8a8a8'
+  const colors = color==='#000'
   const style = StyleSheet.create({
     report:{
       bottom:23,

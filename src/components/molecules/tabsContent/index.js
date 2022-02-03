@@ -8,7 +8,7 @@ const {width} = Dimensions.get('screen')
 const TabsContent = ({state,navigation})=>{
   const [selected,setSelected] = useState('Home')
   const {routes} = state
-  const current = (currentTab) => {return (currentTab===selected ? '#a8a8a8':'none')}
+  const current = (currentTab) => {return (currentTab===selected ? '#000':'none')}
 
   const handleChange = (active)=>{
     setSelected(active)
