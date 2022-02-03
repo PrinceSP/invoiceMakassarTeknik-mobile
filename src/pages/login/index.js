@@ -3,6 +3,7 @@ import {View,Text,StyleSheet,Image} from 'react-native'
 import {Header,Gap,Button,Input} from '../../components'
 import {SingleSmall,EyeTrue,EyeFalse} from '../../assets'
 import {AuthContext} from '../../context/authContext'
+import {saveStorage} from '../../config/asyncStorage'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Login = ({navigation}) => {
@@ -11,15 +12,6 @@ const Login = ({navigation}) => {
   const [hide,setHide] = useState(true)
   const {isFetching,dispatch} = useContext(AuthContext)
   const url = 'https://charlie-invoice.herokuapp.com/api/auth/login'
-
-  const saveStorage = async(value)=>{
-    try {
-      await AsyncStorage.setItem('user',JSON.stringify(value))
-      console.log('success store the datas')
-    } catch (e) {
-      console.log(e);
-    }
-  }
 
   const handleLogin = async()=>{
     console.log(username,password);
@@ -55,7 +47,7 @@ const Login = ({navigation}) => {
     <View style={{flex:1,backgroundColor:"#fff"}}>
       <Gap height={60}/>
       <View style={style.container}>
-        <Image source={SingleSmall}/>
+        <Image source={SingleSmall} style={{height:120,width:120}}/>
         <Gap height={36}/>
         <Text style={{fontFamily:'PlayfairDisplay-Bold',fontSize:38,color:'#000'}}>Selamat Datang</Text>
         <Text style={{fontFamily:'PlayfairDisplay-Regular',fontSize:17,color:'#8D8D8D'}}>Masuk dengan akun anda dibawah ini</Text>
