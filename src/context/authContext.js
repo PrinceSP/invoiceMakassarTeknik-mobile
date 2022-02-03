@@ -1,8 +1,9 @@
-import React, {createContext,useReducer} from 'react'
+import React, {createContext,useReducer,useState} from 'react'
 import AuthReducer from './authReducer'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const INITIAL_STATE = {
-  user:null,
+  user:AsyncStorage.getItem('user')||null,
   isFetching:false,
   error:false
 }

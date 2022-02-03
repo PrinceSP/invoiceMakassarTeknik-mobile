@@ -6,12 +6,14 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {WelcomeScreen,SplashScreen,Login,Feedback,ReportListPage,
   Register,Home,Profile,ReportPage,NotificationsPage,EditProfilePage} from '../pages'
 import {DrawerContent,TabsContent} from '../components'
+import {AuthContext} from '../context/authContext'
 
 const {Navigator, Screen} = createNativeStackNavigator()
 const Drawer = createDrawerNavigator()
 const Tab = createBottomTabNavigator()
 
 const BottomTabs = ()=>{
+  const {user} = React.useContext(AuthContext)
   return(
     <Tab.Navigator screenOptions={() => ({
         headerShown: false,
@@ -19,7 +21,7 @@ const BottomTabs = ()=>{
         tabBarVisible: false,
       })}
       tabBar={(props)=><TabsContent {...props}/>}>
-      <Tab.Screen name="Home" component={Home}/>
+      <Tab.Screen name="Home" component={user?Home:Register}/>
       <Tab.Screen name="Report" component={ReportPage}/>
       <Tab.Screen name="Profile" component={Profile}/>
     </Tab.Navigator>
@@ -46,10 +48,11 @@ const Root=()=>{
 }
 
 const Routes = ()=>{
+  const {user} = React.useContext(AuthContext)
   return(
     <Navigator>
       <Screen name="SplashScreen" component={SplashScreen} options={{headerShown:false}}/>
-      <Screen name="Login" component={Login} options={{headerShown:false}}/>
+      <Screen name="Login" component={user?Home:Login} options={{headerShown:false}}/>
       <Screen name="Register" component={Register} options={{headerShown:false}}/>
       <Screen name="EditProfile" component={EditProfilePage} options={{headerShown:false}}/>
       <Screen name="Root" component={Root} options={{headerShown:false}}/>

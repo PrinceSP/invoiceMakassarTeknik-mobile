@@ -15,7 +15,7 @@ const Home = ({navigation})=>{
   }
   const onRefresh = useCallback(() => {
     setRefreshing(true);
-    wait(2000).then(() => setRefreshing(false));
+    wait(1500).then(() => setRefreshing(false));
   }, []);
   useEffect(()=>{
     const fetchDatas = async ()=>{
