@@ -10,6 +10,7 @@ const ReportPage = ({navigation})=>{
     consumentName:'',
     vehicle:'',
     vehicleType:'',
+    date:'',
     plat:'',
     diagnosis:'',
     action:'',
@@ -17,19 +18,20 @@ const ReportPage = ({navigation})=>{
     servicePrice:'',
     totalPrice:''
   })
+  const [dates,setDate] = useState(new Date())
   const [show,setShow] = useState(false)
-  const {noNote,consumentName,vehicle,vehicleType,plat,diagnosis,action,spareParts,servicePrice,totalPrice} = data
+  const {noNote,consumentName,vehicle,date,vehicleType,plat,diagnosis,action,spareParts,servicePrice,totalPrice} = data
   const {user:currentUser} = useContext(AuthContext)
 
   const submit = async()=>{
     //merge all the datas from these states
     //submit all the datas from form
     const allDatas = {...data};
-    for (let data in allDatas) {
-      // if (data.value != '') {
-      console.log(`${data} : ${allDatas[data]}`);
-      // }
-    }
+    // for (let data in allDatas) {
+    //   // if (data.value != '') {
+    //   console.log(`${data} : ${allDatas[data]}`);
+    //   // }
+    // }
     try {
       const options = {
         method: 'post',
@@ -37,29 +39,30 @@ const ReportPage = ({navigation})=>{
           'Accept': 'application/json, text/plain, */*',
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({userId:currentUser._id,sender:currentUser.username,date:'23 23 23',vehicle,vehicleType,plat,client:consumentName,phoneNumber:'123123123',diagnosis,action,spareParts,repairService:servicePrice,total:totalPrice})
+        body: JSON.stringify({userId:currentUser._id,sender:currentUser.username,date,vehicle,vehicleType,plat,client:consumentName,phoneNumber:'123123123',diagnosis,action,spareParts,repairService:servicePrice,total:totalPrice})
       }
       await fetch(`https://charlie-invoice.herokuapp.com/api/invoice`,options)
     } catch (e) {
       console.log(e);
     }
-    setData({...data,noNote:'',consumentName:'',vehicle:'',vehicleType:'',plat:'',diagnosis:'',action:'',spareParts:'',servicePrice:'',totalPrice:''})
+    setData({...data,noNote:'',consumentName:'',date:'',vehicle:'',vehicleType:'',plat:'',diagnosis:'',action:'',spareParts:'',servicePrice:'',totalPrice:''})
 
     return allDatas
   }
 
   const onChange = (e, selectedDate)=>{
-    const currentDate = selectedDate || date
+    const currentDate = selectedDate || dates
 
     setShow(Platform=='ios')
     if (e.type === 'set') {
       setDate(currentDate)
       let tempDate = new Date(currentDate)
       let fDate = `${tempDate.getDate()} ${(tempDate.getMonth()+1)} ${tempDate.getFullYear()}`
-      setTheDate(fDate)
+      // setTheDate(fDate)
+      setData({...data,date:fdate})
     } else {
       setDate(new Date())
-      setTheDate('')
+      setData({...data,date:''})
     }
   }
   return(
@@ -76,11 +79,11 @@ const ReportPage = ({navigation})=>{
         <Gap height={30}/>
         <View>
           <TouchableOpacity style={{width:327,height:48,borderRadius:50,position:'absolute',zIndex:2}} onPress={()=>setShow(true)}/>
-          <Input placeholder="Tanggal Lahir" value={theDate}/>
+          <Input setLabel={true} label="Tanggal Nota" placeholder="Tanggal Lahir" value={date}/>
         </View>
         {
           show && <DateTimePicker testID='dateTimePicker'
-          value={date}
+          value={dates}
           mode='date'
           display='default'
           onChange={onChange}

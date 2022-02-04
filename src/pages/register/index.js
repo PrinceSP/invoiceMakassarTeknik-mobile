@@ -56,7 +56,7 @@ const Register = ({navigation}) => {
       // reseting the dates
       setDate(new Date())
       // setTheDate('') when user cancel input the date
-      setUserInfo({theDate:''})
+      setUserInfo({...userInfo,theDate:''})
     }
   }
 

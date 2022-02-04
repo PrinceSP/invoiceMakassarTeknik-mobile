@@ -7,14 +7,14 @@ import useHandleCurrentInvoices from '../../config/apiCalls'
 const ReportListPage=({navigation})=>{
   const [refreshing,setRefreshing] = useState(false)
   const {user: currentUser} = useContext(AuthContext)
-  const {invoices,isPending} = useHandleCurrentInvoices(currentUser._id)
+  const {invoices,isPending} = useHandleCurrentInvoices(refreshing,currentUser._id)
 
   const wait=(timeout)=>{
     return new Promise(resolve=>setTimeout(resolve,timeout))
   }
   const onRefresh = useCallback(() => {
     setRefreshing(true);
-    wait(250).then(() => setRefreshing(false));
+    wait(500).then(() => setRefreshing(false));
   }, []);
 
   console.log(invoices);
