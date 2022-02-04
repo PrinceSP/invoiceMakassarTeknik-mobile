@@ -12,9 +12,10 @@ const CheckBoxComponent = (props) => {
           boxType="square"
           value={agree}
           onChange={() => setAgree(!agree)}
+          tintColor="#044"
         />
       ) : (
-        <CheckBox value={agree} onChange={() => setAgree(!agree)} />
+        <CheckBox value={agree} onChange={() => setAgree(!agree)} tintColors={{true:'blue', false:'#044'}}/>
       )}
     </View>
   )
