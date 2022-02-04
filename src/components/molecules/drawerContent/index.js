@@ -2,6 +2,7 @@ import React from 'react'
 import {Text,View,StyleSheet,ScrollView,Image,Platform} from 'react-native'
 import {DrawerContentScrollView,DrawerItem} from '@react-navigation/drawer'
 import {AvatarProfile,Report,ShareIcon,SignOut,PD,SingleSmall} from '../../../assets'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const style = StyleSheet.create({
   container:{
@@ -59,7 +60,14 @@ const DrawerContent = (props)=>{
             <DrawerItem labelStyle={menu}
               icon={()=><SignOut height={28} width={28}/>}
               label="Sign Out"
-              onPress={()=>{}}/>
+              onPress={async()=> {
+                try {
+                  await AsyncStorage.removeItem('user')
+                  props.navigation.navigate('Login')
+                } catch (e) {
+                  return;
+                }
+              }}/>
           </View>
           <View style={{paddingLeft:20,marginTop:20}}>
             <Text>v.1.0</Text>

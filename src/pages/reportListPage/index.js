@@ -2,30 +2,21 @@ import React,{useEffect,useState,useContext,useCallback} from 'react'
 import {Text,ScrollView,View,StyleSheet,RefreshControl} from 'react-native'
 import {Header,Gap,ReportListComponent} from '../../components'
 import { AuthContext } from "../../context/authContext";
+import useHandleCurrentInvoices from '../../config/apiCalls'
 
 const ReportListPage=({navigation})=>{
-  const [invoices,setInvoices] = useState([])
   const [refreshing,setRefreshing] = useState(false)
   const {user: currentUser} = useContext(AuthContext)
+  const {invoices,isPending} = useHandleCurrentInvoices(currentUser._id)
 
   const wait=(timeout)=>{
     return new Promise(resolve=>setTimeout(resolve,timeout))
   }
   const onRefresh = useCallback(() => {
     setRefreshing(true);
-    wait(2000).then(() => setRefreshing(false));
+    wait(250).then(() => setRefreshing(false));
   }, []);
-  useEffect(()=>{
-    const fetchDatas = async ()=>{
-      const res = await fetch(`https://charlie-invoice.herokuapp.com/api/invoice/invoicesList/${currentUser._id}`).then(res=>res.json())
-      setInvoices(
-        res.sort((p1,p2)=>{
-          return new Date(p2.createdAt) - new Date(p1.createdAt)
-        })
-      )
-    }
-    fetchDatas()
-  },[invoices,currentUser._id])
+
   console.log(invoices);
   return(
     <View style={container}>
@@ -52,7 +43,6 @@ const ReportListPage=({navigation})=>{
               />
           ))
         }
-
       </ScrollView>
     </View>
 

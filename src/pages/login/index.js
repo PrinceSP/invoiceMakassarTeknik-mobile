@@ -42,7 +42,6 @@ const Login = ({navigation}) => {
     setUsername('')
   }
 
-
   return (
     <View style={{flex:1,backgroundColor:"#fff"}}>
       <Gap height={60}/>

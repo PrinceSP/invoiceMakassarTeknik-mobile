@@ -1,7 +1,8 @@
 import React, {useState,useEffect,useContext} from 'react'
-import {Text,View,StyleSheet,ScrollView} from 'react-native'
+import {Text,View,StyleSheet,TouchableOpacity,ScrollView} from 'react-native'
 import {Header,Gap,Button,Input,CheckBoxComponent} from '../../components'
 import { AuthContext } from "../../context/authContext";
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 const ReportPage = ({navigation})=>{
   const [data,setData] = useState({
@@ -16,6 +17,7 @@ const ReportPage = ({navigation})=>{
     servicePrice:'',
     totalPrice:''
   })
+  const [show,setShow] = useState(false)
   const {noNote,consumentName,vehicle,vehicleType,plat,diagnosis,action,spareParts,servicePrice,totalPrice} = data
   const {user:currentUser} = useContext(AuthContext)
 
@@ -38,7 +40,6 @@ const ReportPage = ({navigation})=>{
         body: JSON.stringify({userId:currentUser._id,sender:currentUser.username,date:'23 23 23',vehicle,vehicleType,plat,client:consumentName,phoneNumber:'123123123',diagnosis,action,spareParts,repairService:servicePrice,total:totalPrice})
       }
       await fetch(`https://charlie-invoice.herokuapp.com/api/invoice`,options)
-      console.log(true);
     } catch (e) {
       console.log(e);
     }
@@ -47,6 +48,20 @@ const ReportPage = ({navigation})=>{
     return allDatas
   }
 
+  const onChange = (e, selectedDate)=>{
+    const currentDate = selectedDate || date
+
+    setShow(Platform=='ios')
+    if (e.type === 'set') {
+      setDate(currentDate)
+      let tempDate = new Date(currentDate)
+      let fDate = `${tempDate.getDate()} ${(tempDate.getMonth()+1)} ${tempDate.getFullYear()}`
+      setTheDate(fDate)
+    } else {
+      setDate(new Date())
+      setTheDate('')
+    }
+  }
   return(
     <View style={container}>
       <Gap height={15}/>
@@ -58,6 +73,20 @@ const ReportPage = ({navigation})=>{
         <Input setLabel={true} label="No.Nota" placeholder="No.1" value={noNote} onChangeText={(event)=>setData({...data,noNote:event})}/>
         <Gap height={30}/>
         <Input setLabel={true} label="Nama Konsumen" placeholder="John Doe" value={consumentName} onChangeText={(event)=>setData({...data,consumentName:event})}/>
+        <Gap height={30}/>
+        <View>
+          <TouchableOpacity style={{width:327,height:48,borderRadius:50,position:'absolute',zIndex:2}} onPress={()=>setShow(true)}/>
+          <Input placeholder="Tanggal Lahir" value={theDate}/>
+        </View>
+        {
+          show && <DateTimePicker testID='dateTimePicker'
+          value={date}
+          mode='date'
+          display='default'
+          onChange={onChange}
+          is24Hour={true}
+          />
+        }
         <Gap height={30}/>
         <Input setLabel={true} label="Jenis Kendaraan" placeholder="Mobil" value={vehicle} onChangeText={(event)=>setData({...data,vehicle:event})}/>
         <Gap height={30}/>

@@ -4,7 +4,6 @@ import {Input,Gap,Button,Header,ImagePicker} from '../../components'
 import {launchImageLibrary} from 'react-native-image-picker'
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-
 const EditProfilePage =({navigation})=>{
   const [photo,setPhoto] = useState('')
   const [hasPhoto, setHasPhoto] = useState(false)
@@ -47,7 +46,6 @@ const EditProfilePage =({navigation})=>{
       setTheDate('')
     }
   }
-
 
   return(
     <View style={{backgroundColor:'#fff',flex:1}}>
