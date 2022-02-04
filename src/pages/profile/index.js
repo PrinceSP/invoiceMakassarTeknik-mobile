@@ -6,16 +6,6 @@ import { AuthContext } from "../../context/authContext";
 
 const Profile = ({navigation})=>{
   const {user} = useContext(AuthContext)
-  // const [users,setUsers] = useState({})
-
-  // useEffect(()=>{
-  //   const fetchDatas = async ()=>{
-  //     const res = await fetch(`https://charlie-invoice.herokuapp.com/api/user?username=${user.username}`).then(res=>res.json())
-  //     setUsers(res)
-  //   }
-  //   fetchDatas()
-  // },[])
-  // console.log(users.username);
   return(
     <View style={{flex:1,backgroundColor:'#fff'}}>
       <Gap height={15}/>
@@ -23,7 +13,7 @@ const Profile = ({navigation})=>{
       <Gap height={35}/>
       <ScrollView contentContainerStyle={{alignItems:'center',justifyContent:'flex-end'}}>
         <View style={{borderStyle:'dashed',borderWidth:2,borderColor:'#8CC4F8',borderRadius:75,height:130,width:130,alignItems:'center',justifyContent:'center'}}>
-          {user.profilePicture ? <Image source={{uri:`${user.profilePicture}`}} style={{height:115,width:115,backgroundColor:'#eee',borderRadius:65}}/> : <View style={{height:115,width:115,backgroundColor:'#eee',borderRadius:65}}/>}
+          {user.profilePicture ? <Image source={{uri:`data:image/png;base64,${user.profilePicture}`}} style={{height:115,width:115,backgroundColor:'#eee',borderRadius:65}}/> : <View style={{height:115,width:115,backgroundColor:'#eee',borderRadius:65}}/>}
         </View>
         <Gap height={20}/>
         <BioHolder icon={<AvatarProfile fill="#a0a0a0"/>} userInfo={user.fullname} labelInfo='Fullname'/>

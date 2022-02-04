@@ -2,7 +2,7 @@ import React from 'react'
 import {Text,View,StyleSheet,ScrollView,Image,Platform} from 'react-native'
 import {DrawerContentScrollView,DrawerItem} from '@react-navigation/drawer'
 import {AvatarProfile,Report,ShareIcon,SignOut,PD,SingleSmall} from '../../../assets'
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { AuthContext } from "../../../context/authContext";
 
 const style = StyleSheet.create({
   container:{
@@ -41,15 +41,16 @@ const style = StyleSheet.create({
 const {container,section,image,title,desc,menu} = style
 
 const DrawerContent = (props)=>{
+  const {user} = React.useContext(AuthContext)
   return(
     <View style={container}>
       <DrawerContentScrollView {...props}>
         <View style={container}>
           <View style={section}>
-            <Image style={image} source={SingleSmall}/>
+            <Image style={image} source={{uri:`data:image/png;base64,${user.profilePicture}`}}/>
             <View>
-              <Text style={title}>Charlie Momuat</Text>
-              <Text style={desc}>charliemomuat@gmail.com</Text>
+              <Text style={title}>{user.fullname}</Text>
+              <Text style={desc}>{user.email}</Text>
             </View>
           </View>
           <View style={{paddingVertical:18,borderBottomWidth:1,borderBottomColor:'#F1DADA'}}>

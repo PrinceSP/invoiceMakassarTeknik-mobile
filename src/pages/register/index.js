@@ -63,9 +63,8 @@ const Register = ({navigation}) => {
   const submit = async()=>{
     // show in console the key names and key values of each data stored in userInfo
     // using looping for...in to loop through object
-    for(const datas in userInfo) console.log(`${datas} : ${userInfo[datas]}`);
+    for(const datas in setUserInfo) console.log(`${datas} : ${userInfo[datas]}`);
     // reset the values of each keys after submit button has been pressed
-    setUserInfo({fname:'',email:'',username:'',theDate:'',phone:'',password:''})
     //navigate to login screen after registering account
     const {fname,email,username,theDate,phone,password} = userInfo
     try {
@@ -75,7 +74,7 @@ const Register = ({navigation}) => {
           'Accept': 'application/json, text/plain, */*',
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({fullname:fname,username,email,birthday:theDate,phoneNumber:phone,password})
+        body: JSON.stringify({fullname:fname,username,email,birthday:theDate,phoneNumber:phone,password,profilePicture:photoBase64})
       }
       const req = await fetch('https://charlie-invoice.herokuapp.com/api/auth/register',options)
       const results = await req.json()
@@ -86,6 +85,10 @@ const Register = ({navigation}) => {
     } catch (e) {
       console.log(e._message);
     }
+    setHasPhoto(false)
+    setPhoto('');
+    setPhotoBase64('');
+    setUserInfo({fname:'',email:'',username:'',theDate:'',phone:'',password:''})
   }
   // destructuring objects in userInfo state
   const {fname,email,username,theDate,phone,password} = userInfo
