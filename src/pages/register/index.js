@@ -50,7 +50,6 @@ const Register = ({navigation}) => {
       let tempDate = new Date(currentDate)
       // from the actual date in 'tempDate', get the date day-month-year
       let fDate = `${tempDate.getDate()}-${(tempDate.getMonth()+1)}-${tempDate.getFullYear()}`
-      // setTheDate(fDate)
       setUserInfo({...userInfo,theDate:fDate})
     } else {
       // reseting the dates
@@ -90,7 +89,6 @@ const Register = ({navigation}) => {
   }
   // destructuring objects in userInfo state
   const {fname,email,username,theDate,phone,password} = userInfo
-  // console.log(userInfo);
 
   return(
     <View style={{backgroundColor:'#fff',flex:1}}>

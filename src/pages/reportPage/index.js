@@ -1,16 +1,18 @@
 import React, {useState,useEffect,useContext} from 'react'
-import {Text,View,StyleSheet,TouchableOpacity,ScrollView} from 'react-native'
+import {Text,View,StyleSheet,TouchableOpacity,ScrollView,Platform} from 'react-native'
 import {Header,Gap,Button,Input,CheckBoxComponent} from '../../components'
 import { AuthContext } from "../../context/authContext";
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 const ReportPage = ({navigation})=>{
-  const [data,setData] = useState({
+  const [date,setDate] = useState(new Date())
+  const [show,setShow] = useState(false)
+  const [datas,setData] = useState({
     noNote:'',
     consumentName:'',
     vehicle:'',
     vehicleType:'',
-    date:'',
+    dates:'',
     plat:'',
     diagnosis:'',
     action:'',
@@ -18,20 +20,16 @@ const ReportPage = ({navigation})=>{
     servicePrice:'',
     totalPrice:''
   })
-  const [dates,setDate] = useState(new Date())
-  const [show,setShow] = useState(false)
-  const {noNote,consumentName,vehicle,date,vehicleType,plat,diagnosis,action,spareParts,servicePrice,totalPrice} = data
   const {user:currentUser} = useContext(AuthContext)
+  const {noNote,consumentName,vehicle,dates,vehicleType,plat,diagnosis,action,spareParts,servicePrice,totalPrice} = datas
 
   const submit = async()=>{
     //merge all the datas from these states
     //submit all the datas from form
-    const allDatas = {...data};
-    // for (let data in allDatas) {
-    //   // if (data.value != '') {
-    //   console.log(`${data} : ${allDatas[data]}`);
-    //   // }
-    // }
+    const allDatas = {...datas};
+    for (let datas in allDatas) {
+      console.log(`${datas} : ${allDatas[datas]}`);
+    }
     try {
       const options = {
         method: 'post',
@@ -39,30 +37,29 @@ const ReportPage = ({navigation})=>{
           'Accept': 'application/json, text/plain, */*',
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({userId:currentUser._id,sender:currentUser.username,date,vehicle,vehicleType,plat,client:consumentName,phoneNumber:'123123123',diagnosis,action,spareParts,repairService:servicePrice,total:totalPrice})
+        body: JSON.stringify({userId:currentUser._id,sender:currentUser.username,date:dates,vehicle,vehicleType,plat,client:consumentName,phoneNumber:'123123123',diagnosis,action,spareParts,repairService:servicePrice,total:totalPrice})
       }
       await fetch(`https://charlie-invoice.herokuapp.com/api/invoice`,options)
     } catch (e) {
       console.log(e);
     }
-    setData({...data,noNote:'',consumentName:'',date:'',vehicle:'',vehicleType:'',plat:'',diagnosis:'',action:'',spareParts:'',servicePrice:'',totalPrice:''})
+    setData({...datas,noNote:'',consumentName:'',dates:'',vehicle:'',vehicleType:'',plat:'',diagnosis:'',action:'',spareParts:'',servicePrice:'',totalPrice:''})
 
     return allDatas
   }
 
   const onChange = (e, selectedDate)=>{
-    const currentDate = selectedDate || dates
+    const currentDate = selectedDate || date
 
     setShow(Platform=='ios')
     if (e.type === 'set') {
       setDate(currentDate)
       let tempDate = new Date(currentDate)
-      let fDate = `${tempDate.getDate()} ${(tempDate.getMonth()+1)} ${tempDate.getFullYear()}`
-      // setTheDate(fDate)
-      setData({...data,date:fdate})
+      let fDate = `${tempDate.getDate()}-${(tempDate.getMonth()+1)}-${tempDate.getFullYear()}`
+      setData({...datas,dates:fDate})
     } else {
       setDate(new Date())
-      setData({...data,date:''})
+      setData({...datas,dates:''})
     }
   }
   return(
@@ -73,35 +70,35 @@ const ReportPage = ({navigation})=>{
       <ScrollView keyboardShouldPersistTaps='always' contentContainerStyle={style.formContainer}>
         <Text style={{fontSize:17,color:"#777",position:'absolute',left:34}}>Masukkan rincian nota</Text>
         <Gap height={40}/>
-        <Input setLabel={true} label="No.Nota" placeholder="No.1" value={noNote} onChangeText={(event)=>setData({...data,noNote:event})}/>
+        <Input setLabel={true} label="No.Nota" placeholder="No.1" value={noNote} onChangeText={(event)=>setData({...datas,noNote:event})}/>
         <Gap height={30}/>
-        <Input setLabel={true} label="Nama Konsumen" placeholder="John Doe" value={consumentName} onChangeText={(event)=>setData({...data,consumentName:event})}/>
+        <Input setLabel={true} label="Nama Konsumen" placeholder="John Doe" value={consumentName} onChangeText={(event)=>setData({...datas,consumentName:event})}/>
         <Gap height={30}/>
-        <View>
-          <TouchableOpacity style={{width:327,height:48,borderRadius:50,position:'absolute',zIndex:2}} onPress={()=>setShow(true)}/>
-          <Input setLabel={true} label="Tanggal Nota" placeholder="Tanggal Lahir" value={date}/>
-        </View>
-        {
-          show && <DateTimePicker testID='dateTimePicker'
-          value={dates}
-          mode='date'
-          display='default'
-          onChange={onChange}
-          is24Hour={true}
-          />
-        }
+          <View>
+            <TouchableOpacity style={{width:327,height:48,borderRadius:10,position:'absolute',bottom:0,zIndex:2}} onPress={()=>setShow(true)}/>
+            <Input setLabel={true} label="Tanggal Nota" placeholder="28-08-2021" value={dates}/>
+          </View>
+          {
+            show && <DateTimePicker testID='dateTimePicker'
+            value={date}
+            mode='date'
+            display='default'
+            onChange={onChange}
+            is24Hour={true}
+            />
+          }
         <Gap height={30}/>
-        <Input setLabel={true} label="Jenis Kendaraan" placeholder="Mobil" value={vehicle} onChangeText={(event)=>setData({...data,vehicle:event})}/>
+        <Input setLabel={true} label="Jenis Kendaraan" placeholder="Mobil" value={vehicle} onChangeText={(event)=>setData({...datas,vehicle:event})}/>
         <Gap height={30}/>
-        <Input setLabel={true} label="Tipe Kendaraan" placeholder="Honda" value={vehicleType} onChangeText={(event)=>setData({...data,vehicleType:event})}/>
+        <Input setLabel={true} label="Tipe Kendaraan" placeholder="Honda" value={vehicleType} onChangeText={(event)=>setData({...datas,vehicleType:event})}/>
         <Gap height={30}/>
-        <Input setLabel={true} label="No.Polisi" placeholder="DN 2135 AE" value={plat} onChangeText={(event)=>setData({...data,plat:event})}/>
+        <Input setLabel={true} label="No.Polisi" placeholder="DN 2135 AE" value={plat} onChangeText={(event)=>setData({...datas,plat:event})}/>
         <Gap height={30}/>
-        <Input setLabel={true} label="Diagnosa" placeholder="AC Mobil Bermasalah" value={diagnosis} onChangeText={(event)=>setData({...data,diagnosis:event})}/>
+        <Input setLabel={true} label="Diagnosa" placeholder="AC Mobil Bermasalah" value={diagnosis} onChangeText={(event)=>setData({...datas,diagnosis:event})}/>
         <Gap height={30}/>
-        <Input setLabel={true} label="Penanganan" placeholder="Pengisian ulang freon" value={action} onChangeText={(event)=>setData({...data,action:event})}/>
+        <Input setLabel={true} label="Penanganan" placeholder="Pengisian ulang freon" value={action} onChangeText={(event)=>setData({...datas,action:event})}/>
         <Gap height={30}/>
-        <Input setLabel={true} label="Suku Cadang" placeholder="Kompresor" value={spareParts} onChangeText={(event)=>setData({...data,spareParts:event})}/>
+        <Input setLabel={true} label="Suku Cadang" placeholder="Kompresor" value={spareParts} onChangeText={(event)=>setData({...datas,spareParts:event})}/>
         <Gap height={30}/>
         <View style={{flexDirection:'column',width:329}}>
           <Text style={{fontSize:20,color:'#000',marginBottom:7}}>Jenis Freon:</Text>
@@ -121,9 +118,9 @@ const ReportPage = ({navigation})=>{
           </View>
         </View>
         <Gap height={30}/>
-        <Input setLabel={true} label="Harga Jasa Layanan" placeholder="200.000" value={servicePrice} onChangeText={(event)=>setData({...data,servicePrice:event})}/>
+        <Input setLabel={true} label="Harga Jasa Layanan" placeholder="200.000" value={servicePrice} onChangeText={(event)=>setData({...datas,servicePrice:event})}/>
         <Gap height={30}/>
-        <Input setLabel={true} label="Total Pembayaran" placeholder="350.000" value={totalPrice} onChangeText={(event)=>setData({...data,totalPrice:event})}/>
+        <Input setLabel={true} label="Total Pembayaran" placeholder="350.000" value={totalPrice} onChangeText={(event)=>setData({...datas,totalPrice:event})}/>
         <Gap height={10}/>
         <View style={{alignItems:'center'}}>
           <Button name="Simpan Nota" color='#fff' fam='Poppins-Bold' size={24} style={buttonSubmit} onPress={()=>submit()}/>
