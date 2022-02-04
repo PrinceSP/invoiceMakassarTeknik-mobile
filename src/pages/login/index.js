@@ -4,7 +4,6 @@ import {Header,Gap,Button,Input} from '../../components'
 import {SingleSmall,EyeTrue,EyeFalse} from '../../assets'
 import {AuthContext} from '../../context/authContext'
 import {saveStorage} from '../../config/asyncStorage'
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Login = ({navigation}) => {
   const [username,setUsername] = useState('')

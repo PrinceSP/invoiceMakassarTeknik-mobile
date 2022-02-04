@@ -18,7 +18,8 @@ const Register = ({navigation}) => {
     phone:'',
     password:''
   })
-
+  // destructuring objects in userInfo state
+  const {fname,email,username,theDate,phone,password} = userInfo
   const getImage=()=>{
     const options={
       maxHeight:160,
@@ -66,7 +67,6 @@ const Register = ({navigation}) => {
     for(const datas in setUserInfo) console.log(`${datas} : ${userInfo[datas]}`);
     // reset the values of each keys after submit button has been pressed
     //navigate to login screen after registering account
-    const {fname,email,username,theDate,phone,password} = userInfo
     try {
       const options = {
         method: 'post',
@@ -90,8 +90,6 @@ const Register = ({navigation}) => {
     setPhotoBase64('');
     setUserInfo({fname:'',email:'',username:'',theDate:'',phone:'',password:''})
   }
-  // destructuring objects in userInfo state
-  const {fname,email,username,theDate,phone,password} = userInfo
 
   return(
     <View style={{backgroundColor:'#fff',flex:1}}>

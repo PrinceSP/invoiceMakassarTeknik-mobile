@@ -3,17 +3,24 @@ import {Text,View,StyleSheet,TouchableOpacity,ScrollView,Image,Platform} from 'r
 import {Input,Gap,Button,Header,ImagePicker} from '../../components'
 import {launchImageLibrary} from 'react-native-image-picker'
 import DateTimePicker from '@react-native-community/datetimepicker';
+import {AuthContext} from '../../context/authContext'
 
 const EditProfilePage =({navigation})=>{
+  const {user:currentUser} = React.useContext(AuthContext)
   const [photo,setPhoto] = useState('')
   const [hasPhoto, setHasPhoto] = useState(false)
   const [photoBase64,setPhotoBase64] = useState('')
   const [date,setDate] = useState(new Date())
   const [show,setShow] = useState(false)
-  const [theDate,setTheDate]= useState('')
-
-  let isTrue;
-
+  const [userInfo,setUserInfo] = useState({
+    fname:'',
+    email:'',
+    username:'',
+    theDate:'',
+    phone:''
+  })
+  // destructuring objects in userInfo state
+  const {fname,email,username,theDate,phone,password} = userInfo
   const getImage=()=>{
     const options={
       maxHeight:160,
@@ -21,7 +28,6 @@ const EditProfilePage =({navigation})=>{
       includeBase64:true,
     }
     launchImageLibrary(options,res=>{
-      console.log(res.assets[0].uri);
       if(res.didCancel){
         setHasPhoto(false)
       }else{
@@ -39,12 +45,36 @@ const EditProfilePage =({navigation})=>{
     if (e.type === 'set') {
       setDate(currentDate)
       let tempDate = new Date(currentDate)
-      let fDate = `${tempDate.getDate()} ${(tempDate.getMonth()+1)} ${tempDate.getFullYear()}`
-      setTheDate(fDate)
+      let fDate = `${tempDate.getDate()}-${(tempDate.getMonth()+1)}-${tempDate.getFullYear()}`
+      setUserInfo({...userInfo,theDate:fDate})
     } else {
       setDate(new Date())
-      setTheDate('')
+      setUserInfo({...userInfo,theDate:''})
     }
+  }
+  const submit = async()=>{
+    try {
+      const options = {
+        method: 'put',
+        headers: {
+          'Accept': 'application/json, text/plain, */*',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({userId:currentUser._id,fullname:fname,username,email,birthday:theDate,phoneNumber:phone,profilePicture:photoBase64})
+      }
+      const req = await fetch(`https://charlie-invoice.herokuapp.com/api/user/${currentUser._id}`,options)
+      const results = await req.json()
+      console.log(results);
+      if (req.status === 200) {
+        console.log(req.message);
+      }
+    } catch (e) {
+      console.log(e._message);
+    }
+    setHasPhoto(false)
+    setPhoto('');
+    setPhotoBase64('');
+    setUserInfo({fname:'',email:'',username:'',theDate:'',phone:'',password:''})
   }
 
   return(
@@ -58,11 +88,14 @@ const EditProfilePage =({navigation})=>{
           hasPhoto={hasPhoto}
           onPress={getImage}/>
         <Gap height={59}/>
-        <Input placeholder="Nama Lengkap" />
+        <Input placeholder="Nama Lengkap" value={fname} onChangeText={(event)=>{
+            setUserInfo({...userInfo,fname:event})}}/>
         <Gap height={30}/>
-        <Input placeholder="Username" />
+        <Input placeholder="Username" value={username} onChangeText={(event)=>{
+            setUserInfo({...userInfo,username:event})}}/>
         <Gap height={30}/>
-        <Input placeholder="Email" />
+        <Input placeholder="Email" value={email} onChangeText={(event)=>{
+            setUserInfo({...userInfo,email:event})}}/>
         <Gap height={30}/>
         <View>
           <TouchableOpacity style={{width:327,height:48,borderRadius:50,position:'absolute',zIndex:2}} onPress={()=>setShow(true)}/>
@@ -78,9 +111,10 @@ const EditProfilePage =({navigation})=>{
           />
         }
         <Gap height={30}/>
-        <Input placeholder="No.HP" />
+        <Input placeholder="No.HP" value={phone} onChangeText={(event)=>{
+            setUserInfo({...userInfo,phone:event})}}/>
         <Gap height={30}/>
-        <Button style={style.button} name="SIMPAN" color="#FFF" size={24}/>
+        <Button style={style.button} name="PERBARUI PROFIL" color="#FFF" size={24} onPress={()=>submit()}/>
         <Gap height={28}/>
       </ScrollView>
     </View>
