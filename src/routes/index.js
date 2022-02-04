@@ -6,14 +6,12 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {WelcomeScreen,SplashScreen,Login,Feedback,ReportListPage,
   Register,Home,Profile,ReportPage,NotificationsPage,EditProfilePage} from '../pages'
 import {DrawerContent,TabsContent} from '../components'
-import {AuthContext} from '../context/authContext'
 
 const {Navigator, Screen} = createNativeStackNavigator()
 const Drawer = createDrawerNavigator()
 const Tab = createBottomTabNavigator()
 
 const BottomTabs = ()=>{
-  const {user} = React.useContext(AuthContext)
   return(
     <Tab.Navigator initialRouteName="Home" screenOptions={() => ({
         headerShown: false,
@@ -28,8 +26,6 @@ const BottomTabs = ()=>{
   )
 }
 const Root=()=>{
-  const {user} = React.useContext(AuthContext)
-
   return(
     <Drawer.Navigator initialRouteName="BottomTabs"
       drawerContent={props=><DrawerContent {...props}/>}
@@ -50,7 +46,6 @@ const Root=()=>{
 }
 
 const Routes = ()=>{
-  const {user} = React.useContext(AuthContext)
   return(
     <Navigator>
       <Screen name="SplashScreen" component={SplashScreen} options={{headerShown:false}}/>

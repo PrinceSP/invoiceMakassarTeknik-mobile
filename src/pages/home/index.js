@@ -4,6 +4,7 @@ import {Header,Gap} from '../../components'
 import {Atomic} from '../../assets'
 import {getCurrentDate} from '../../config'
 import { AuthContext } from "../../context/authContext";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Home = ({navigation})=>{
   const [refreshing,setRefreshing] = useState(false)
@@ -19,13 +20,11 @@ const Home = ({navigation})=>{
   }, []);
   useEffect(()=>{
     const fetchDatas = async ()=>{
-      const res = await fetch(`https://charlie-invoice.herokuapp.com/api/user?username=${user.username}`).then(res=>res.json())
       const allInvoices = await fetch(`https://charlie-invoice.herokuapp.com/api/invoice`).then(res=>res.json())
       setDatas(allInvoices)
     }
     fetchDatas()
   },[])
-  console.log(datas);
   const name = JSON.stringify(user.fullname)
   const username = typeof name==="string" ? name.split(' ')[0] : name
   return(

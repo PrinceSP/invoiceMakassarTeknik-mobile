@@ -3,7 +3,6 @@ import {View,Text,StyleSheet,Image} from 'react-native'
 import {Header,Gap,Button,Input} from '../../components'
 import {SingleSmall,EyeTrue,EyeFalse} from '../../assets'
 import {AuthContext} from '../../context/authContext'
-import {saveStorage} from '../../config/asyncStorage'
 
 const Login = ({navigation}) => {
   const [username,setUsername] = useState('')
@@ -13,7 +12,6 @@ const Login = ({navigation}) => {
   const url = 'https://charlie-invoice.herokuapp.com/api/auth/login'
 
   const handleLogin = async()=>{
-    console.log(username,password);
 
     dispatch({ type: "LOGIN_START" });
     try {
@@ -28,8 +26,10 @@ const Login = ({navigation}) => {
       const res = await fetch(url, options).then(res=>res.json())
       console.log(res);
       if (res.message === 'success login') {
-        saveStorage(res.datas)
+        // saveStorage(res.datas)
         dispatch({ type: "LOGIN_SUCCESS", payload: res.datas });
+        setPassword('')
+        setUsername('')
         navigation.navigate('Root',{screen:'Home'})
       } else {
         return isFetching=false;
@@ -37,8 +37,6 @@ const Login = ({navigation}) => {
     } catch (err) {
       dispatch({ type: "LOGIN_FAILURE", payload: err });
     }
-    setPassword('')
-    setUsername('')
   }
 
   return (

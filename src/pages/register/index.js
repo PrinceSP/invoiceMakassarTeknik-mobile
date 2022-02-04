@@ -62,9 +62,6 @@ const Register = ({navigation}) => {
 
   //handle submit form button
   const submit = async()=>{
-    // show in console the key names and key values of each data stored in userInfo
-    // using looping for...in to loop through object
-    for(const datas in setUserInfo) console.log(`${datas} : ${userInfo[datas]}`);
     // reset the values of each keys after submit button has been pressed
     //navigate to login screen after registering account
     try {
@@ -78,7 +75,6 @@ const Register = ({navigation}) => {
       }
       const req = await fetch('https://charlie-invoice.herokuapp.com/api/auth/register',options)
       const results = await req.json()
-      console.log(results);
       if (req.status === 200) {
         navigation.navigate('Login')
       }
@@ -95,8 +91,8 @@ const Register = ({navigation}) => {
     <View style={{backgroundColor:'#fff',flex:1}}>
       <Gap height={15}/>
       <Header name="Daftar" action='Batal' nav={navigation}/>
-      <Gap height={25}/>
       <ScrollView contentContainerStyle={{alignItems:'center',justifyContent:'center',paddingBottom:35}} showsVerticalScrollIndicator={false}>
+        <Gap height={25}/>
         <ImagePicker
           photo={photo}
           hasPhoto={hasPhoto}
