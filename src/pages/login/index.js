@@ -1,8 +1,10 @@
 import React,{useContext,useState} from "react"
 import {View,Text,StyleSheet,Image,ActivityIndicator,Dimensions} from 'react-native'
-import {Header,Gap,Button,Input} from '../../components'
+import {Header,Gap,Button,Input,ToastMessage} from '../../components'
 import {SingleSmall,EyeTrue,EyeFalse} from '../../assets'
 import {AuthContext} from '../../context/authContext'
+import {toastConfig} from '../../components/molecules/toast'
+import Toast from 'react-native-toast-message';
 
 const Login = ({navigation}) => {
   const [username,setUsername] = useState('')
@@ -24,20 +26,30 @@ const Login = ({navigation}) => {
         body: JSON.stringify({username,password})
       }
       const res = await fetch(url, options).then(res=>res.json())
-      console.log(res);
       if (res.message === 'success login') {
-        // saveStorage(res.datas)
         dispatch({ type: "LOGIN_SUCCESS", payload: res.datas });
         setPassword('')
         setUsername('')
-        setHide(true)
-        navigation.navigate('Root',{screen:'Home'})
+        Toast.show({
+          type:'success',
+          text1:'Berhasil',
+          text2:'Anda berhasil masuk'
+        })
+        setTimeout(()=>{
+          navigation.navigate('Root',{screen:'Home'})
+        },2000)
       } else {
-        return isFetching=false;
+        return isFetching=false
       }
     } catch (err) {
       dispatch({ type: "LOGIN_FAILURE", payload: err });
+      Toast.show({
+        type:'error',
+        text1:'Terjadi Kesalahan',
+        text2:'Username atau Password anda salah!'
+      })
     }
+    setHide(true)
   }
 
   return (
@@ -65,7 +77,7 @@ const Login = ({navigation}) => {
           <Button name='Daftar Sekarang' color='#FF1D1D' fam='Poppins-Bold' style={{marginLeft:4}} onPress={()=>navigation.navigate('Register')}/>
         </View>
       </View>
-      {isFetching&&<View style={{position:'absolute',top:0,height:Dimensions.get('window').height,width:Dimensions.get('window').width,justifyContent:'center',alignItems:'center',backgroundColor:'rgba(255, 255, 255, 0.7)'}}><ActivityIndicator size="large" color="#000"/></View>}
+      <Toast config={toastConfig} position='top' topOffset={0} visibilityTime={2000}/>
     </View>
 
   )
