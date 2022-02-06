@@ -81,7 +81,6 @@ const Register = ({navigation}) => {
     } catch (e) {
       console.log(e._message);
     }
-    setHasPhoto(false)
     setPhoto('');
     setPhotoBase64('');
     setUserInfo({fname:'',email:'',username:'',theDate:'',phone:'',password:''})

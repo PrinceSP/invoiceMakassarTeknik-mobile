@@ -1,7 +1,6 @@
 import React,{useEffect,useCallback,useState,useContext} from 'react'
-import {Text,View,StyleSheet,ScrollView,FlatList,TouchableOpacity,Image,RefreshControl,Platform} from 'react-native'
-import {Header,Gap,Button} from '../../components'
-import {Atomic} from '../../assets'
+import {Text,View,StyleSheet,SafeAreaView,FlatList,Image} from 'react-native'
+import {Header,Gap,Button,Input} from '../../components'
 import {getCurrentDate} from '../../config'
 import { AuthContext } from "../../context/authContext";
 
@@ -9,21 +8,32 @@ const Home = ({navigation})=>{
   const [refreshing,setRefreshing] = useState(false)
   const {user} = useContext(AuthContext)
   const [datas,setDatas] = useState([])
+  const [filteredDatas,setfilteredDatas] = useState([])
+  const [search,setSearch] = useState('')
 
-  const wait=(timeout)=>{
-    return new Promise(resolve=>setTimeout(resolve,timeout))
-  }
-  const onRefresh = useCallback((value) => {
-    setRefreshing(true);
-    wait(1500).then(() => setRefreshing(false));
-  }, []);
   useEffect(()=>{
     const fetchDatas = async ()=>{
       const allInvoices = await fetch(`https://charlie-invoice.herokuapp.com/api/invoice`).then(res=>res.json())
       setDatas(allInvoices)
+      setfilteredDatas(allInvoices)
     }
     fetchDatas()
   },[])
+
+  const searchItem = (value)=>{
+    if (value) {
+      const newData = datas.filter(item=>{
+        const itemDatas = item.plat ? item.plat.toUpperCase():''.toUpperCase()
+        const valueData = value.toUpperCase()
+        return itemDatas.indexOf(valueData) > -1;
+      })
+      setfilteredDatas(newData)
+      setSearch(value)
+    } else{
+      setfilteredDatas(datas)
+      setSearch(value)
+    }
+  }
 
   const renderItem = ({item})=>{
     return(
@@ -52,20 +62,26 @@ const Home = ({navigation})=>{
       <Gap height={15}/>
       <Header name="Beranda" button={true} navigation={navigation}/>
       <Gap height={25}/>
-      <FlatList
-        data={datas}
-        ListHeaderComponent={
-          <>
-            <View>
-              <Text style={headingTitle}>Hi, {typeof username==="string"?username.charAt(1).toUpperCase()+username.replace(/['"]+/g, '').slice(1):name}!</Text>
-            </View>
-            <Text style={{fontSize:20,fontFamily:'Poppins-Light',color:'#999'}}>{getCurrentDate()}</Text>
-            <Gap height={28}/>
-          </>
-        }
-        keyExtractor={item => item._id}
-        renderItem={renderItem}
-        />
+      <SafeAreaView style={scrollViewCont}>
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          data={filteredDatas}
+          keyExtractor={(item,index)=>index.toString()}
+          ListHeaderComponent={
+            <>
+              <View>
+                <Text style={headingTitle}>Hi, {typeof username==="string"?username.charAt(1).toUpperCase()+username.replace(/['"]+/g, '').slice(1):name}!</Text>
+              </View>
+              <Text style={{fontSize:20,fontFamily:'Poppins-Light',color:'#999'}}>{getCurrentDate()}</Text>
+              <Gap height={28}/>
+              <Input value={search} width={351} underlineColorAndroid="transparent" placeholder="Cari Disini..." onChangeText={value=>searchItem(value)}/>
+              <Gap height={28}/>
+            </>
+          }
+          keyExtractor={item => item._id}
+          renderItem={renderItem}
+          />
+      </SafeAreaView>
     </View>
   )
 
