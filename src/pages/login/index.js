@@ -1,5 +1,5 @@
 import React,{useContext,useState} from "react"
-import {View,Text,StyleSheet,Image} from 'react-native'
+import {View,Text,StyleSheet,Image,ActivityIndicator,Dimensions} from 'react-native'
 import {Header,Gap,Button,Input} from '../../components'
 import {SingleSmall,EyeTrue,EyeFalse} from '../../assets'
 import {AuthContext} from '../../context/authContext'
@@ -8,7 +8,7 @@ const Login = ({navigation}) => {
   const [username,setUsername] = useState('')
   const [password,setPassword] = useState('')
   const [hide,setHide] = useState(true)
-  const {isFetching,dispatch} = useContext(AuthContext)
+  const {isFetching,dispatch,error} = useContext(AuthContext)
   const url = 'https://charlie-invoice.herokuapp.com/api/auth/login'
 
   const handleLogin = async()=>{
@@ -30,6 +30,7 @@ const Login = ({navigation}) => {
         dispatch({ type: "LOGIN_SUCCESS", payload: res.datas });
         setPassword('')
         setUsername('')
+        setHide(true)
         navigation.navigate('Root',{screen:'Home'})
       } else {
         return isFetching=false;
@@ -64,6 +65,7 @@ const Login = ({navigation}) => {
           <Button name='Daftar Sekarang' color='#FF1D1D' fam='Poppins-Bold' style={{marginLeft:4}} onPress={()=>navigation.navigate('Register')}/>
         </View>
       </View>
+      {isFetching&&<View style={{position:'absolute',top:0,height:Dimensions.get('window').height,width:Dimensions.get('window').width,justifyContent:'center',alignItems:'center',backgroundColor:'rgba(255, 255, 255, 0.7)'}}><ActivityIndicator size="large" color="#000"/></View>}
     </View>
 
   )
