@@ -1,11 +1,11 @@
 import {useState,useEffect} from 'react'
 
-const useHandleCurrentInvoices = (isRefreshing,id)=>{
+const useHandleCurrentInvoices = (url,isRefreshing)=>{
   const [invoices,setInvoices] = useState([])
   const [isPending,setIsPending] = useState(true)
 
   const fetchData = ()=>{
-    fetch(`https://charlie-invoice.herokuapp.com/api/invoice/invoicesList/${id}`)
+    fetch(`https://charlie-invoice.herokuapp.com/api/${url}`)
     .then(res=>res.json())
     .then((res)=>{
       setInvoices(
@@ -27,7 +27,7 @@ const useHandleCurrentInvoices = (isRefreshing,id)=>{
       fetchData()
     },500)
     return ()=> clearInterval(interval)
-  },[isRefreshing,id,setInvoices])
+  },[isRefreshing,setInvoices,url])
   return {invoices,isPending}
 }
 

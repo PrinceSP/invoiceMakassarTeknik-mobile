@@ -9,8 +9,8 @@ const style = StyleSheet.create({
     flex:1
   },
   section:{
-    paddingTop:33,
-    paddingBottom:38,
+    paddingTop:13,
+    paddingBottom:28,
     paddingLeft:16,
     borderBottomWidth:1,
     borderBottomColor:'#F1DADA'
@@ -23,7 +23,7 @@ const style = StyleSheet.create({
   title:{
     fontFamily:'Lato-Bold',
     color:'#000',
-    fontSize:28,
+    fontSize:24,
     marginTop:14
   },
   desc:{
