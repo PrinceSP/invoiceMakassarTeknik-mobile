@@ -1,6 +1,6 @@
 import {useState,useEffect} from 'react'
 
-const useHandleCurrentInvoices = (url,isRefreshing)=>{
+const useHandleCurrentInvoices = (url)=>{
   const [invoices,setInvoices] = useState([])
   const [isPending,setIsPending] = useState(true)
 
@@ -23,11 +23,11 @@ const useHandleCurrentInvoices = (url,isRefreshing)=>{
 
     fetchData()
 
-    const interval=isRefreshing&&setInterval(()=>{
+    const interval=setInterval(()=>{
       fetchData()
     },500)
     return ()=> clearInterval(interval)
-  },[isRefreshing,setInvoices,url])
+  },[setInvoices,url])
   return {invoices,isPending}
 }
 

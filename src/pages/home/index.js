@@ -1,25 +1,27 @@
 import React,{useEffect,useCallback,useState,useContext} from 'react'
-import {Text,View,StyleSheet,SafeAreaView,FlatList,Image} from 'react-native'
+import {Text,View,StyleSheet,RefreshControl,SafeAreaView,FlatList,Image} from 'react-native'
 import {Header,Gap,Button,Input} from '../../components'
 import {getCurrentDate} from '../../config'
 import { AuthContext } from "../../context/authContext";
-import useHandleCurrentInvoices from '../../config/apiCalls'
 
 const Home = ({navigation})=>{
-  const [refreshing,setRefreshing] = useState(false)
   const {user} = useContext(AuthContext)
   const [datas,setDatas] = useState([])
   const [filteredDatas,setfilteredDatas] = useState([])
   const [search,setSearch] = useState('')
 
+  const fetchDatas = async ()=>{
+    const allInvoices = await fetch(`https://charlie-invoice.herokuapp.com/api/invoice`).then(res=>res.json())
+    setDatas(allInvoices)
+    setfilteredDatas(allInvoices)
+  }
   useEffect(()=>{
-    const fetchDatas = async ()=>{
-      const allInvoices = await fetch(`https://charlie-invoice.herokuapp.com/api/invoice`).then(res=>res.json())
-      setDatas(allInvoices)
-      setfilteredDatas(allInvoices)
-    }
     fetchDatas()
-  },[])
+    const interval = setInterval(()=>{
+      fetchDatas()
+    },500)
+    return ()=> clearInterval(interval)
+  },[datas])
 
   const searchItem = (value)=>{
     if (value) {

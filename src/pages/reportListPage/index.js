@@ -1,5 +1,5 @@
 import React,{useEffect,useState,useContext,useCallback} from 'react'
-import {Text,FlatList,SafeAreaView,View,StyleSheet,RefreshControl} from 'react-native'
+import {Text,FlatList,SafeAreaView,View,StyleSheet} from 'react-native'
 import {Header,Gap,ReportListComponent} from '../../components'
 import { AuthContext } from "../../context/authContext";
 import useHandleCurrentInvoices from '../../config/apiCalls'
@@ -7,15 +7,7 @@ import useHandleCurrentInvoices from '../../config/apiCalls'
 const ReportListPage=({navigation})=>{
   const [refreshing,setRefreshing] = useState(false)
   const {user: currentUser} = useContext(AuthContext)
-  const {invoices,isPending} = useHandleCurrentInvoices(`invoice/invoicesList/${currentUser._id}`,refreshing)
-
-  const wait=(timeout)=>{
-    return new Promise(resolve=>setTimeout(resolve,timeout))
-  }
-  const onRefresh = useCallback(() => {
-    setRefreshing(true);
-    wait(500).then(() => setRefreshing(false));
-  }, []);
+  const {invoices} = useHandleCurrentInvoices(`invoice/invoicesList/${currentUser._id}`)
 
   const renderItem=({item})=>{
     return(
@@ -42,9 +34,7 @@ const ReportListPage=({navigation})=>{
       <Header name="Daftar Nota" action="< kembali" navigation={navigation} page={true}/>
       <Gap height={45}/>
       <SafeAreaView style={{paddingHorizontal:14,paddingVertical:20}}>
-        <FlatList refreshControl={
-            <RefreshControl onRefresh={onRefresh} refreshing={refreshing}/>
-          }
+        <FlatList
           showsVerticalScrollIndicator={false}
           data={invoices}
           keyExtractor={(item,index)=>index.toString()}
