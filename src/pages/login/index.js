@@ -1,5 +1,5 @@
 import React,{useContext,useState} from "react"
-import {View,Text,StyleSheet,Image,ActivityIndicator,Dimensions} from 'react-native'
+import {View,Text,StyleSheet,Image,ActivityIndicator} from 'react-native'
 import {Header,Gap,Button,Input,ToastMessage} from '../../components'
 import {SingleSmall,EyeTrue,EyeFalse} from '../../assets'
 import {AuthContext} from '../../context/authContext'
@@ -76,6 +76,7 @@ const Login = ({navigation}) => {
           <Text style={style.poppinsMed}>Belum punya akun?</Text>
           <Button name='Daftar Sekarang' color='#FF1D1D' fam='Poppins-Bold' style={{marginLeft:4}} onPress={()=>navigation.navigate('Register')}/>
         </View>
+        {isFetching&&<ActivityIndicator style={{zIndex:1,position:'absolute',top:300,backgroundColor:'#bcbcbc',padding:10,borderRadius:50}} size="large" color="#fff"/>}
       </View>
       <Toast config={toastConfig} position='top' topOffset={0} visibilityTime={2000}/>
     </View>

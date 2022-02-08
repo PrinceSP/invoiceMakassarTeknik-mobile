@@ -3,12 +3,19 @@ import {Text,View,StyleSheet,RefreshControl,SafeAreaView,FlatList,Image} from 'r
 import {Header,Gap,Button,Input,homePostComponent} from '../../components'
 import {getCurrentDate} from '../../config'
 import { AuthContext } from "../../context/authContext";
+import {wait} from '../../config'
 
 const Home = ({navigation})=>{
   const {user} = useContext(AuthContext)
   const [datas,setDatas] = useState([])
+  const [refreshing,setRefreshing] = useState(false)
   const [filteredDatas,setfilteredDatas] = useState([])
   const [search,setSearch] = useState('')
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    wait(1000).then(() => setRefreshing(false));
+  }, []);
 
   useEffect(()=>{
     const fetchDatas = async ()=>{
@@ -17,11 +24,10 @@ const Home = ({navigation})=>{
       setfilteredDatas(allInvoices)
     }
     fetchDatas()
-    const interval = setTimeout(()=>{
+    const interval = refreshing&&setTimeout(()=>{
       fetchDatas()
-    },500)
-    return ()=> clearInterval(interval)
-  },[setfilteredDatas,setDatas])
+    },100)
+  },[setfilteredDatas,setDatas,refreshing])
 
   const searchItem = (value)=>{
     if (value) {
@@ -46,6 +52,9 @@ const Home = ({navigation})=>{
       <Gap height={25}/>
       <SafeAreaView style={scrollViewCont}>
         <FlatList
+          refreshControl={
+            <RefreshControl onRefresh={onRefresh} refreshing={refreshing}/>
+          }
           showsVerticalScrollIndicator={false}
           data={filteredDatas}
           ListHeaderComponent={
@@ -62,6 +71,7 @@ const Home = ({navigation})=>{
           keyExtractor={item => item._id}
           renderItem={homePostComponent}
           />
+        {datas.length < 1 && <View><Text>Belum ada data</Text></View>}
       </SafeAreaView>
     </View>
   )

@@ -2,16 +2,13 @@ import React,{useState,useContext} from 'react'
 import {Text,FlatList,SafeAreaView,RefreshControl,View,StyleSheet} from 'react-native'
 import {Header,Gap,ReportListComponent} from '../../components'
 import { AuthContext } from "../../context/authContext";
-import useHandleCurrentInvoices from '../../config/apiCalls'
-
-const wait = (timeout) => {
-  return new Promise(resolve => setTimeout(resolve, timeout));
-}
+import {useHandleCurrentInvoices} from '../../config'
+import {wait} from '../../config'
 
 const ReportListPage=({navigation})=>{
   const [refreshing,setRefreshing] = useState(false)
   const {user: currentUser} = useContext(AuthContext)
-  const {invoices} = useHandleCurrentInvoices(refreshing,`invoice/invoicesList/${currentUser._id}`)
+  const {invoices} = useHandleCurrentInvoices(`invoice/invoicesList/${currentUser._id}`,refreshing)
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
@@ -37,8 +34,6 @@ const ReportListPage=({navigation})=>{
       </View>
     )
   }
-
-  console.log(invoices);
   return(
     <View style={container}>
       <Gap height={7}/>
