@@ -15,14 +15,14 @@ const ReportListPage=({navigation})=>{
         fullname={item.client}
         invoiceDate={item.date}
         key={item._id}
-        totalPrice={item.total}
+        totalPrice={item.total.$numberDecimal}
         vehicle={item.vehicle}
         vehicleType={item.vehicleType}
         diagnosis={item.diagnosis}
         action={item.action}
         spareParts={item.spareParts}
         plat={item.plat}
-        repairService={item.repairService}
+        repairService={item.repairService.$numberDecimal}
         />
     )
   }

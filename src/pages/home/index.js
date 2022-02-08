@@ -10,18 +10,18 @@ const Home = ({navigation})=>{
   const [filteredDatas,setfilteredDatas] = useState([])
   const [search,setSearch] = useState('')
 
-  const fetchDatas = async ()=>{
-    const allInvoices = await fetch(`https://charlie-invoice.herokuapp.com/api/invoice`).then(res=>res.json())
-    setDatas(allInvoices)
-    setfilteredDatas(allInvoices)
-  }
   useEffect(()=>{
-    fetchDatas()
-    const interval = setInterval(()=>{
+    const fetchDatas = async ()=>{
+      const allInvoices = await fetch(`https://charlie-invoice.herokuapp.com/api/invoice`).then(res=>res.json())
+      setDatas(allInvoices)
+      setfilteredDatas(allInvoices)
+    }
+    // fetchDatas()
+    const interval = setTimeout(()=>{
       fetchDatas()
     },500)
     return ()=> clearInterval(interval)
-  },[datas])
+  },[])
 
   const searchItem = (value)=>{
     if (value) {

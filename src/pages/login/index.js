@@ -54,9 +54,9 @@ const Login = ({navigation}) => {
 
   return (
     <View style={{flex:1,backgroundColor:"#fff"}}>
-      <Gap height={60}/>
+      <Gap height={20}/>
       <View style={style.container}>
-        <Image source={SingleSmall} style={{height:120,width:120}}/>
+        <SingleSmall height={130}/>
         <Gap height={36}/>
         <Text style={{fontFamily:'PlayfairDisplay-Bold',fontSize:38,color:'#000'}}>Selamat Datang</Text>
         <Text style={{fontFamily:'PlayfairDisplay-Regular',fontSize:17,color:'#8D8D8D'}}>Masuk dengan akun anda dibawah ini</Text>

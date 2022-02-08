@@ -63,7 +63,6 @@ const DrawerContent = (props)=>{
               label="Sign Out"
               onPress={async()=> {
                 try {
-                  await AsyncStorage.removeItem('user')
                   props.navigation.navigate('Login')
                 } catch (e) {
                   return;

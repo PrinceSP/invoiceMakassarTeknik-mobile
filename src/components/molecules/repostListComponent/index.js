@@ -122,7 +122,7 @@ const ReportListComponent=({fullname,invoiceDate,vehicle,vehicleType,diagnosis,t
               </View>
               <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:20}}>
                 <Text style={{fontSize:28,fontFamily:'Poppins-Regular',color:'#6989F8'}}>Total</Text>
-                <Text style={{fontSize:23,fontFamily:'Poppins-Bold',color:'#6989F8'}}>Rp.{totalPrice.$numberDecimal}</Text>)
+                <Text style={{fontSize:23,fontFamily:'Poppins-Bold',color:'#6989F8'}}>Rp.{totalPrice}</Text>
               </View>
             </View>
             <View style={{width:390,position:'absolute',bottom:0,left:0,flexDirection:'row',justifyContent:'space-around',zIndex:1}}>
@@ -140,7 +140,7 @@ const ReportListComponent=({fullname,invoiceDate,vehicle,vehicleType,diagnosis,t
       <View style={firstSection}>
       <Text style={diagnosisText}>{diagnosis}</Text>
         <View style={{flexDirection:'row',alignItems:'center'}}>
-          <Text style={total}>Rp.{totalPrice.$numberDecimal}</Text>
+          <Text style={total}>Rp.{totalPrice}</Text>
           <TouchableOpacity onPress={()=>setVisible(true)}>
             <Text style={{fontSize:30,fontFamily:'Poppins-Regular',color:'#8C8888'}}> > </Text>
           </TouchableOpacity>
