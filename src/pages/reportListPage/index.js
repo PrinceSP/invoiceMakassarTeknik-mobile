@@ -1,6 +1,6 @@
 import React,{useState,useContext} from 'react'
 import {Text,FlatList,SafeAreaView,RefreshControl,View,StyleSheet} from 'react-native'
-import {Header,Gap,ReportListComponent} from '../../components'
+import {Header,Gap,ReportListComponent,Empty} from '../../components'
 import { AuthContext } from "../../context/authContext";
 import {useHandleCurrentInvoices} from '../../config'
 import {wait} from '../../config'
@@ -56,6 +56,7 @@ const ReportListPage=({navigation})=>{
           }
           />
       </SafeAreaView>
+      {invoices.length < 1 &&<Empty/>}
     </View>
 
   )

@@ -1,6 +1,6 @@
 import React,{useEffect,useCallback,useState,useContext} from 'react'
 import {Text,View,StyleSheet,RefreshControl,SafeAreaView,FlatList,Image} from 'react-native'
-import {Header,Gap,Button,Input,homePostComponent} from '../../components'
+import {Header,Gap,Button,Input,homePostComponent,Empty} from '../../components'
 import {getCurrentDate} from '../../config'
 import { AuthContext } from "../../context/authContext";
 import {wait} from '../../config'
@@ -71,7 +71,7 @@ const Home = ({navigation})=>{
           keyExtractor={item => item._id}
           renderItem={homePostComponent}
           />
-        {datas.length < 1 && <View><Text>Belum ada data</Text></View>}
+        {datas.length < 1 && <Empty/>}
       </SafeAreaView>
     </View>
   )
