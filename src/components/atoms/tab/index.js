@@ -1,5 +1,5 @@
 import React from 'react'
-import {TouchableOpacity,View,StyleSheet,Text,Animated,Platform} from 'react-native'
+import {TouchableHighlight,View,StyleSheet,Text,Animated,Platform} from 'react-native'
 import {HomeIcon,Plus,AvatarProfile} from '../../../assets'
 
 const Tab = ({tab,color,onPress})=>{
@@ -12,19 +12,12 @@ const Tab = ({tab,color,onPress})=>{
     borderRadius:50,
   }
 
-  const containerStyle={
-    height:4,
-    width:24,
-    backgroundColor:color,
-    marginTop:6,
-    borderRadius:20
-  }
-
   const colors = color==='#000';
   const style = StyleSheet.create({
-    report:{position:'absolute',bottom:0,
-      height:65,
-      width:65,
+    report:{
+      position:'absolute',bottom:0,
+      height:70,
+      width:70,
       borderWidth:5,
       // borderColor:'#B5CEFF',
       borderColor:'#eee',
@@ -45,19 +38,18 @@ const Tab = ({tab,color,onPress})=>{
       })
     },
     other:colors?otherStyles:{},
-    container:colors?containerStyle:{}
   });
 
-  const {report,other,container} = style;
+  const {report,other} = style;
 
   return(
-    <TouchableOpacity onPress={onPress} style={{alignItems:'center'}}>
+    <TouchableHighlight underlayColor="#fff" activeOpacity={0.6} onPress={onPress} style={{alignItems:'center'}}>
       {
-        tab.name === 'Home'?<View style={{alignItems:'center'}}><HomeIcon height={27} fill={color} style={other}/><Animated.View style={container}/></View>
+        tab.name === 'Home'?<View style={{alignItems:'center'}}><HomeIcon height={27} fill={color} style={other}/></View>
       :tab.name=== 'Report'?<View style={report}><Plus height={26}/></View>
-        :<View style={{alignItems:'center'}}><AvatarProfile height={28} width={38} fill={color} style={other}/><Animated.View style={container}/></View>
+    :<View style={{alignItems:'center'}}><AvatarProfile height={28} width={38} fill={color} style={other}/></View>
       }
-    </TouchableOpacity>
+    </TouchableHighlight>
   )
 }
 

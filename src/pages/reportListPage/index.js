@@ -30,9 +30,9 @@ const ReportListPage=({navigation})=>{
   console.log(invoices);
   return(
     <View style={container}>
-      <Gap height={15}/>
+      <Gap height={7}/>
       <Header name="Daftar Nota" action="< kembali" navigation={navigation} page={true}/>
-      <Gap height={45}/>
+      <Gap height={25}/>
       <SafeAreaView style={{paddingHorizontal:14,paddingVertical:20}}>
         <FlatList
           showsVerticalScrollIndicator={false}

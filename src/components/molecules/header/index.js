@@ -13,9 +13,9 @@ const Header = ({name,button,navigation,action,edit,nav,page})=>{
   }
 
   return(
-    <View style={{minHeight:43,alignItems:'center',justifyContent:'space-between',flexDirection:'row',paddingHorizontal:17,backgroundColor:'#fff'}}>
+    <View style={{minHeight:43,height:55,alignItems:'center',justifyContent:'space-between',flexDirection:'row',paddingHorizontal:17,backgroundColor:'#fff',borderWidth:1,borderColor:'#fff',borderBottomColor:"#eee"}}>
       {
-        button===true?<Burger onPress={()=>navigation.openDrawer()}/>
+        button===true?<Burger height={24} width={34} onPress={()=>name!== 'Profil'?navigation.openDrawer():nav.openDrawer()}/>
         :page===true?<BackCancel onPress={()=>navigation.navigate("BottomTabs",{screen:'Home'})}/>
         : <BackCancel onPress={()=>nav.goBack()}/>
 

@@ -64,9 +64,8 @@ const ReportPage = ({navigation})=>{
   }
   return(
     <View style={container}>
-      <Gap height={15}/>
+      <Gap height={7}/>
       <Header name="Nota Baru" button={true} navigation={navigation}/>
-      <Gap height={45}/>
       <ScrollView keyboardShouldPersistTaps='always' contentContainerStyle={style.formContainer}>
         <Text style={{fontSize:17,color:"#777",position:'absolute',left:34}}>Masukkan rincian nota</Text>
         <Gap height={40}/>
@@ -125,6 +124,7 @@ const ReportPage = ({navigation})=>{
         <View style={{alignItems:'center'}}>
           <Button name="Simpan Nota" color='#fff' fam='Poppins-Bold' size={24} style={buttonSubmit} onPress={()=>submit()}/>
         </View>
+        <Gap height={20}/>
       </ScrollView>
     </View>
   )
@@ -133,7 +133,7 @@ const ReportPage = ({navigation})=>{
 const style=StyleSheet.create({
   container:{ flex: 1,backgroundColor:'#fff'},
   text1:{fontSize:20,fontFamily:'Lato-Bold',color:'#565665'},
-  formContainer:{paddingHorizontal:20,paddingBottom:150,alignItems:'center'},
+  formContainer:{paddingHorizontal:20,paddingBottom:150,alignItems:'center',marginTop:25},
   button:{
     marginTop:12,
     backgroundColor:'#000',

@@ -41,14 +41,13 @@ const Home = ({navigation})=>{
   const username = typeof name==="string" ? name.split(' ')[0] : name
   return(
     <View style={container}>
-      <Gap height={15}/>
+      <Gap height={7}/>
       <Header name="Beranda" button={true} navigation={navigation}/>
       <Gap height={25}/>
       <SafeAreaView style={scrollViewCont}>
         <FlatList
           showsVerticalScrollIndicator={false}
           data={filteredDatas}
-          keyExtractor={(item,index)=>index.toString()}
           ListHeaderComponent={
             <>
               <View>

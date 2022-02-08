@@ -8,8 +8,8 @@ const Profile = ({navigation})=>{
   const {user} = useContext(AuthContext)
   return(
     <View style={{flex:1,backgroundColor:'#fff'}}>
-      <Gap height={15}/>
-      <Header name='Profil' action='< kembali' edit={true} nav={navigation}/>
+      <Gap height={7}/>
+      <Header name='Profil' button={true} edit={true} nav={navigation}/>
       <Gap height={35}/>
       <ScrollView contentContainerStyle={{alignItems:'center',justifyContent:'flex-end'}}>
         <View style={{borderStyle:'dashed',borderWidth:2,borderColor:'#8CC4F8',borderRadius:75,height:130,width:130,alignItems:'center',justifyContent:'center'}}>
