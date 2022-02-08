@@ -16,12 +16,12 @@ const Home = ({navigation})=>{
       setDatas(allInvoices)
       setfilteredDatas(allInvoices)
     }
-    // fetchDatas()
+    fetchDatas()
     const interval = setTimeout(()=>{
       fetchDatas()
     },500)
     return ()=> clearInterval(interval)
-  },[])
+  },[setfilteredDatas,setDatas])
 
   const searchItem = (value)=>{
     if (value) {
