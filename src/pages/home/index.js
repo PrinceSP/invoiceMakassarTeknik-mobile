@@ -47,44 +47,48 @@ const Home = ({navigation})=>{
   const name = JSON.stringify(user.fullname)
   const username = typeof name==="string" ? name.split(' ')[0] : name
   return(
-    <View style={container}>
+    <SafeAreaView style={container}>
       <Gap height={7}/>
       <Header name="Beranda" button={true} navigation={navigation}/>
       <Gap height={25}/>
       <SafeAreaView style={scrollViewCont}>
         <FlatList
+          keyExtractor={item => item._id}
           refreshControl={
             <RefreshControl onRefresh={onRefresh} refreshing={refreshing}/>
           }
           showsVerticalScrollIndicator={false}
           data={filteredDatas}
+          renderItem={homePostComponent}
           ListHeaderComponent={
-            <>
+            <View style={{backgroundColor:'#fff'}}>
               <View>
                 <Text style={headingTitle}>Hi, {typeof username==="string"?username.charAt(1).toUpperCase()+username.replace(/['"]+/g, '').slice(1):name}!</Text>
               </View>
               <Text style={{fontSize:16,fontFamily:'Poppins-Light',color:'#999'}}>{getCurrentDate()}</Text>
-              <Gap height={28}/>
+              <Gap height={15}/>
               <View style={{flexDirection:'row',justifyContent:'space-between'}}>
                 <Input value={search} width={265} underlineColorAndroid="transparent" placeholder="Cari Disini..." onChangeText={value=>searchItem(value)}/>
                 <Button style={button} size={20} color="#0FB600" name={['SORT ',<ArrowDown key={1}/>]} key={2}/>
               </View>
-              <Gap height={28}/>
-            </>
+              <Gap height={20}/>
+            </View>
           }
-          keyExtractor={item => item._id}
-          renderItem={homePostComponent}
+          ListFooterComponent={
+            <Gap height={100}/>
+          }
+          stickyHeaderIndices={[0]}
           />
         {datas.length < 1 && <Empty/>}
       </SafeAreaView>
-    </View>
+    </SafeAreaView>
   )
 
 }
 
 const style=StyleSheet.create({
   container:{ flex: 1,backgroundColor:'#fff'},
-  scrollViewCont:{paddingHorizontal:20,paddingBottom:125},
+  scrollViewCont:{paddingHorizontal:20,marginBottom:100},
   headingTitle:{fontSize:25,fontFamily:'PlayfairDisplay-Regular',color:'#000'},
   button:{
     alignItems:'center',
