@@ -1,6 +1,6 @@
 import React,{useEffect,useCallback,useState,useContext} from 'react'
 import {Text,View,StyleSheet,RefreshControl,SafeAreaView,FlatList,Image} from 'react-native'
-import {Header,Gap,Button,Input,homePostComponent,Empty} from '../../components'
+import {Header,Gap,Button,Input,HomePostComponent,Empty} from '../../components'
 import {getCurrentDate} from '../../config'
 import { AuthContext } from "../../context/authContext";
 import {wait} from '../../config'
@@ -59,7 +59,7 @@ const Home = ({navigation})=>{
           }
           showsVerticalScrollIndicator={false}
           data={filteredDatas}
-          renderItem={homePostComponent}
+          renderItem={({item,index})=><HomePostComponent item={item} index={index}/>}
           ListHeaderComponent={
             <View style={{backgroundColor:'#fff'}}>
               <View>
@@ -79,7 +79,7 @@ const Home = ({navigation})=>{
           }
           stickyHeaderIndices={[0]}
           />
-        {datas.length < 1 && <Empty/>}
+        {(datas.length < 1 || filteredDatas.length < 1) && <Empty/>}
       </SafeAreaView>
     </SafeAreaView>
   )

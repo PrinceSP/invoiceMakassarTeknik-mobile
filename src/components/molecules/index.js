@@ -4,7 +4,7 @@ import TabsContent from './tabsContent'
 import ImagePicker from './imagePicker'
 import ReportListComponent from './repostListComponent'
 import ModalInvoice from './modalInvoice'
-import homePostComponent from  './homePost'
-import Empty from  './empty'
+import HomePostComponent from './homePost'
+import Empty from './empty'
 
-export {Header,DrawerContent,TabsContent,ImagePicker,ReportListComponent,ModalInvoice,homePostComponent,Empty}
+export {Header,DrawerContent,TabsContent,ImagePicker,ReportListComponent,ModalInvoice,HomePostComponent,Empty}
