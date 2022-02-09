@@ -22,18 +22,19 @@ const ReportListPage=({navigation})=>{
           fullname={item.client}
           invoiceDate={item.date}
           key={item._id}
-          totalPrice={item.total.$numberDecimal}
+          totalPrice={item.total}
           vehicle={item.vehicle}
           vehicleType={item.vehicleType}
           diagnosis={item.diagnosis}
           action={item.action}
           spareParts={item.spareParts}
           plat={item.plat}
-          repairService={item.repairService.$numberDecimal}
+          repairService={item.repairService}
           />
       </View>
     )
   }
+  console.log(invoices);
   return(
     <View style={container}>
       <Gap height={7}/>

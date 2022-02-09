@@ -4,6 +4,7 @@ import {Header,Gap,Button,Input,homePostComponent,Empty} from '../../components'
 import {getCurrentDate} from '../../config'
 import { AuthContext } from "../../context/authContext";
 import {wait} from '../../config'
+import {ArrowDown,Search} from '../../assets'
 
 const Home = ({navigation})=>{
   const {user} = useContext(AuthContext)
@@ -62,9 +63,12 @@ const Home = ({navigation})=>{
               <View>
                 <Text style={headingTitle}>Hi, {typeof username==="string"?username.charAt(1).toUpperCase()+username.replace(/['"]+/g, '').slice(1):name}!</Text>
               </View>
-              <Text style={{fontSize:20,fontFamily:'Poppins-Light',color:'#999'}}>{getCurrentDate()}</Text>
+              <Text style={{fontSize:16,fontFamily:'Poppins-Light',color:'#999'}}>{getCurrentDate()}</Text>
               <Gap height={28}/>
-              <Input value={search} width={351} underlineColorAndroid="transparent" placeholder="Cari Disini..." onChangeText={value=>searchItem(value)}/>
+              <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+                <Input value={search} width={265} underlineColorAndroid="transparent" placeholder="Cari Disini..." onChangeText={value=>searchItem(value)}/>
+                <Button style={button} size={20} color="#0FB600" name={['SORT ',<ArrowDown key={1}/>]} key={2}/>
+              </View>
               <Gap height={28}/>
             </>
           }
@@ -81,9 +85,13 @@ const Home = ({navigation})=>{
 const style=StyleSheet.create({
   container:{ flex: 1,backgroundColor:'#fff'},
   scrollViewCont:{paddingHorizontal:20,paddingBottom:125},
-  headingTitle:{fontSize:35,fontFamily:'PlayfairDisplay-Regular',color:'#000'},
+  headingTitle:{fontSize:25,fontFamily:'PlayfairDisplay-Regular',color:'#000'},
+  button:{
+    alignItems:'center',
+    justifyContent:'center',
+  },
 })
 
-const {container,scrollViewCont,headingTitle} = style
+const {container,scrollViewCont,headingTitle,button} = style
 
 export default Home

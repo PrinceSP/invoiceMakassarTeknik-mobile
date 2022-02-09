@@ -20,6 +20,8 @@ import Star from './star.svg'
 import EyeTrue from './eyeTrue.svg'
 import EyeFalse from './eyeFalse.svg'
 import NoData from './no_data.svg'
+import ArrowDown from './arrowDown.svg'
+import Search from './search.svg'
 
-export {MainLogo,NoData,AvatarProfile,EyeTrue,EyeFalse,Star,Report,SingleSmall,ShareIcon,SignOut,Edit,ModalSuccessIcon,
+export {MainLogo,ArrowDown,NoData,Search,AvatarProfile,EyeTrue,EyeFalse,Star,Report,SingleSmall,ShareIcon,SignOut,Edit,ModalSuccessIcon,
   Burger,HomeIcon,Plus,DateIcon,Email,Address,Phone,ID,SuccessIcon,FailedIcon}
