@@ -8,7 +8,6 @@ const ReportPage = ({navigation})=>{
   const [date,setDate] = useState(new Date())
   const [show,setShow] = useState(false)
   const [datas,setData] = useState({
-    noNote:'',
     consumentName:'',
     vehicle:'',
     vehicleType:'',
@@ -43,7 +42,7 @@ const ReportPage = ({navigation})=>{
     } catch (e) {
       console.log(e);
     }
-    setData({...datas,noNote:'',consumentName:'',dates:'',vehicle:'',vehicleType:'',plat:'',diagnosis:'',action:'',spareParts:'',servicePrice:'',totalPrice:''})
+    setData({...datas,consumentName:'',dates:'',vehicle:'',vehicleType:'',plat:'',diagnosis:'',action:'',spareParts:'',servicePrice:'',totalPrice:''})
 
     return allDatas
   }
@@ -69,8 +68,6 @@ const ReportPage = ({navigation})=>{
       <ScrollView keyboardShouldPersistTaps='always' contentContainerStyle={style.formContainer}>
         <Text style={{fontSize:17,color:"#777",position:'absolute',left:34}}>Masukkan rincian nota</Text>
         <Gap height={40}/>
-        <Input setLabel={true} label="No.Nota" placeholder="No.1" value={noNote} onChangeText={(event)=>setData({...datas,noNote:event})}/>
-        <Gap height={30}/>
         <Input setLabel={true} label="Nama Konsumen" placeholder="John Doe" value={consumentName} onChangeText={(event)=>setData({...datas,consumentName:event})}/>
         <Gap height={30}/>
           <View>

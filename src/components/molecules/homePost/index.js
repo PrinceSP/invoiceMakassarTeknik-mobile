@@ -1,6 +1,5 @@
 import React, {useEffect,useState} from 'react'
-import {View,Text,StyleSheet,Image} from 'react-native'
-import {Button} from '../../atoms'
+import {View,Text,StyleSheet,Image,TouchableWithoutFeedback} from 'react-native'
 import {localizeDateStr} from '../../../config'
 
 const HomePostComponent = ({item,index})=>{
@@ -22,19 +21,21 @@ const HomePostComponent = ({item,index})=>{
 
   return(
     <View key={item.userId} style={listCont}>
-      <View style={{flexDirection:'row',alignItems:'flex-start'}}>
-        <View style={{flexDirection:'row',alignItems:'center'}}>
-          <Image style={{height:45,width:45,borderRadius:45,marginRight:20}} source={{uri:`data:image/png;base64,${isUser.profilePicture}`}}/>
-        </View>
-        <View style={{width:240,flexDirection:'column',justifyContent:'space-between'}}>
-          <Text style={diagnosisText2}>{item.sender}</Text>
-          <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between',marginBottom:7}}>
-            <Text style={name}>Konsumer: </Text>
-            <Text style={diagnosisText}>{item.client}</Text>
+      <TouchableWithoutFeedback>
+        <View style={{flexDirection:'row',alignItems:'flex-start'}}>
+          <View style={{flexDirection:'row',alignItems:'center'}}>
+            <Image style={{height:45,width:45,borderRadius:45,marginRight:20}} source={{uri:`data:image/png;base64,${isUser.profilePicture}`}}/>
           </View>
-          <Text style={date}>{actualDate}</Text>
+          <View style={{width:240,flexDirection:'column',justifyContent:'space-between'}}>
+            <Text style={diagnosisText2}>{item.sender}</Text>
+            <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between',marginBottom:7}}>
+              <Text style={name}>Konsumer: </Text>
+              <Text style={diagnosisText}>{item.client}</Text>
+            </View>
+            <Text style={date}>{actualDate}</Text>
+          </View>
         </View>
-      </View>
+      </TouchableWithoutFeedback>
     </View>
   )
 }
