@@ -1,11 +1,7 @@
+import months from './monthsValues'
+
 //function to get the current date of the day
 export default function getCurrentDate(){
-  //initialize the month with the exact months's name
-  const months = [
-    'January','February','March','April',
-    'Mei','June','July','August',
-    'September','October','November','December'
-  ]
   //make new date with buildtin method new Date()
   let today = new Date();
   //get the day from variable 'today' which is passed the exact date of the day

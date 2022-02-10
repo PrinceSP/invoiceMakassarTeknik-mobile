@@ -18,12 +18,19 @@ const Home = ({navigation})=>{
     wait(1000).then(() => setRefreshing(false));
   }, []);
 
-  useEffect(()=>{
-    const fetchDatas = async ()=>{
-      const allInvoices = await fetch(`https://charlie-invoice.herokuapp.com/api/invoice`).then(res=>res.json())
+  const fetchDatas = async ()=>{
+    try {
+      const res = await fetch(`https://charlie-invoice.herokuapp.com/api/invoice`)
+      const allInvoices = await res.json()
       setDatas(allInvoices)
       setfilteredDatas(allInvoices)
+    } catch (e) {
+      setDatas([])
+      setfilteredDatas([])
     }
+  }
+
+  useEffect(()=>{
     fetchDatas()
     const interval = refreshing&&setTimeout(()=>{
       fetchDatas()
