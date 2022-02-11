@@ -76,13 +76,14 @@ const Register = ({navigation}) => {
       const req = await fetch('https://charlie-invoice.herokuapp.com/api/auth/register',options)
       const results = await req.json()
       if (req.status === 200) {
+        setPhoto('');
+        setPhotoBase64('');
+        setHasPhoto(false)
         navigation.navigate('Login')
       }
     } catch (e) {
       console.log(e._message);
     }
-    setPhoto('');
-    setPhotoBase64('');
     setUserInfo({fname:'',email:'',username:'',theDate:'',phone:'',password:''})
   }
 
