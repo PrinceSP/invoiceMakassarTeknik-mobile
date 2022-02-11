@@ -1,15 +1,15 @@
 import React from 'react'
-import {View} from 'react-native'
+import {TouchableWithoutFeedback} from 'react-native'
 import CheckBox from '@react-native-community/checkbox';
 
-const CheckBoxComponent = (props) => {
+const CheckBoxComponent = ({onPress}) => {
   const [agree, setAgree] = React.useState(false);
 
   return (
-    <View>
+    <TouchableWithoutFeedback onPress={onPress}>
       {Platform.OS === 'ios' ? (
         <CheckBox
-          boxType="square"
+          boxType="circle"
           value={agree}
           onChange={() => setAgree(!agree)}
           tintColor="#044"
@@ -17,7 +17,7 @@ const CheckBoxComponent = (props) => {
       ) : (
         <CheckBox value={agree} onChange={() => setAgree(!agree)} tintColors={{true:'blue', false:'#044'}}/>
       )}
-    </View>
+    </TouchableWithoutFeedback>
   )
 }
 

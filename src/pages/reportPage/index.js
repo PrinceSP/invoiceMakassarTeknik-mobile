@@ -1,6 +1,6 @@
 import React, {useState,useEffect,useContext} from 'react'
 import {Text,View,StyleSheet,TouchableOpacity,ScrollView,Platform} from 'react-native'
-import {Header,Gap,Button,Input,CheckBoxComponent} from '../../components'
+import {Header,Gap,Button,Input,CheckBoxComponent,RadioButton} from '../../components'
 import { AuthContext } from "../../context/authContext";
 import DateTimePicker from '@react-native-community/datetimepicker';
 
@@ -17,10 +17,15 @@ const ReportPage = ({navigation})=>{
     action:'',
     spareParts:'',
     servicePrice:'',
-    totalPrice:''
+    totalPrice:'',
+    freons:{
+      klea:'',
+      bailian:'',
+      dupoet:''
+    }
   })
   const {user:currentUser} = useContext(AuthContext)
-  const {noNote,consumentName,vehicle,dates,vehicleType,plat,diagnosis,action,spareParts,servicePrice,totalPrice} = datas
+  const {noNote,consumentName,vehicle,freons,dates,vehicleType,plat,diagnosis,action,spareParts,servicePrice,totalPrice} = datas
 
   const submit = async()=>{
     //merge all the datas from these states
@@ -61,6 +66,7 @@ const ReportPage = ({navigation})=>{
       setData({...datas,dates:''})
     }
   }
+
   return(
     <View style={container}>
       <Gap height={7}/>
@@ -101,15 +107,15 @@ const ReportPage = ({navigation})=>{
           <View style={centeredRow}>
             <View style={centeredRow}>
               <Text style={regularText}>Klea</Text>
-              <CheckBoxComponent/>
+              <CheckBoxComponent onPress={()=>setData({...datas,freons:{klea:'300.000'}})}/>
             </View>
             <View style={centeredRow}>
               <Text style={regularText}>Bailian</Text>
-              <CheckBoxComponent/>
+              <CheckBoxComponent onPress={()=>setData({...datas,freons:{bailian:'350.000'}})}/>
             </View>
             <View style={centeredRow}>
               <Text style={regularText}>Dupoet</Text>
-              <CheckBoxComponent/>
+              <CheckBoxComponent onPress={()=>setData({...datas,freons:{dupoet:'480.000'}})}/>
             </View>
           </View>
         </View>

@@ -6,5 +6,6 @@ import BioHolder from './bioHolder'
 import NotificationToast from './inAppToast'
 import CheckBoxComponent from './checkbox'
 import StyledDot from './styledDot'
+import RadioButton from './radioBtn'
 
-export {Button,Input,Tab,Gap,BioHolder,NotificationToast,CheckBoxComponent,StyledDot}
+export {Button,Input,Tab,Gap,BioHolder,NotificationToast,CheckBoxComponent,StyledDot,RadioButton}
