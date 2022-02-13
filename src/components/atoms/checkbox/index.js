@@ -4,7 +4,6 @@ import CheckBox from '@react-native-community/checkbox';
 
 const CheckBoxComponent = ({onPress}) => {
   const [isAgree, setAgree] = React.useState(false);
-
   return (
     <TouchableWithoutFeedback onPress={onPress}>
       {Platform.OS === 'ios' ? (
@@ -19,15 +18,6 @@ const CheckBoxComponent = ({onPress}) => {
       )}
     </TouchableWithoutFeedback>
   )
-
-  // return(
-  //   <Switch
-  //     trackColor={{ false: "#767577", true: "#81b0ff" }}
-  //     thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
-  //     ios_backgroundColor="#3e3e3e"
-  //     onValueChange={toggleSwitch}
-  //     value={isAgree}/>
-  // )
 }
 
 export default CheckBoxComponent

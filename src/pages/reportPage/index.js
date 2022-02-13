@@ -99,9 +99,9 @@ const ReportPage = ({navigation})=>{
         <Gap height={30}/>
         <Input setLabel={true} label="Penanganan" placeholder="Pengisian ulang freon" value={action} onChangeText={(event)=>setData({...datas,action:event})}/>
         <Gap height={30}/>
-        <Input setLabel={true} label="Suku Cadang" placeholder="Kompresor" value={spareParts} onChangeText={(event)=>setData({...datas,spareParts:event})}/>
+        <Input setLabel={true} label="Suku Cadang (opsional)" placeholder="Kompresor" value={spareParts} onChangeText={(event)=>setData({...datas,spareParts:event})}/>
         <Gap height={30}/>
-        <Input setLabel={true} label="Harga Suku Cadang" placeholder="500.000" value={sparePartsPrice} onChangeText={(event)=>setData({...datas,sparePartsPrice:event})}/>
+        <Input setLabel={true} label="Harga Suku Cadang (opsional)" placeholder="500.000" value={sparePartsPrice} onChangeText={(event)=>setData({...datas,sparePartsPrice:event})}/>
         {/**<Gap height={30}/>
         <View style={{flexDirection:'column',width:329}}>
           <Text style={{fontSize:20,color:'#000',marginBottom:7}}>Jenis Freon:</Text>

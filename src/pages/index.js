@@ -1,4 +1,4 @@
-
+// import ForgotPassword from './forgotPassword'
 import SplashScreen from './splashScreen'
 import Login from './login'
 import Register from './register'
