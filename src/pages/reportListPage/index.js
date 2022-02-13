@@ -1,6 +1,6 @@
-import React,{useState,useContext} from 'react'
+import React,{useState,useContext,useCallback} from 'react'
 import {Text,FlatList,SafeAreaView,RefreshControl,View,StyleSheet} from 'react-native'
-import {Header,Gap,ReportListComponent,Empty} from '../../components'
+import {Header,Gap,Input,ReportListComponent,Empty} from '../../components'
 import { AuthContext } from "../../context/authContext";
 import {useHandleCurrentInvoices} from '../../config'
 import {wait} from '../../config'
@@ -8,12 +8,29 @@ import {wait} from '../../config'
 const ReportListPage=({navigation})=>{
   const [refreshing,setRefreshing] = useState(false)
   const {user: currentUser} = useContext(AuthContext)
-  const {invoices} = useHandleCurrentInvoices(`invoice/invoicesList/${currentUser._id}`,refreshing)
+  const {invoices,filteredDatas,setfilteredDatas} = useHandleCurrentInvoices(`invoice/invoicesList/${currentUser._id}`,refreshing)
+  const [search,setSearch] = useState('')
 
-  const onRefresh = React.useCallback(() => {
+  const onRefresh = useCallback(() => {
     setRefreshing(true);
     wait(1000).then(() => setRefreshing(false));
   }, []);
+
+  const searchItem = (value)=>{
+    if (value) {
+      const newData = invoices.filter(item=>{
+        const itemDatas = item.plat ? item.plat.toUpperCase():''.toUpperCase()
+        const valueData = value.toUpperCase()
+        return itemDatas.indexOf(valueData) > -1;
+      })
+      setfilteredDatas(newData)
+      setSearch(value)
+    } else{
+      setfilteredDatas(invoices)
+      setSearch(value)
+    }
+    console.log(filteredDatas);
+  }
 
   const renderItem=({item})=>{
     return(
@@ -34,12 +51,12 @@ const ReportListPage=({navigation})=>{
       </View>
     )
   }
-  console.log(invoices);
   return(
     <View style={container}>
       <Gap height={7}/>
       <Header name="Daftar Nota" action="< kembali" navigation={navigation} page={true}/>
       <Gap height={25}/>
+      <Input value={search} underlineColorAndroid="transparent" placeholder="Cari Disini..." onChangeText={value=>searchItem(value)}/>
       <SafeAreaView style={{paddingHorizontal:14,paddingVertical:20}}>
         <FlatList
           refreshControl={
@@ -49,7 +66,7 @@ const ReportListPage=({navigation})=>{
             />
           }
           showsVerticalScrollIndicator={false}
-          data={invoices}
+          data={filteredDatas}
           keyExtractor={item=>item._id}
           renderItem={renderItem}
           ListFooterComponent={
@@ -57,7 +74,7 @@ const ReportListPage=({navigation})=>{
           }
           />
       </SafeAreaView>
-      {invoices.length < 1 &&<Empty/>}
+      {(invoices.length < 1 || filteredDatas.length < 1) && <Empty/>}
     </View>
 
   )
