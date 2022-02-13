@@ -62,7 +62,7 @@ const ReportPage = ({navigation})=>{
 
     return allDatas
   }
-  console.log(klea,bailian,dupoet);
+  // console.log(klea,bailian,dupoet);
   const onChange = (e, selectedDate)=>{
     const currentDate = selectedDate || date
 

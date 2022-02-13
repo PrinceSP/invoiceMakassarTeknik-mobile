@@ -3,6 +3,8 @@ import {Text,View,StyleSheet,TouchableOpacity,ScrollView,Image,Platform} from 'r
 import {Input,Gap,Button,Header,ImagePicker} from '../../components'
 import {launchImageLibrary} from 'react-native-image-picker'
 import DateTimePicker from '@react-native-community/datetimepicker';
+import {toastConfig} from '../../components/molecules/toast'
+import Toast from 'react-native-toast-message';
 
 const Register = ({navigation}) => {
   const [photo,setPhoto] = useState('')

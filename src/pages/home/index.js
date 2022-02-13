@@ -1,41 +1,53 @@
 import React,{useEffect,useCallback,useState,useContext} from 'react'
-import {Text,View,StyleSheet,RefreshControl,SafeAreaView,FlatList,Image} from 'react-native'
+import {Text,TouchableOpacity,View,StyleSheet,RefreshControl,SafeAreaView,FlatList,Image} from 'react-native'
 import {Header,Gap,Button,Input,HomePostComponent,Empty} from '../../components'
 import {getCurrentDate} from '../../config'
 import { AuthContext } from "../../context/authContext";
 import {wait} from '../../config'
-import {ArrowDown,Search} from '../../assets'
+import {ArrowDown} from '../../assets'
 
 const Home = ({navigation})=>{
   const {user} = useContext(AuthContext)
   const [datas,setDatas] = useState([])
   const [refreshing,setRefreshing] = useState(false)
   const [filteredDatas,setfilteredDatas] = useState([])
+  const [sortDatas,setSortDatas] = useState([])
   const [search,setSearch] = useState('')
+  const [show,setShow] = useState(false)
+
+  const toggleModal = ()=>{
+    if (show===true) {
+      setShow(true)
+    }else{
+      setShow(false)
+    }
+  }
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
     wait(1000).then(() => setRefreshing(false));
   }, []);
 
-  const fetchDatas = async ()=>{
-    try {
-      const res = await fetch(`https://charlie-invoice.herokuapp.com/api/invoice`)
-      const allInvoices = await res.json()
-      setDatas(allInvoices)
-      setfilteredDatas(allInvoices)
-    } catch (e) {
-      setDatas([])
-      setfilteredDatas([])
-    }
-  }
-
   useEffect(()=>{
+    const fetchDatas = async ()=>{
+      try {
+        const res = await fetch(`https://charlie-invoice.herokuapp.com/api/invoice`)
+        const allInvoices = await res.json()
+        setDatas(allInvoices)
+        setfilteredDatas(allInvoices)
+        setSortDatas(allInvoices)
+      } catch (e) {
+        setDatas([])
+        setfilteredDatas([])
+        setSortDatas([])
+      }
+    }
     fetchDatas()
+    toggleModal()
     const interval = refreshing&&setTimeout(()=>{
       fetchDatas()
     },100)
-  },[setfilteredDatas,setDatas,refreshing])
+  },[refreshing])
 
   const searchItem = (value)=>{
     if (value) {
@@ -44,17 +56,38 @@ const Home = ({navigation})=>{
         const valueData = value.toUpperCase()
         return itemDatas.indexOf(valueData) > -1;
       })
-      setfilteredDatas(newData)
+      setSortDatas(newData)
       setSearch(value)
     } else{
-      setfilteredDatas(datas)
+      setSortDatas(datas)
       setSearch(value)
     }
   }
+
+  const filterBy = (value)=>{
+    if (value==='terbaru') {
+      setSortDatas(datas.sort((p1,p2)=>{return new Date(p2.createdAt) - new Date(p1.createdAt)}))
+    } else if (value==='terlama') {
+      setSortDatas(datas.sort((p1,p2)=>{return new Date(p1.createdAt) - new Date(p2.createdAt)}))
+    } else{
+      return datas;
+    }
+  }
+
   const name = JSON.stringify(user.fullname)
   const username = typeof name==="string" ? name.split(' ')[0] : name
+  console.log(show);
+  // console.log(datas);
+  // console.log(filteredDatas);
   return(
     <SafeAreaView style={container}>
+        {show&&<View style={{height:700,width:392,alignItems:'center',justifyContent:'center',position:'absolute',backgroundColor: 'rgba(52, 52, 52, 0.3)',zIndex:100}}>
+          <TouchableOpacity style={{height:700,width:392,position:'absolute',top:0,left:0}} onPress={()=>setShow(false)}/>
+          <View style={{width:350,height:150,backgroundColor:"#fff",borderRadius:10,alignItems:'center',justifyContent:'center'}}>
+            <TouchableOpacity onPress={()=>filterBy('terbaru')}><Text style={sortText}>Terbaru</Text></TouchableOpacity>
+            <TouchableOpacity onPress={()=>filterBy('terlama')}><Text style={sortText}>Terlama</Text></TouchableOpacity>
+          </View>
+        </View>}
       <Gap height={7}/>
       <Header name="Beranda" button={true} navigation={navigation}/>
       <Gap height={25}/>
@@ -65,7 +98,7 @@ const Home = ({navigation})=>{
             <RefreshControl onRefresh={onRefresh} refreshing={refreshing}/>
           }
           showsVerticalScrollIndicator={false}
-          data={filteredDatas}
+          data={sortDatas}
           renderItem={({item,index})=><HomePostComponent item={item} index={index}/>}
           ListHeaderComponent={
             <View style={{backgroundColor:'#fff'}}>
@@ -76,7 +109,7 @@ const Home = ({navigation})=>{
               <Gap height={15}/>
               <View style={{flexDirection:'row',justifyContent:'space-between'}}>
                 <Input value={search} width={265} underlineColorAndroid="transparent" placeholder="Cari Plat Disini..." onChangeText={value=>searchItem(value)}/>
-                <Button style={button} size={20} color="#0FB600" name={['SORT ',<ArrowDown key={1}/>]} key={2}/>
+                <Button style={button} size={20} color="#0FB600" name={['SORT ',<ArrowDown key={1}/>]} key={2} onPress={()=>setShow(true)}/>
               </View>
               <Gap height={20}/>
             </View>
@@ -100,9 +133,13 @@ const style=StyleSheet.create({
   button:{
     alignItems:'center',
     justifyContent:'center',
+    zIndex:20
   },
+  sortText:{
+    fontSize:28,fontFamily:'Poppins-Regular',color:'#000'
+  }
 })
 
-const {container,scrollViewCont,headingTitle,button} = style
+const {container,sortText,scrollViewCont,headingTitle,button} = style
 
 export default Home
