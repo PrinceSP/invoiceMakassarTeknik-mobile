@@ -48,8 +48,9 @@ const Login = ({navigation}) => {
         text1:'Terjadi Kesalahan',
         text2:'Username atau Password anda salah!'
       })
+    } finally {
+      setHide(true)
     }
-    setHide(true)
   }
 
   return (
