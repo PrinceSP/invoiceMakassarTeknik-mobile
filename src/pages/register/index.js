@@ -76,10 +76,22 @@ const Register = ({navigation}) => {
       const req = await fetch('https://charlie-invoice.herokuapp.com/api/auth/register',options)
       const results = await req.json()
       if (req.status === 200) {
-        navigation.navigate('Login')
+        Toast.show({
+          type:'success',
+          text1:'Selamat!',
+          text2:'Anda berhasil membuat akun baru.'
+        })
+        setTimeout(()=>{
+          navigation.navigate('Login')
+        },1000)
       }
     } catch (e) {
       console.log(e._message);
+      Toast.show({
+        type:'error',
+        text1:'Terjadi Kesalahan',
+        text2:'Email dan Username sudah ada.'
+      })
     } finally {
       setPhoto('');
       setPhotoBase64('');

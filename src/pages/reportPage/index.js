@@ -3,6 +3,8 @@ import {Text,View,StyleSheet,TouchableOpacity,ScrollView,Platform} from 'react-n
 import {Header,Gap,Button,Input,CheckBoxComponent,RadioButton} from '../../components'
 import { AuthContext } from "../../context/authContext";
 import DateTimePicker from '@react-native-community/datetimepicker';
+import Toast from 'react-native-toast-message';
+import {toastConfig} from '../../components/molecules/toast'
 
 const ReportPage = ({navigation})=>{
   const [date,setDate] = useState(new Date())
@@ -43,8 +45,18 @@ const ReportPage = ({navigation})=>{
         body: JSON.stringify({userId:currentUser._id,sender:currentUser.username,date:dates,vehicle,vehicleType,plat,client:consumentName,phoneNumber:'123123123',diagnosis,action,klea,bailian,dupoet,spareParts,sparePartsPrice,repairService:servicePrice,total:totalPrice})
       }
       await fetch(`https://charlie-invoice.herokuapp.com/api/invoice`,options)
+      Toast.show({
+        type:'success',
+        text1:'Selamat!',
+        text2:'Nota berhasil dibuat'
+      })
     } catch (e) {
       console.log(e);
+      Toast.show({
+        type:'error',
+        text1:'Terjadi Kesalahan',
+        text2:'Silahkan lihat kembali form anda.'
+      })
     }
     setData({...datas,consumentName:'',dates:'',vehicle:'',vehicleType:'',plat:'',diagnosis:'',action:'',spareParts:'',sparePartsPrice:'',servicePrice:'',totalPrice:'',klea:'',bailian:'',dupoet:''})
 
