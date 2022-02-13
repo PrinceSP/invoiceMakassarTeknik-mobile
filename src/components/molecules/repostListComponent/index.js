@@ -4,7 +4,7 @@ import ModalInvoice from '../modalInvoice'
 import {Star} from '../../../assets'
 import {StyledDot} from "../../atoms"
 
-const ReportListComponent=({fullname,invoiceDate,vehicle,vehicleType,diagnosis,totalPrice,action,spareParts,plat,repairService})=>{
+const ReportListComponent=({fullname,invoiceDate,klea,bailian,dupoet,vehicle,vehicleType,diagnosis,totalPrice,action,spareParts,plat,repairService})=>{
   const [visible,setVisible] = useState(false)
   const width = Dimensions.get('window').width
 
@@ -99,15 +99,15 @@ const ReportListComponent=({fullname,invoiceDate,vehicle,vehicleType,diagnosis,t
               <View>
                 <View style={{flexDirection:'row',justifyContent:'space-between'}}>
                   <Text style={textMedium}>Klea    </Text>
-                  <Text style={fontRegular}>Rp.350.000</Text>
+                  <Text style={fontRegular}>Rp.{klea}</Text>
                 </View>
                 <View style={{flexDirection:'row',justifyContent:'space-between'}}>
                   <Text style={textMedium}>Bailian</Text>
-                  <Text style={fontRegular}>Rp.300.000</Text>
+                  <Text style={fontRegular}>Rp.{bailian}</Text>
                 </View>
                 <View style={{flexDirection:'row',justifyContent:'space-between'}}>
                   <Text style={textMedium}>Dupoet</Text>
-                  <Text style={fontRegular}>Rp.480.000</Text>
+                  <Text style={fontRegular}>Rp.{dupoet}</Text>
                 </View>
               </View>
             </View>

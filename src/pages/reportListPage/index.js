@@ -46,6 +46,9 @@ const ReportListPage=({navigation})=>{
           action={item.action}
           spareParts={item.spareParts}
           plat={item.plat}
+          Klea={item.freonUse.klea}
+          Bailian={item.freonUse.bailian}
+          Dupoet={item.freonUse.dupoet}
           repairService={item.repairService}
           />
       </View>
