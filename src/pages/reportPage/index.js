@@ -16,16 +16,15 @@ const ReportPage = ({navigation})=>{
     diagnosis:'',
     action:'',
     spareParts:'',
+    sparePartsPrice:'',
     servicePrice:'',
     totalPrice:'',
-    freons:{
-      klea:'',
-      bailian:'',
-      dupoet:''
-    }
+    klea:'',
+    bailian:'',
+    dupoet:''
   })
   const {user:currentUser} = useContext(AuthContext)
-  const {noNote,consumentName,vehicle,freons,dates,vehicleType,plat,diagnosis,action,spareParts,servicePrice,totalPrice} = datas
+  const {noNote,consumentName,sparePartsPrice,vehicle,dates,vehicleType,klea,bailian,dupoet,plat,diagnosis,action,spareParts,servicePrice,totalPrice} = datas
 
   const submit = async()=>{
     //merge all the datas from these states
@@ -41,17 +40,17 @@ const ReportPage = ({navigation})=>{
           'Accept': 'application/json, text/plain, */*',
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({userId:currentUser._id,sender:currentUser.username,date:dates,vehicle,vehicleType,plat,client:consumentName,phoneNumber:'123123123',diagnosis,action,spareParts,repairService:servicePrice,total:totalPrice})
+        body: JSON.stringify({userId:currentUser._id,sender:currentUser.username,date:dates,vehicle,vehicleType,plat,client:consumentName,phoneNumber:'123123123',diagnosis,action,klea,bailian,dupoet,spareParts,sparePartsPrice,repairService:servicePrice,total:totalPrice})
       }
       await fetch(`https://charlie-invoice.herokuapp.com/api/invoice`,options)
     } catch (e) {
       console.log(e);
     }
-    setData({...datas,consumentName:'',dates:'',vehicle:'',vehicleType:'',plat:'',diagnosis:'',action:'',spareParts:'',servicePrice:'',totalPrice:''})
+    setData({...datas,consumentName:'',dates:'',vehicle:'',vehicleType:'',plat:'',diagnosis:'',action:'',spareParts:'',sparePartsPrice:'',servicePrice:'',totalPrice:'',klea:'',bailian:'',dupoet:''})
 
     return allDatas
   }
-
+  console.log(klea,bailian,dupoet);
   const onChange = (e, selectedDate)=>{
     const currentDate = selectedDate || date
 
@@ -102,23 +101,25 @@ const ReportPage = ({navigation})=>{
         <Gap height={30}/>
         <Input setLabel={true} label="Suku Cadang" placeholder="Kompresor" value={spareParts} onChangeText={(event)=>setData({...datas,spareParts:event})}/>
         <Gap height={30}/>
+        <Input setLabel={true} label="Harga Suku Cadang" placeholder="500.000" value={sparePartsPrice} onChangeText={(event)=>setData({...datas,sparePartsPrice:event})}/>
+        {/**<Gap height={30}/>
         <View style={{flexDirection:'column',width:329}}>
           <Text style={{fontSize:20,color:'#000',marginBottom:7}}>Jenis Freon:</Text>
           <View style={centeredRow}>
             <View style={centeredRow}>
               <Text style={regularText}>Klea</Text>
-              <CheckBoxComponent onPress={()=>setData({...datas,freons:{klea:'300.000'}})}/>
+              <CheckBoxComponent onPress={()=>setData({...datas,klea:'300.000'})} onPressOut={()=>setData({...datas,klea:''})}/>
             </View>
             <View style={centeredRow}>
               <Text style={regularText}>Bailian</Text>
-              <CheckBoxComponent onPress={()=>setData({...datas,freons:{bailian:'350.000'}})}/>
+              <CheckBoxComponent onPress={()=>setData({...datas,bailian:'350.000'})} onPressOut={()=>setData({...datas,klea:''})}/>
             </View>
             <View style={centeredRow}>
               <Text style={regularText}>Dupoet</Text>
-              <CheckBoxComponent onPress={()=>setData({...datas,freons:{dupoet:'480.000'}})}/>
+              <CheckBoxComponent onPress={()=>setData({...datas,dupoet:'480.000'})} onPressOut={()=>setData({...datas,klea:''})}/>
             </View>
           </View>
-        </View>
+        </View>**/}
         <Gap height={30}/>
         <Input setLabel={true} label="Harga Jasa Layanan" placeholder="200.000" value={servicePrice} onChangeText={(event)=>setData({...datas,servicePrice:event})}/>
         <Gap height={30}/>
