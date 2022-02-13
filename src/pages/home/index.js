@@ -75,7 +75,7 @@ const Home = ({navigation})=>{
               <Text style={{fontSize:16,fontFamily:'Poppins-Light',color:'#999'}}>{getCurrentDate()}</Text>
               <Gap height={15}/>
               <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                <Input value={search} width={265} underlineColorAndroid="transparent" placeholder="Cari Disini..." onChangeText={value=>searchItem(value)}/>
+                <Input value={search} width={265} underlineColorAndroid="transparent" placeholder="Cari Plat Disini..." onChangeText={value=>searchItem(value)}/>
                 <Button style={button} size={20} color="#0FB600" name={['SORT ',<ArrowDown key={1}/>]} key={2}/>
               </View>
               <Gap height={20}/>

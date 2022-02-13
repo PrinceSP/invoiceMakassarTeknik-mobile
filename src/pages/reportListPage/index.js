@@ -55,9 +55,9 @@ const ReportListPage=({navigation})=>{
     <View style={container}>
       <Gap height={7}/>
       <Header name="Daftar Nota" action="< kembali" navigation={navigation} page={true}/>
-      <Gap height={25}/>
-      <Input value={search} underlineColorAndroid="transparent" placeholder="Cari Disini..." onChangeText={value=>searchItem(value)}/>
+      <Gap height={10}/>
       <SafeAreaView style={{paddingHorizontal:14,paddingVertical:20}}>
+        <Input value={search} width={365} underlineColorAndroid="transparent" placeholder="Cari Plat Disini..." onChangeText={value=>searchItem(value)}/>
         <FlatList
           refreshControl={
             <RefreshControl
