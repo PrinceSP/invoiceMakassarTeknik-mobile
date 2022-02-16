@@ -1,6 +1,6 @@
-import React, {useState,useEffect,useContext} from 'react'
+import React, {useState,useContext} from 'react'
 import {Text,View,StyleSheet,TouchableOpacity,ScrollView,Platform} from 'react-native'
-import {Header,Gap,Button,Input,CheckBoxComponent,RadioButton} from '../../components'
+import {Header,Gap,Button,Input} from '../../components'
 import { AuthContext } from "../../context/authContext";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Toast from 'react-native-toast-message';
