@@ -25,6 +25,7 @@ const HomePostComponent = ({item,index})=>{
   },[])
 
   const actualDate = localizeDateStr(item.createdAt)
+  const itemDate = localizeDateStr(item.date)
 
   return(
     <View key={item.userId} style={listCont}>
@@ -76,7 +77,7 @@ const HomePostComponent = ({item,index})=>{
               </View>
               <View>
                 <Text style={itemsMedium}>Tanggal Nota</Text>
-                <Text style={textMedium}>{item.date}</Text>
+                <Text style={textMedium}>{itemDate}</Text>
               </View>
             </View>
             <View style={{flexDirection:'row',justifyContent:'space-between',paddingVertical:30,marginTop:12,borderColor:"#AAA4A4",borderStyle:'dashed',borderBottomWidth:1}}>

@@ -6,7 +6,7 @@ const localizeDateStr = (actualDate)=>{
   let fullDate = actualDate.split('T').shift()
   let [year, month, day] = fullDate.split('-')
 
-  return actualDate = `${day} ${months[month-1]} ${year} At ${date_to_convert.toLocaleTimeString()}`;
+  return actualDate = `${day} ${months[month-1]} ${year} `;
 }
 
 export default localizeDateStr
