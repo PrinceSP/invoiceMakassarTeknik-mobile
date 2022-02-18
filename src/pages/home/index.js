@@ -109,7 +109,7 @@ const Home = ({navigation})=>{
           }
           stickyHeaderIndices={[0]}
           />
-
+        {(datas.length < 1 || invoiceData.length < 1) && <Empty/>}
       </SafeAreaView>
     </SafeAreaView>
   )

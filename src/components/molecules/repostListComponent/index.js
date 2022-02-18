@@ -4,7 +4,7 @@ import ModalInvoice from '../modalInvoice'
 import {Star} from '../../../assets'
 import {StyledDot} from "../../atoms"
 
-const ReportListComponent=({fullname,invoiceDate,klea,bailian,dupoet,vehicle,vehicleType,diagnosis,totalPrice,action,spareParts,plat,repairService})=>{
+const ReportListComponent=({fullname,invoiceDate,vehicle,freonUse,vehicleType,diagnosis,totalPrice,sparePartsPrice,action,spareParts,plat,repairService})=>{
   const [visible,setVisible] = useState(false)
   const width = Dimensions.get('window').width
 
@@ -90,7 +90,7 @@ const ReportListComponent=({fullname,invoiceDate,klea,bailian,dupoet,vehicle,veh
                 <Text style={itemsMedium}>Suku Cadang</Text>
                 <View style={{flexDirection:'row',justifyContent:'space-between'}}>
                   <Text style={textMedium}>{spareParts}</Text>
-                  <Text style={fontRegular}>Rp.300.000</Text>
+                  <Text style={fontRegular}>Rp.{sparePartsPrice}</Text>
                 </View>
               </View>
             </View>
@@ -98,16 +98,8 @@ const ReportListComponent=({fullname,invoiceDate,klea,bailian,dupoet,vehicle,veh
               <Text style={itemsMedium}>Jenis Freon yang digunakan:</Text>
               <View>
                 <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                  <Text style={textMedium}>Klea    </Text>
-                  <Text style={fontRegular}>Rp.{klea}</Text>
-                </View>
-                <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                  <Text style={textMedium}>Bailian</Text>
-                  <Text style={fontRegular}>Rp.{bailian}</Text>
-                </View>
-                <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                  <Text style={textMedium}>Dupoet</Text>
-                  <Text style={fontRegular}>Rp.{dupoet}</Text>
+                  <Text style={textMedium}>{freonUse}    </Text>
+                  <Text style={fontRegular}>Rp.{freonUse==='klea'?'350.000':freonUse==='bailian'?'300.000':'480.000'}</Text>
                 </View>
               </View>
             </View>

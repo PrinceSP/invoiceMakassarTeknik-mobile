@@ -29,7 +29,7 @@ const ReportListPage=({navigation})=>{
       setfilteredDatas(invoices)
       setSearch(value)
     }
-    // console.log(filteredDatas); 
+    // console.log(filteredDatas);
   }
 
   const renderItem=({item})=>{
@@ -45,10 +45,9 @@ const ReportListPage=({navigation})=>{
           diagnosis={item.diagnosis}
           action={item.action}
           spareParts={item.spareParts}
+          sparePartsPrice={item.sparePartsPrice}
           plat={item.plat}
-          Klea={item.freonUse.klea}
-          Bailian={item.freonUse.bailian}
-          Dupoet={item.freonUse.dupoet}
+          freonUse={item.freonUse}
           repairService={item.repairService}
           />
       </View>

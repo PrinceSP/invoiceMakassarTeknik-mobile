@@ -109,25 +109,15 @@ const HomePostComponent = ({item,index})=>{
                 <Text style={itemsMedium}>Suku Cadang</Text>
                 <View style={{flexDirection:'row',justifyContent:'space-between'}}>
                   <Text style={textMedium}>{item.spareParts}</Text>
-                  <Text style={fontRegular}>Rp.300.000</Text>
+                  <Text style={fontRegular}>Rp.{item.sparePartsPrice}</Text>
                 </View>
               </View>
             </View>
             <View style={{marginVertical:20,borderColor:"#AAA4A4",borderStyle:'dashed',borderBottomWidth:1,paddingBottom:25.5}}>
               <Text style={itemsMedium}>Jenis Freon yang digunakan:</Text>
-              <View>
-                <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                  <Text style={textMedium}>Klea    </Text>
-                  <Text style={fontRegular}>Rp.{item.freonUse.klea}</Text>
-                </View>
-                <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                  <Text style={textMedium}>Bailian</Text>
-                  <Text style={fontRegular}>Rp.{item.freonUse.bailian}</Text>
-                </View>
-                <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                  <Text style={textMedium}>Dupoet</Text>
-                  <Text style={fontRegular}>Rp.{item.freonUse.dupoet}</Text>
-                </View>
+              <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+                <Text style={textMedium}>{item.freonUse}    </Text>
+                <Text style={fontRegular}>Rp.{item.freonUse==='klea'?'350.000':item.freonUse==='bailian'?'300.000':'480.000'}</Text>
               </View>
             </View>
             <View style={{width:390,position:'absolute',bottom:210,left:0,flexDirection:'row',justifyContent:'space-between',zIndex:1}}>
