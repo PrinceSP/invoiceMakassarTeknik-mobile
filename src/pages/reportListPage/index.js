@@ -29,7 +29,7 @@ const ReportListPage=({navigation})=>{
       setfilteredDatas(invoices)
       setSearch(value)
     }
-    console.log(filteredDatas);
+    // console.log(filteredDatas); 
   }
 
   const renderItem=({item})=>{

@@ -11,18 +11,18 @@ const HomePostComponent = ({item,index})=>{
   const [visible,setVisible] = useState(false)
   const width = Dimensions.get('window').width
 
-  const fetchData= async()=>{
-    try {
-      const res = await fetch(`https://charlie-invoice.herokuapp.com/api/user?username=${item.sender}`)
-      const result = await res.json()
-      setUser(result)
-    } catch (e) {
-      setUser([])
-    }
-  }
   useEffect(()=>{
+    const fetchData= async()=>{
+      try {
+        const res = await fetch(`https://charlie-invoice.herokuapp.com/api/user?username=${item.sender}`)
+        const result = await res.json()
+        setUser(result)
+      } catch (e) {
+        setUser([])
+      }
+    }
     fetchData()
-  },[isUser])
+  },[])
 
   const actualDate = localizeDateStr(item.createdAt)
 

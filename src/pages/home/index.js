@@ -10,7 +10,6 @@ const Home = ({navigation})=>{
   const {user} = useContext(AuthContext)
   const [datas,setDatas] = useState([])
   const [refreshing,setRefreshing] = useState(false)
-  const [filteredDatas,setfilteredDatas] = useState([])
   const [sortDatas,setSortDatas] = useState([])
   const [search,setSearch] = useState('')
   const [show,setShow] = useState(false)
@@ -34,11 +33,11 @@ const Home = ({navigation})=>{
         const res = await fetch(`https://charlie-invoice.herokuapp.com/api/invoice`)
         const allInvoices = await res.json()
         setDatas(allInvoices)
-        setfilteredDatas(allInvoices)
+        // setfilteredDatas(allInvoices)
         setSortDatas(allInvoices)
       } catch (e) {
         setDatas([])
-        setfilteredDatas([])
+        // setfilteredDatas([])
         setSortDatas([])
       }
     }
@@ -49,19 +48,11 @@ const Home = ({navigation})=>{
     },100)
   },[refreshing])
 
-  const searchItem = (value)=>{
-    if (value) {
-      const newData = datas.filter(item=>{
-        const itemDatas = item.plat ? item.plat.toUpperCase():''.toUpperCase()
-        const valueData = value.toUpperCase()
-        return itemDatas.indexOf(valueData) > -1;
-      })
-      setSortDatas(newData)
-      setSearch(value)
-    } else{
-      setSortDatas(datas)
-      setSearch(value)
-    }
+  const searchItem = (value,query)=>{
+    const keys = ["plat","client","phoneNumber","date"]
+    return value.filter(item=>
+      keys.some(key=>item[key].toLowerCase().includes(query))
+    )
   }
 
   const filterBy = (value)=>{
@@ -74,11 +65,10 @@ const Home = ({navigation})=>{
     }
   }
 
+  const invoiceData = searchItem(datas,search)
+
   const name = JSON.stringify(user.fullname)
   const username = typeof name==="string" ? name.split(' ')[0] : name
-  console.log(show);
-  // console.log(datas);
-  // console.log(filteredDatas);
   return(
     <SafeAreaView style={container}>
         {show&&<View style={{height:700,width:392,alignItems:'center',justifyContent:'center',position:'absolute',backgroundColor: 'rgba(52, 52, 52, 0.3)',zIndex:100}}>
@@ -98,7 +88,7 @@ const Home = ({navigation})=>{
             <RefreshControl onRefresh={onRefresh} refreshing={refreshing}/>
           }
           showsVerticalScrollIndicator={false}
-          data={sortDatas}
+          data={invoiceData}
           renderItem={({item,index})=><HomePostComponent item={item} index={index}/>}
           ListHeaderComponent={
             <View style={{backgroundColor:'#fff'}}>
@@ -108,7 +98,7 @@ const Home = ({navigation})=>{
               <Text style={{fontSize:16,fontFamily:'Poppins-Light',color:'#999'}}>{getCurrentDate()}</Text>
               <Gap height={15}/>
               <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                <Input value={search} width={265} underlineColorAndroid="transparent" placeholder="Cari Plat Disini..." onChangeText={value=>searchItem(value)}/>
+                <Input value={search} width={265} underlineColorAndroid="transparent" placeholder="Cari nota disini..." onChangeText={value=>setSearch(value)}/>
                 <Button style={button} size={20} color="#0FB600" name={['SORT ',<ArrowDown key={1}/>]} key={2} onPress={()=>setShow(true)}/>
               </View>
               <Gap height={20}/>
@@ -119,7 +109,7 @@ const Home = ({navigation})=>{
           }
           stickyHeaderIndices={[0]}
           />
-        {(datas.length < 1 || filteredDatas.length < 1) && <Empty/>}
+
       </SafeAreaView>
     </SafeAreaView>
   )
