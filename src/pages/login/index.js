@@ -51,7 +51,6 @@ const Login = ({navigation}) => {
     }
     setHide(true)
   }
-
   return (
     <View style={{flex:1,backgroundColor:"#fff"}}>
       <Gap height={20}/>
@@ -61,10 +60,10 @@ const Login = ({navigation}) => {
         <Text style={{fontFamily:'PlayfairDisplay-Bold',fontSize:38,color:'#000'}}>Selamat Datang</Text>
         <Text style={{fontFamily:'PlayfairDisplay-Regular',fontSize:17,color:'#8D8D8D'}}>Masuk dengan akun anda dibawah ini</Text>
         <Gap height={46}/>
-        <Input placeholder="username" value={username} onChangeText={value=>setUsername(value)}/>
+        <Input placeholder="username" defaultValue={username} onChangeText={value=>setUsername(value)}/>
         <Gap height={30}/>
         <View>
-          <Input paddingRight={44} placeholder="Password" value={password} secureTextEntry={hide} onChangeText={value=>setPassword(value)}/>
+          <Input paddingRight={44} placeholder="Password" defaultValue={password} secureTextEntry={hide} onChangeText={value=>setPassword(value)}/>
           {hide ? <EyeFalse height={20} onPress={()=>setHide(false)} style={{position:'absolute',right:0,top:15}}/> : <EyeTrue height={20} onPress={()=>setHide(true)} style={{position:'absolute',right:0,top:15}}/>}
         </View>
         <Gap height={26}/>

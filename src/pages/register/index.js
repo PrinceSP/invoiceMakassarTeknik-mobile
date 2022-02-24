@@ -113,18 +113,18 @@ const Register = ({navigation}) => {
           hasPhoto={hasPhoto}
           onPress={getImage}/>
         <Gap height={59}/>
-        <Input placeholder="Nama Lengkap" value={fname} onChangeText={(event)=>{
+        <Input placeholder="Nama Lengkap" defaultValue={fname} onChangeText={(event)=>{
             setUserInfo({...userInfo,fname:event})}}/>
         <Gap height={30}/>
-        <Input placeholder="Email" value={email}  onChangeText={(event)=>{
+        <Input placeholder="Email" defaultValue={email}  onChangeText={(event)=>{
             setUserInfo({...userInfo,email:event})}}/>
         <Gap height={30}/>
-        <Input placeholder="username" value={username} onChangeText={(event)=>{
+        <Input placeholder="username" defaultValue={username} onChangeText={(event)=>{
             setUserInfo({...userInfo,username:event})}}/>
         <Gap height={30}/>
         <View>
           <TouchableOpacity style={{width:327,height:48,borderRadius:50,position:'absolute',zIndex:2}} onPress={()=>setShow(true)}/>
-          <Input placeholder="Tanggal Lahir" value={theDate}/>
+          <Input placeholder="Tanggal Lahir" defaultValue={theDate}/>
         </View>
         {
           show && <DateTimePicker testID='dateTimePicker'
@@ -136,10 +136,10 @@ const Register = ({navigation}) => {
           />
         }
         <Gap height={30}/>
-        <Input placeholder="No.HP" value={phone} onChangeText={(event)=>{
+        <Input placeholder="No.HP" defaultValue={phone} onChangeText={(event)=>{
             setUserInfo({...userInfo,phone:event})}}/>
         <Gap height={30}/>
-        <Input placeholder="Kata Sandi" value={password} onChangeText={(event)=>{
+        <Input placeholder="Kata Sandi" defaultValue={password} onChangeText={(event)=>{
             setUserInfo({...userInfo,password:event})}}/>
         <Gap height={78}/>
         <Button name="Daftar" color="#FFF" fam='Poppins-Medium' size={24} style={style.button}
