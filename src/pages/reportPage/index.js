@@ -42,7 +42,7 @@ const ReportPage = ({navigation})=>{
           'Accept': 'application/json, text/plain, */*',
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({userId:currentUser._id,sender:currentUser.username,date:dates,vehicle,vehicleType,plat,client:consumentName,phoneNumber:'123123123',diagnosis,action,klea,bailian,dupoet,spareParts,sparePartsPrice,repairService:servicePrice,total:totalPrice})
+        body: JSON.stringify({userId:currentUser._id,sender:currentUser.username,date:dates,vehicle,vehicleType,plat,client:consumentName,phoneNumber:'-',diagnosis,action,klea,bailian,dupoet,spareParts,sparePartsPrice,repairService:servicePrice,total:totalPrice})
       }
       await fetch(`https://charlie-invoice.herokuapp.com/api/invoice`,options)
       Toast.show({
@@ -62,7 +62,6 @@ const ReportPage = ({navigation})=>{
 
     return allDatas
   }
-  // console.log(klea,bailian,dupoet);
   const onChange = (e, selectedDate)=>{
     const currentDate = selectedDate || date
 
@@ -85,11 +84,11 @@ const ReportPage = ({navigation})=>{
       <ScrollView keyboardShouldPersistTaps='always' contentContainerStyle={style.formContainer}>
         <Text style={{fontSize:17,color:"#777",position:'absolute',left:34}}>Masukkan rincian nota</Text>
         <Gap height={40}/>
-        <Input setLabel={true} label="Nama Konsumen" placeholder="John Doe" value={consumentName} onChangeText={(event)=>setData({...datas,consumentName:event})}/>
+        <Input setLabel={true} label="Nama Konsumen" placeholder="John Doe" defaultValue={consumentName} onChangeText={(event)=>setData({...datas,consumentName:event})}/>
         <Gap height={30}/>
           <View>
             <TouchableOpacity style={{width:327,height:48,borderRadius:10,position:'absolute',bottom:0,zIndex:2}} onPress={()=>setShow(true)}/>
-            <Input setLabel={true} label="Tanggal Nota" placeholder="28-08-2021" value={dates}/>
+            <Input setLabel={true} label="Tanggal Nota" placeholder="28-08-2021" defaultValue={dates}/>
           </View>
           {
             show && <DateTimePicker testID='dateTimePicker'
@@ -101,19 +100,19 @@ const ReportPage = ({navigation})=>{
             />
           }
         <Gap height={30}/>
-        <Input setLabel={true} label="Jenis Kendaraan" placeholder="Mobil" value={vehicle} onChangeText={(event)=>setData({...datas,vehicle:event})}/>
+        <Input setLabel={true} label="Jenis Kendaraan" placeholder="Mobil" defaultValue={vehicle} onChangeText={(event)=>setData({...datas,vehicle:event})}/>
         <Gap height={30}/>
-        <Input setLabel={true} label="Tipe Kendaraan" placeholder="Honda" value={vehicleType} onChangeText={(event)=>setData({...datas,vehicleType:event})}/>
+        <Input setLabel={true} label="Tipe Kendaraan" placeholder="Honda" defaultValue={vehicleType} onChangeText={(event)=>setData({...datas,vehicleType:event})}/>
         <Gap height={30}/>
-        <Input setLabel={true} label="No.Polisi" placeholder="DN 2135 AE" value={plat} onChangeText={(event)=>setData({...datas,plat:event})}/>
+        <Input setLabel={true} label="No.Polisi" placeholder="DN 2135 AE" defaultValue={plat} onChangeText={(event)=>setData({...datas,plat:event})}/>
         <Gap height={30}/>
-        <Input setLabel={true} label="Diagnosa" placeholder="AC Mobil Bermasalah" value={diagnosis} onChangeText={(event)=>setData({...datas,diagnosis:event})}/>
+        <Input setLabel={true} label="Diagnosa" placeholder="AC Mobil Bermasalah" defaultValue={diagnosis} onChangeText={(event)=>setData({...datas,diagnosis:event})}/>
         <Gap height={30}/>
-        <Input setLabel={true} label="Penanganan" placeholder="Pengisian ulang freon" value={action} onChangeText={(event)=>setData({...datas,action:event})}/>
+        <Input setLabel={true} label="Penanganan" placeholder="Pengisian ulang freon" defaultValue={action} onChangeText={(event)=>setData({...datas,action:event})}/>
         <Gap height={30}/>
-        <Input setLabel={true} label="Suku Cadang (opsional)" placeholder="Kompresor" value={spareParts} onChangeText={(event)=>setData({...datas,spareParts:event})}/>
+        <Input setLabel={true} label="Suku Cadang (opsional)" placeholder="Kompresor" defaultValue={spareParts} onChangeText={(event)=>setData({...datas,spareParts:event})}/>
         <Gap height={30}/>
-        <Input setLabel={true} label="Harga Suku Cadang (opsional)" placeholder="500.000" value={sparePartsPrice} onChangeText={(event)=>setData({...datas,sparePartsPrice:event})}/>
+        <Input setLabel={true} label="Harga Suku Cadang (opsional)" placeholder="100.000" defaultValue={sparePartsPrice} onChangeText={(event)=>setData({...datas,sparePartsPrice:event})}/>
         {/**<Gap height={30}/>
         <View style={{flexDirection:'column',width:329}}>
           <Text style={{fontSize:20,color:'#000',marginBottom:7}}>Jenis Freon:</Text>
@@ -133,9 +132,9 @@ const ReportPage = ({navigation})=>{
           </View>
         </View>**/}
         <Gap height={30}/>
-        <Input setLabel={true} label="Harga Jasa Layanan" placeholder="200.000" value={servicePrice} onChangeText={(event)=>setData({...datas,servicePrice:event})}/>
+        <Input setLabel={true} label="Harga Jasa Layanan" placeholder="200.000" defaultValue={servicePrice} onChangeText={(event)=>setData({...datas,servicePrice:event})}/>
         <Gap height={30}/>
-        <Input setLabel={true} label="Total Pembayaran" placeholder="350.000" value={totalPrice} onChangeText={(event)=>setData({...datas,totalPrice:event})}/>
+        <Input setLabel={true} label="Total Pembayaran" placeholder="350.000" defaultValue={totalPrice} onChangeText={(event)=>setData({...datas,totalPrice:event})}/>
         <Gap height={10}/>
         <View style={{alignItems:'center'}}>
           <Button name="Simpan Nota" color='#fff' fam='Poppins-Bold' size={24} style={buttonSubmit} onPress={()=>submit()}/>

@@ -21,32 +21,24 @@ const Home = ({navigation})=>{
       setShow(false)
     }
   }
-
-  const onRefresh = useCallback(() => {
-    setRefreshing(true);
-    wait(1000).then(() => setRefreshing(false));
-  }, []);
-
-  useEffect(()=>{
-    const fetchDatas = async ()=>{
-      try {
-        const res = await fetch(`https://charlie-invoice.herokuapp.com/api/invoice`)
-        const allInvoices = await res.json()
-        setDatas(allInvoices)
-        // setfilteredDatas(allInvoices)
-        setSortDatas(allInvoices)
-      } catch (e) {
-        setDatas([])
-        // setfilteredDatas([])
-        setSortDatas([])
-      }
+  const fetchDatas = async ()=>{
+    try {
+      const res = await fetch(`https://charlie-invoice.herokuapp.com/api/invoice`)
+      const allInvoices = await res.json()
+      setDatas(allInvoices)
+      setSortDatas(allInvoices)
+      setRefreshing(true)
+    } catch (e) {
+      setDatas([])
+      setSortDatas([])
+    } finally{
+      setRefreshing(false)
     }
+  }
+  useEffect(()=>{
     fetchDatas()
     toggleModal()
-    const interval = refreshing&&setTimeout(()=>{
-      fetchDatas()
-    },100)
-  },[refreshing])
+  },[])
 
   const searchItem = (value,query)=>{
     const keys = ["plat","client","phoneNumber","date"]
@@ -84,9 +76,8 @@ const Home = ({navigation})=>{
       <SafeAreaView style={scrollViewCont}>
         <FlatList
           keyExtractor={item => item._id}
-          refreshControl={
-            <RefreshControl onRefresh={onRefresh} refreshing={refreshing}/>
-          }
+          refreshing={refreshing}
+          onRefresh={fetchDatas}
           showsVerticalScrollIndicator={false}
           data={invoiceData}
           renderItem={({item,index})=><HomePostComponent item={item} index={index}/>}
