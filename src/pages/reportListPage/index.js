@@ -6,15 +6,10 @@ import {useHandleCurrentInvoices} from '../../config'
 import {wait} from '../../config'
 
 const ReportListPage=({navigation})=>{
-  const [refreshing,setRefreshing] = useState(false)
+  // const [refreshing,setRefreshing] = useState(false)
   const {user: currentUser} = useContext(AuthContext)
-  const {invoices,filteredDatas,setfilteredDatas} = useHandleCurrentInvoices(`invoice/invoicesList/${currentUser._id}`,refreshing)
+  const {invoices,filteredDatas,setfilteredDatas,refreshing,fetchData} = useHandleCurrentInvoices(`invoice/invoicesList/${currentUser._id}`)
   const [search,setSearch] = useState('')
-
-  const onRefresh = useCallback(() => {
-    setRefreshing(true);
-    wait(1000).then(() => setRefreshing(false));
-  }, []);
 
   const searchItem = (value)=>{
     if (value) {
@@ -29,7 +24,6 @@ const ReportListPage=({navigation})=>{
       setfilteredDatas(invoices)
       setSearch(value)
     }
-    // console.log(filteredDatas);
   }
 
   const renderItem=({item})=>{
@@ -61,12 +55,8 @@ const ReportListPage=({navigation})=>{
       <SafeAreaView style={{paddingHorizontal:14,paddingVertical:20}}>
         <Input value={search} width={365} underlineColorAndroid="transparent" placeholder="Cari Plat Disini..." onChangeText={value=>searchItem(value)}/>
         <FlatList
-          refreshControl={
-            <RefreshControl
-              refreshing={refreshing}
-              onRefresh={onRefresh}
-            />
-          }
+          refreshing={refreshing}
+          onRefresh={fetchData}
           showsVerticalScrollIndicator={false}
           data={filteredDatas}
           keyExtractor={item=>item._id}

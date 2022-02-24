@@ -1,9 +1,10 @@
 import {useState,useEffect} from 'react'
 
-const useHandleCurrentInvoices = (url,isRefreshing)=>{
+const useHandleCurrentInvoices = (url)=>{
   const [invoices,setInvoices] = useState([])
   const [isPending,setIsPending] = useState(true)
   const [filteredDatas,setfilteredDatas] = useState([])
+  const [refreshing,setRefreshing] = useState(false)
 
   const fetchData = ()=>{
     fetch(`https://charlie-invoice.herokuapp.com/api/${url}`)
@@ -20,23 +21,22 @@ const useHandleCurrentInvoices = (url,isRefreshing)=>{
         })
       )
       setIsPending(false)
+      setRefreshing(true)
     })
     .catch((error)=>{
       setDatas([])
       setfilteredDatas([])
       setIsPending(false)
     })
+    .finally(()=>{
+      setRefreshing(false)
+    })
   }
   useEffect(()=>{
-
     fetchData()
+  },[])
 
-    const interval=isRefreshing&&setTimeout(()=>{
-      fetchData()
-    },100)
-  },[setInvoices,url,isRefreshing])
-
-  return {invoices,isPending,filteredDatas,setfilteredDatas}
+  return {invoices,isPending,filteredDatas,setfilteredDatas,fetchData,refreshing}
 }
 
 export default useHandleCurrentInvoices

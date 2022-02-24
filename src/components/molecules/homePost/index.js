@@ -22,7 +22,7 @@ const HomePostComponent = ({item,index})=>{
       }
     }
     fetchData()
-  },[])
+  },[isUser])
 
   const actualDate = localizeDateStr(item.createdAt)
   const itemDate = localizeDateStr(item.date)
