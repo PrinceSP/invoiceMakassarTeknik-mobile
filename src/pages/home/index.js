@@ -3,7 +3,6 @@ import {Text,TouchableOpacity,View,StyleSheet,RefreshControl,SafeAreaView,FlatLi
 import {Header,Gap,Button,Input,HomePostComponent,Empty} from '../../components'
 import {getCurrentDate} from '../../config'
 import { AuthContext } from "../../context/authContext";
-import {wait} from '../../config'
 import {ArrowDown} from '../../assets'
 
 const Home = ({navigation})=>{
@@ -61,6 +60,7 @@ const Home = ({navigation})=>{
 
   const name = JSON.stringify(user.fullname)
   const username = typeof name==="string" ? name.split(' ')[0] : name
+
   return(
     <SafeAreaView style={container}>
         {show&&<View style={{height:700,width:392,alignItems:'center',justifyContent:'center',position:'absolute',backgroundColor: 'rgba(52, 52, 52, 0.3)',zIndex:100}}>
