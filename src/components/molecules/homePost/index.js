@@ -12,17 +12,21 @@ const HomePostComponent = ({item,index})=>{
   const width = Dimensions.get('window').width
 
   useEffect(()=>{
+    let mounted = true
     const fetchData= async()=>{
       try {
         const res = await fetch(`https://charlie-invoice.herokuapp.com/api/user?username=${item.sender}`)
         const result = await res.json()
-        setUser(result)
+        if (mounted) {
+          setUser(result)
+        }
       } catch (e) {
         setUser([])
       }
     }
     fetchData()
-  },[])
+    return () => mounted = false;
+  },[isUser])
 
   const actualDate = localizeDateStr(item.createdAt)
   const itemDate = localizeDateStr(item.date)
