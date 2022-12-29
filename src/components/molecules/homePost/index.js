@@ -15,9 +15,9 @@ const HomePostComponent = ({item,index})=>{
     let mounted = true
     const fetchData= async()=>{
       try {
-        const res = await fetch(`https://charlie-invoice.herokuapp.com/api/user?username=${item.sender}`)
-        const result = await res.json()
         if (mounted) {
+          const res = await fetch(`https://charlie-invoice.herokuapp.com/api/user?username=${item.sender}`)
+          const result = await res.json()
           setUser(result)
         }
       } catch (e) {
@@ -26,7 +26,7 @@ const HomePostComponent = ({item,index})=>{
     }
     fetchData()
     return () => mounted = false;
-  },[isUser])
+  },[])
 
   const actualDate = localizeDateStr(item.createdAt)
   const itemDate = localizeDateStr(item.date)

@@ -65,7 +65,6 @@ const Register = ({navigation}) => {
   //handle submit form button
   const submit = async()=>{
     // reset the values of each keys after submit button has been pressed
-    //navigate to login screen after registering account
     try {
       const options = {
         method: 'post',

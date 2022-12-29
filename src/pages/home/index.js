@@ -7,9 +7,9 @@ import {ArrowDown} from '../../assets'
 
 const Home = ({navigation})=>{
   const {user} = useContext(AuthContext)
-  const [datas,setDatas] = useState([])
+  const [datas,setDatas] = useState(null)
   const [refreshing,setRefreshing] = useState(false)
-  const [sortDatas,setSortDatas] = useState([])
+  const [sortDatas,setSortDatas] = useState(null)
   const [search,setSearch] = useState('')
   const [show,setShow] = useState(false)
 
@@ -34,14 +34,19 @@ const Home = ({navigation})=>{
       setRefreshing(false)
     }
   }
+
   useEffect(()=>{
-    fetchDatas()
-    toggleModal()
+    let mounted = true
+    if (mounted) {
+      fetchDatas()
+      toggleModal()
+    }
+    return ()=> mounted=false
   },[])
 
   const searchItem = (value,query)=>{
     const keys = ["plat","client","phoneNumber","date"]
-    return value.filter(item=>
+    return value?.filter(item=>
       keys.some(key=>item[key].toLowerCase().includes(query))
     )
   }
@@ -100,7 +105,7 @@ const Home = ({navigation})=>{
           }
           stickyHeaderIndices={[0]}
           />
-        {(datas.length < 1 || invoiceData.length < 1) && <Empty/>}
+        {(datas?.length < 1 || invoiceData?.length < 1) && <Empty/>}
       </SafeAreaView>
     </SafeAreaView>
   )

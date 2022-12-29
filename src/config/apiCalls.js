@@ -33,7 +33,11 @@ const useHandleCurrentInvoices = (url)=>{
     })
   }
   useEffect(()=>{
-    fetchData()
+    let mounted = true
+    if (mounted) {
+      fetchData()
+    }
+    return ()=> mounted = false
   },[])
 
   return {invoices,isPending,filteredDatas,setfilteredDatas,fetchData,refreshing}

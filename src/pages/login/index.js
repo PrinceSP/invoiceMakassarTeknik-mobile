@@ -1,6 +1,6 @@
 import React,{useContext,useState} from "react"
 import {View,Text,StyleSheet,Image,ActivityIndicator} from 'react-native'
-import {Header,Gap,Button,Input,ToastMessage} from '../../components'
+import {Header,Gap,Button,Input} from '../../components'
 import {SingleSmall,EyeTrue,EyeFalse} from '../../assets'
 import {AuthContext} from '../../context/authContext'
 import {toastConfig} from '../../components/molecules/toast'
@@ -48,6 +48,7 @@ const Login = ({navigation}) => {
         text1:'Terjadi Kesalahan',
         text2:'Username atau Password anda salah!'
       })
+      return err
     }
     setHide(true)
   }

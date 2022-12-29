@@ -31,10 +31,10 @@ const ReportPage = ({navigation})=>{
   const submit = async()=>{
     //merge all the datas from these states
     //submit all the datas from form
-    const allDatas = {...datas};
-    for (let datas in allDatas) {
-      console.log(`${datas} : ${allDatas[datas]}`);
-    }
+    // const allDatas = {...datas};
+    // for (let datas in allDatas) {
+    //   console.log(`${datas} : ${allDatas[datas]}`);
+    // }
     try {
       const options = {
         method: 'post',
